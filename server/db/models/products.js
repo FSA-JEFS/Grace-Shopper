@@ -37,7 +37,8 @@ const Products = db.define('products', {
     }
   },
   categories: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
+    type: Sequelize.ARRAY(Sequelize.STRING),
+    defaultValue: []
   },
   inventory: {
     type: Sequelize.INTEGER,
