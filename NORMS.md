@@ -2,7 +2,7 @@
 
 10:30 AM every weekday;
 
-#pairing
+# pairing
 
 TDB;
 
