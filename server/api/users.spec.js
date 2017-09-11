@@ -109,7 +109,7 @@ describe("User routes", () => {
         return request(app)
           .delete("/api/users/" + cody.id)
           .expect(200)
-          .then(User.findAll)
+          .then(() => User.findAll())
           .then(users => {
             expect(users.length).to.equal(0);
           });
@@ -121,27 +121,40 @@ describe("User routes", () => {
     });
 
     describe("PUT /users", () => {
-      it('updates a user', () => {
+      it("updates a user", () => {
         return request(app)
-        .put('/api/users/' + cody.id)
-        .send({
-          name: 'Loki'
-        })
-        .expect(200)
-        .expect( (response) => {
-          expect(response.name).to.equal('Loki')
-          expect(response.email).to.equal(cody.email)
-        })
-      })
+          .put("/api/users/" + cody.id)
+          .send({
+            name: "Loki"
+          })
+          .expect(200)
+          .expect(response => {
+            expect(response.name).to.equal("Loki");
+            expect(response.email).to.equal(cody.email);
+          });
+      });
 
-      it('saves update to the DB', () => {
-        User.findById(cody.id)
-        .then( (user) => {
-          expect(user.name).to.equal('Loki')
-          expect(user.email).to.equal(cody.email)
-        })
-      })
-    })
-    
+      it("saves update to the DB", () => {
+        return request(app)
+          .put("/api/users/" + cody.id)
+          .send({
+            name: "Loki"
+          })
+          .then(() => User.findById(cody.id))
+          .then(user => {
+            expect(user.name).to.equal("Loki");
+            expect(user.email).to.equal(cody.email);
+          });
+      });
+
+      it("returns a 404 error if the ID is not correct", function() {
+        return request(app)
+          .put("/api/users/76344667")
+          .send({
+            name: "Loki"
+          })
+          .expect(404);
+      });
+    });
   }); // end describe('/api/users')
 }); // end describe('User routes')
