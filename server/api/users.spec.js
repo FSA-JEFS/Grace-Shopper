@@ -116,8 +116,32 @@ describe("User routes", () => {
       });
 
       it("returns a 404 error if the ID is not correct", function() {
-        return agent.delete("/api/users/76142896").expect(404);
+        return request(app).delete("/api/users/76142896").expect(404);
       });
     });
+
+    describe("PUT /users", () => {
+      it('updates a user', () => {
+        return request(app)
+        .put('/api/users/' + cody.id)
+        .send({
+          name: 'Loki'
+        })
+        .expect(200)
+        .expect( (response) => {
+          expect(response.name).to.equal('Loki')
+          expect(response.email).to.equal(cody.email)
+        })
+      })
+
+      it('saves update to the DB', () => {
+        User.findById(cody.id)
+        .then( (user) => {
+          expect(user.name).to.equal('Loki')
+          expect(user.email).to.equal(cody.email)
+        })
+      })
+    })
+    
   }); // end describe('/api/users')
 }); // end describe('User routes')
