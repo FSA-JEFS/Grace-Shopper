@@ -49,5 +49,73 @@ describe('User routes', () => {
         })
     })
 
+    it('GET /api/users/:id returns a 404 error if the ID is not correct', () => {
+
+      return request(app)
+        .get('/api/users/8675309')
+        .expect(404)
+    })
+    
+    describe('POST /students', function () {
+
+      it('can create a student', () => {
+        return request(app)
+          .post('/api/users')
+          .send({
+            name: 'Gaspode the Dog',
+            email: 'gaspode@discworld.com',
+            password: 'bugrit',
+            tags: ['isSewerDog', 'CanTalk'],
+            isAdmin: false,
+            googleId: null
+          })
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an('object')
+            expect(res.body.id).to.not.be.an('undefined')
+            expect(res.body.name).to.equal('Gaspode the Dog')
+          })
+      })
+
+      it('post with insufficient information should fail with 500', () => {
+        return request(app)
+          .post('/api/users')
+          .send({
+            email: 'gaspode@discworld.com',
+            password: 'bugrit',
+            tags: ['isSewerDog', 'CanTalk'],
+            isAdmin: false,
+            googleId: null
+          })
+          .expect(500)
+      })
+
+      it('saves the student to the DB', () => {
+        return request(app)
+          .post('/api/users')
+          .send({
+            name: 'Gaspode the Dog',
+            email: 'gaspode@discworld.com',
+            password: 'bugrit',
+            tags: ['isSewerDog', 'CanTalk'],
+            isAdmin: false,
+            googleId: null
+          })
+          .expect(200)
+          .then(function () {
+            return User.findOne({
+              where: {name: 'Gaspode the Dog'}
+            })
+          })
+          .then(function (foundUser) {
+            expect(foundUser).to.exist;
+            expect(foundUser.email).to.equal('gaspode@discworld.com');
+            expect(foundUser.createdAt).to.exist;
+          })
+
+      })
+    }
+
   }) // end describe('/api/users')
+
 }) // end describe('User routes')
