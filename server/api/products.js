@@ -58,7 +58,6 @@ router.get('/tag/:tag', (req, res, next) => {
 
 //Create a new product
 router.post('/add-product', (req, res, next) => {
-  console.log('req.body', req.body)
   Products.create(req.body)
   .then(product => res.status(201).send(product))
   .catch(next)
@@ -69,5 +68,14 @@ router.delete('/:id', (req, res, next) => {
   Products.findById(req.params.id)
   .then( product => product ? product.destroy() : res.sendStatus(404))
   .then(products => res.json(products))
+  .catch(next)
+})
+
+// edit puppy details
+router.put('/:id', (req, res, next) => {
+  Products.update(req.body, {where: {id: req.params.id}, returning: true})
+  .then(result => {
+    result[1][0] ? res.json(result[1][0]) : res.sendStatus(404)
+  })
   .catch(next)
 })

@@ -171,5 +171,42 @@ describe("Products routes", () => {
           .expect(500)
       });
     });
+
+    describe("PUT requests", () => {
+      it("updates a products", () => {
+        return request(app)
+          .put("/api/products/" + puppy.id)
+          .send({
+            name: "Lassie"
+          })
+          .expect(200)
+          .expect(response => {
+            expect(response.body.name).to.equal("Lassie");
+            expect(response.body.email).to.equal(puppy.email);
+          });
+      });
+
+      it("saves update to the DB", () => {
+        return request(app)
+          .put("/api/products/" + puppy.id)
+          .send({
+            name: "Lassie"
+          })
+          .then(() => Products.findById(puppy.id))
+          .then(user => {
+            expect(user.name).to.equal("Lassie");
+            expect(user.email).to.equal(puppy.email);
+          });
+      });
+
+      it("returns a 404 error if the ID is not correct", function() {
+        return request(app)
+          .put("/api/products/76344667")
+          .send({
+            name: "Lassie"
+          })
+          .expect(404);
+      });
+    });
   }); // end describe('/api/products')
 }); // end describe('Products routes')

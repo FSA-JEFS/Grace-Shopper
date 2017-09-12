@@ -32,6 +32,10 @@ const Products = db.define('products', {
   },
   photos: {
     type: Sequelize.ARRAY(Sequelize.STRING),
+    validate: {
+      // areUrls: function(value, next) {
+        isUrl: true
+    },
     defaultValue: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQESkVtS1LQoEVN2-zr9ZlOeyndZbRD5DDrYfPnxcCOaOzFUV8w']
   },
   tags: {
