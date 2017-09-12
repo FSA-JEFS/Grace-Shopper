@@ -31,7 +31,7 @@ describe('User model', () => {
       expect(cody.email).to.equal('cody@puppybook.com')
     })
     it('includes `isAdmin` field', function () {
-      expect(cody.isAdmin).to.be.true();
+      expect(cody.isAdmin).to.be.true;
     })
     it('includes `googleId` field', function () {
       expect(cody.googleId).to.be.null;
