@@ -21,7 +21,7 @@ describe('Products routes', () => {
         breederEmail: "j@pew.com",
         description: "eiugrh fIOWAHGUIRW ofejhguieroils",
         price: 500,
-        photo: "http://cdn1-www.dogtime.com/assets/uploads/gallery/english-spaniel-dog-breed-pictures/8-fullbody.jpg",
+        photos: ["http://cdn1-www.dogtime.com/assets/uploads/gallery/english-spaniel-dog-breed-pictures/8-fullbody.jpg"],
         categories: ["social", "wet", "beach-friendly"],
         inventory: 5
       });
@@ -32,7 +32,7 @@ describe('Products routes', () => {
         breederEmail: "e@pew.com",
         description: "BEARS!",
         price: 740,
-        photo: "https://i.pinimg.com/736x/11/12/09/1112097172845da1ab30cf3fc3eed160--white-chow-chow-chow-chow-puppies.jpg",
+        photos: ["https://i.pinimg.com/736x/11/12/09/1112097172845da1ab30cf3fc3eed160--white-chow-chow-chow-chow-puppies.jpg"],
         categories: ["fluffy", "adventurous", "beach-friendly"],
         inventory: 1
       });
@@ -48,13 +48,14 @@ describe('Products routes', () => {
           expect(res.body[0].name).to.be.equal("Milkshakes")
         })
     })
-    it('GET /api/products/:name', () => {
+    it('GET /api/products/:id', () => {
       return request(app)
-        .get('/api/products/Milkshakes')
+        .get('/api/products/' + puppy.id)
         .expect(200)
         .then(res => {
           expect(res.body).to.be.an('object')
-          expect(res.body.name).to.be.equal('Milkshakes')
+          expect(res.body.name).to.be.equal(puppy.name)
+          expect(res.body.breeder).to.be.equal(puppy.breeder)
         })
     })
     it('GET /api/products/breed/', () => {

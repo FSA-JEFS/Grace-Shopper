@@ -10,10 +10,8 @@ router.get('/', (req, res, next) => {
 })
 
 // Get one puppy
-router.get('/:name', (req, res, next) => {
-  Products.findOne({
-    where: { name: req.params.name }
-  })
+router.get('/:id', (req, res, next) => {
+  Products.findById(req.params.id)
   .then(products => res.json(products))
   .catch(next)
 })
@@ -47,10 +45,10 @@ router.get('/price/:price', (req, res, next) => {
     .catch(next)
 })
 
-// Get puppies by categories
+// Get puppies by tags
 router.get('/tag/:tag', (req, res, next) => {
   Products.findAll({
-    where: { categories: {
+    where: { tags: {
       $contains: [req.params.tag] }
     }
   })
