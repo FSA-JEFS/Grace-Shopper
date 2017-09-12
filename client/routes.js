@@ -4,7 +4,8 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome} from './components'
+import {Main, Login, Signup, Navbar, BlackSimpleFooter} from './components'
+import UserHome from './containers/UserHome'
 import {me} from './store'
 
 /**
@@ -20,26 +21,36 @@ class Routes extends Component {
 
     return (
       <Router history={history}>
+      <div>
+      <Navbar />
         <Main>
           <Switch>
             {/* Routes placed here are available to all visitors */}
+            <Route exact path='/' component={UserHome} />
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Signup} />
-            {
-              isLoggedIn &&
-                <Switch>
-                  {/* Routes placed here are only available after logging in */}
-                  <Route path='/home' component={UserHome} />
-                </Switch>
-            }
-            {/* Displays our Login component as a fallback */}
             <Route component={Login} />
           </Switch>
         </Main>
+        <BlackSimpleFooter />
+        </div>
       </Router>
     )
   }
 }
+
+// unused for now
+
+            // {
+            //   isLoggedIn &&
+            //     <Switch>
+            //       {/* Routes placed here are only available after logging in */}
+            //       <Route path='/home' component={UserHome} />
+            //     </Switch>
+            // }
+            // {/* Displays our Login component as a fallback */}
+
+// unused for now
 
 /**
  * CONTAINER

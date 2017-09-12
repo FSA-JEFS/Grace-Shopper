@@ -17844,6 +17844,10 @@ var _history2 = _interopRequireDefault(_history);
 
 var _components = __webpack_require__(180);
 
+var _UserHome = __webpack_require__(361);
+
+var _UserHome2 = _interopRequireDefault(_UserHome);
+
 var _store = __webpack_require__(36);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -17881,20 +17885,22 @@ var Routes = function (_Component) {
         _reactRouter.Router,
         { history: _history2.default },
         _react2.default.createElement(
-          _components.Main,
+          'div',
           null,
+          _react2.default.createElement(_components.Navbar, null),
           _react2.default.createElement(
-            _reactRouterDom.Switch,
+            _components.Main,
             null,
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _components.Login }),
-            _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', component: _components.Signup }),
-            isLoggedIn && _react2.default.createElement(
+            _react2.default.createElement(
               _reactRouterDom.Switch,
               null,
-              _react2.default.createElement(_reactRouterDom.Route, { path: '/home', component: _components.UserHome })
-            ),
-            _react2.default.createElement(_reactRouterDom.Route, { component: _components.Login })
-          )
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _UserHome2.default }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _components.Login }),
+              _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', component: _components.Signup }),
+              _react2.default.createElement(_reactRouterDom.Route, { component: _components.Login })
+            )
+          ),
+          _react2.default.createElement(_components.BlackSimpleFooter, null)
         )
       );
     }
@@ -17902,6 +17908,19 @@ var Routes = function (_Component) {
 
   return Routes;
 }(_react.Component);
+
+// unused for now
+
+// {
+//   isLoggedIn &&
+//     <Switch>
+//       {/* Routes placed here are only available after logging in */}
+//       <Route path='/home' component={UserHome} />
+//     </Switch>
+// }
+// {/* Displays our Login component as a fallback */}
+
+// unused for now
 
 /**
  * CONTAINER
@@ -19070,12 +19089,12 @@ Object.defineProperty(exports, 'Main', {
   }
 });
 
-var _userHome = __webpack_require__(182);
+var _UserHome = __webpack_require__(360);
 
 Object.defineProperty(exports, 'UserHome', {
   enumerable: true,
   get: function get() {
-    return _interopRequireDefault(_userHome).default;
+    return _interopRequireDefault(_UserHome).default;
   }
 });
 
@@ -19091,6 +19110,24 @@ Object.defineProperty(exports, 'Signup', {
   enumerable: true,
   get: function get() {
     return _authForm.Signup;
+  }
+});
+
+var _Navbar = __webpack_require__(359);
+
+Object.defineProperty(exports, 'Navbar', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Navbar).default;
+  }
+});
+
+var _BlackSimpleFooter = __webpack_require__(358);
+
+Object.defineProperty(exports, 'BlackSimpleFooter', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_BlackSimpleFooter).default;
   }
 });
 
@@ -19211,68 +19248,7 @@ Main.propTypes = {
 };
 
 /***/ }),
-/* 182 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.UserHome = undefined;
-
-var _react = __webpack_require__(6);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = __webpack_require__(7);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _reactRedux = __webpack_require__(29);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * COMPONENT
- */
-var UserHome = exports.UserHome = function UserHome(props) {
-  var email = props.email;
-
-
-  return _react2.default.createElement(
-    'div',
-    null,
-    _react2.default.createElement(
-      'h3',
-      null,
-      'Welcome, ',
-      email
-    )
-  );
-};
-
-/**
- * CONTAINER
- */
-var mapState = function mapState(state) {
-  return {
-    email: state.user.email
-  };
-};
-
-exports.default = (0, _reactRedux.connect)(mapState)(UserHome);
-
-/**
- * PROP TYPES
- */
-
-UserHome.propTypes = {
-  email: _propTypes2.default.string
-};
-
-/***/ }),
+/* 182 */,
 /* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39023,6 +38999,1095 @@ function toArray(list, index) {
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 358 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+	return _react2.default.createElement(
+		"footer",
+		{ className: "footer footer-black" },
+		_react2.default.createElement(
+			"div",
+			{ className: "container" },
+			_react2.default.createElement(
+				"a",
+				{ className: "footer-brand", href: "#pablo" },
+				"Material Kit PRO"
+			),
+			_react2.default.createElement(
+				"ul",
+				{ className: "pull-center" },
+				_react2.default.createElement(
+					"li",
+					null,
+					_react2.default.createElement(
+						"a",
+						{ href: "#pablo" },
+						"Blog"
+					)
+				),
+				_react2.default.createElement(
+					"li",
+					null,
+					_react2.default.createElement(
+						"a",
+						{ href: "#pablo" },
+						"Presentation"
+					)
+				),
+				_react2.default.createElement(
+					"li",
+					null,
+					_react2.default.createElement(
+						"a",
+						{ href: "#pablo" },
+						"Discover"
+					)
+				),
+				_react2.default.createElement(
+					"li",
+					null,
+					_react2.default.createElement(
+						"a",
+						{ href: "#pablo" },
+						"Payment"
+					)
+				),
+				_react2.default.createElement(
+					"li",
+					null,
+					_react2.default.createElement(
+						"a",
+						{ href: "#pablo" },
+						"Contact Us"
+					)
+				)
+			),
+			_react2.default.createElement(
+				"ul",
+				{ className: "social-buttons pull-right" },
+				_react2.default.createElement(
+					"li",
+					null,
+					_react2.default.createElement(
+						"a",
+						{ href: "https://twitter.com/CreativeTim", target: "_blank", className: "btn btn-just-icon btn-simple" },
+						_react2.default.createElement("i", { className: "fa fa-twitter" })
+					)
+				),
+				_react2.default.createElement(
+					"li",
+					null,
+					_react2.default.createElement(
+						"a",
+						{ href: "https://www.facebook.com/CreativeTim", target: "_blank", className: "btn btn-just-icon btn-simple" },
+						_react2.default.createElement("i", { className: "fa fa-facebook-square" })
+					)
+				),
+				_react2.default.createElement(
+					"li",
+					null,
+					_react2.default.createElement(
+						"a",
+						{ href: "https://www.instagram.com/CreativeTimOfficial", target: "_blank", className: "btn btn-just-icon btn-simple" },
+						_react2.default.createElement("i", { className: "fa fa-instagram" })
+					)
+				)
+			)
+		)
+	);
+};
+
+/***/ }),
+/* 359 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRouterDom = __webpack_require__(130);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function () {
+	return _react2.default.createElement(
+		'nav',
+		{ className: 'navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll', colorOnScroll: ' ', id: 'sectionsNav' },
+		_react2.default.createElement(
+			'div',
+			{ className: 'container' },
+			_react2.default.createElement(
+				'div',
+				{ className: 'navbar-header' },
+				_react2.default.createElement(
+					'button',
+					{ type: 'button', className: 'navbar-toggle', 'data-toggle': 'collapse' },
+					_react2.default.createElement(
+						'span',
+						{ className: 'sr-only' },
+						'Toggle navigation'
+					),
+					_react2.default.createElement('span', { className: 'icon-bar' }),
+					_react2.default.createElement('span', { className: 'icon-bar' }),
+					_react2.default.createElement('span', { className: 'icon-bar' })
+				),
+				_react2.default.createElement(
+					'a',
+					{ className: 'navbar-brand', href: 'presentation.html' },
+					'Material Kit PRO'
+				)
+			),
+			_react2.default.createElement(
+				'div',
+				{ className: 'collapse navbar-collapse' },
+				_react2.default.createElement(
+					'ul',
+					{ className: 'nav navbar-nav navbar-right' },
+					_react2.default.createElement(
+						'li',
+						null,
+						_react2.default.createElement(
+							'a',
+							{ href: 'index.html' },
+							_react2.default.createElement(
+								'i',
+								{ className: 'material-icons' },
+								'apps'
+							),
+							' Components'
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						{ className: 'dropdown' },
+						_react2.default.createElement(
+							'a',
+							{ href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown' },
+							_react2.default.createElement(
+								'i',
+								{ className: 'material-icons' },
+								'view_day'
+							),
+							' Sections',
+							_react2.default.createElement('b', { className: 'caret' })
+						),
+						_react2.default.createElement(
+							'ul',
+							{ className: 'dropdown-menu dropdown-with-icons' },
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'sections.html#headers' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'dns'
+									),
+									' Headers'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'sections.html#features' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'build'
+									),
+									' Features'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'sections.html#blogs' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'list'
+									),
+									' Blogs'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'sections.html#teams' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'people'
+									),
+									' Teams'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'sections.html#projects' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'assignment'
+									),
+									' Projects'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'sections.html#pricing' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'monetization_on'
+									),
+									' Pricing'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'sections.html#testimonials' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'chat'
+									),
+									' Testimonials'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'sections.html#contactus' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'call'
+									),
+									' Contacts'
+								)
+							)
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						{ className: 'dropdown' },
+						_react2.default.createElement(
+							'a',
+							{ href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown' },
+							_react2.default.createElement(
+								'i',
+								{ className: 'material-icons' },
+								'view_carousel'
+							),
+							' Examples',
+							_react2.default.createElement('b', { className: 'caret' })
+						),
+						_react2.default.createElement(
+							'ul',
+							{ className: 'dropdown-menu dropdown-with-icons' },
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'examples/about-us.html' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'account_balance'
+									),
+									' About Us'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'examples/blog-post.html' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'art_track'
+									),
+									' Blog Post'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'examples/blog-posts.html' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'view_quilt'
+									),
+									' Blog Posts'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'examples/contact-us.html' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'location_on'
+									),
+									' Contact Us'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'examples/landing-page.html' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'view_day'
+									),
+									' Landing Page'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'examples/login-page.html' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'fingerprint'
+									),
+									' Login Page'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'examples/pricing.html' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'attach_money'
+									),
+									' Pricing Page'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'examples/ecommerce.html' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'shop'
+									),
+									' Ecommerce Page'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'examples/product-page.html' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'beach_access'
+									),
+									' Product Page'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'examples/profile-page.html' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'account_circle'
+									),
+									' Profile Page'
+								)
+							),
+							_react2.default.createElement(
+								'li',
+								null,
+								_react2.default.createElement(
+									'a',
+									{ href: 'examples/signup-page.html' },
+									_react2.default.createElement(
+										'i',
+										{ className: 'material-icons' },
+										'person_add'
+									),
+									' Signup Page'
+								)
+							)
+						)
+					),
+					_react2.default.createElement(
+						'li',
+						{ className: 'button-container' },
+						_react2.default.createElement(
+							'a',
+							{ href: 'http://www.creative-tim.com/buy/material-kit-pro?ref=presentation', target: '_blank', className: 'btn btn-rose btn-round' },
+							_react2.default.createElement(
+								'i',
+								{ className: 'material-icons' },
+								'shopping_cart'
+							),
+							' Buy Now'
+						)
+					)
+				)
+			)
+		)
+	);
+};
+
+/***/ }),
+/* 360 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(7);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactRedux = __webpack_require__(29);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * COMPONENT
+ */
+var UserHome = function UserHome(props) {
+  var email = props.email;
+
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'landing-page' },
+    _react2.default.createElement(
+      'div',
+      { className: 'page-header header-filter', 'data-parallax': 'true', style: { backgroundImage: "url('../resources/assets/img/bg8.jpg')" } },
+      _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+          'div',
+          { className: 'row' },
+          _react2.default.createElement(
+            'div',
+            { className: 'col-md-6' },
+            _react2.default.createElement(
+              'h1',
+              { className: 'title' },
+              'Your Story Starts With Us.'
+            ),
+            _react2.default.createElement(
+              'h4',
+              null,
+              'Every landing page needs a small description after the big bold title, that\'s why we added this text here. Add here all the information that can make you or your product create the first impression.'
+            ),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement(
+              'a',
+              { href: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', target: '_blank', className: 'btn btn-danger btn-raised btn-lg' },
+              _react2.default.createElement('i', { className: 'fa fa-play' }),
+              ' Watch video'
+            )
+          )
+        )
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'main main-raised' },
+      _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+          'div',
+          { className: 'section text-center' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-8 col-md-offset-2' },
+              _react2.default.createElement(
+                'h2',
+                { className: 'title' },
+                'Let\'s talk product'
+              ),
+              _react2.default.createElement(
+                'h5',
+                { className: 'description' },
+                'This is the paragraph where you can write more details about your product. Keep you user engaged by providing meaningful information. Remember that by this time, the user is curious, otherwise he wouldn\'t scroll to get here. Add a button if you want the user to see more.'
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'features' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col-md-4' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'info' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'icon icon-info' },
+                    _react2.default.createElement(
+                      'i',
+                      { className: 'material-icons' },
+                      'chat'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'h4',
+                    { className: 'info-title' },
+                    'Free Chat'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.'
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col-md-4' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'info' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'icon icon-success' },
+                    _react2.default.createElement(
+                      'i',
+                      { className: 'material-icons' },
+                      'verified_user'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'h4',
+                    { className: 'info-title' },
+                    'Verified Users'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.'
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col-md-4' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'info' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'icon icon-danger' },
+                    _react2.default.createElement(
+                      'i',
+                      { className: 'material-icons' },
+                      'fingerprint'
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'h4',
+                    { className: 'info-title' },
+                    'Fingerprint'
+                  ),
+                  _react2.default.createElement(
+                    'p',
+                    null,
+                    'Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.'
+                  )
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'section text-center' },
+          _react2.default.createElement(
+            'h2',
+            { className: 'title' },
+            'Here is our team'
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'team' },
+            _react2.default.createElement(
+              'div',
+              { className: 'row' },
+              _react2.default.createElement(
+                'div',
+                { className: 'col-md-6' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'card card-profile card-plain' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-5' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-image' },
+                      _react2.default.createElement(
+                        'a',
+                        { href: '#pablo' },
+                        _react2.default.createElement('img', { className: 'img', src: '../resources/assets/img/faces/card-profile1-square.jpg' })
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-7' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-content' },
+                      _react2.default.createElement(
+                        'h4',
+                        { className: 'card-title' },
+                        'Alec Thompson'
+                      ),
+                      _react2.default.createElement(
+                        'h6',
+                        { className: 'category text-muted' },
+                        'Founder'
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-description' },
+                        'Don\'t be scared of the truth because we need to restart the human foundation in truth...'
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'footer' },
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-twitter' },
+                          _react2.default.createElement('i', { className: 'fa fa-twitter' })
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-facebook' },
+                          _react2.default.createElement('i', { className: 'fa fa-facebook-square' })
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-google' },
+                          _react2.default.createElement('i', { className: 'fa fa-google' })
+                        )
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col-md-6' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'card card-profile card-plain' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-5' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-image' },
+                      _react2.default.createElement(
+                        'a',
+                        { href: '#pablo' },
+                        _react2.default.createElement('img', { className: 'img', src: '../resources/assets/img/faces/card-profile6-square.jpg' })
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-7' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-content' },
+                      _react2.default.createElement(
+                        'h4',
+                        { className: 'card-title' },
+                        'Kendall Andrew'
+                      ),
+                      _react2.default.createElement(
+                        'h6',
+                        { className: 'category text-muted' },
+                        'Graphic Designer'
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-description' },
+                        'Don\'t be scared of the truth because we need to restart the human foundation in truth...'
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'footer' },
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-linkedin' },
+                          _react2.default.createElement('i', { className: 'fa fa-linkedin' })
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-facebook' },
+                          _react2.default.createElement('i', { className: 'fa fa-facebook-square' })
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-dribbble' },
+                          _react2.default.createElement('i', { className: 'fa fa-dribbble' })
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-google' },
+                          _react2.default.createElement('i', { className: 'fa fa-google' })
+                        )
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col-md-6' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'card card-profile card-plain' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-5' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-image' },
+                      _react2.default.createElement(
+                        'a',
+                        { href: '#pablo' },
+                        _react2.default.createElement('img', { className: 'img', src: '../resources/assets/img/faces/card-profile4-square.jpg' })
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-7' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-content' },
+                      _react2.default.createElement(
+                        'h4',
+                        { className: 'card-title' },
+                        'Gina Andrew'
+                      ),
+                      _react2.default.createElement(
+                        'h6',
+                        { className: 'category text-muted' },
+                        'Web Designer'
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-description' },
+                        'I love you like Kanye loves Kanye. Don\'t be scared of the truth.'
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'footer' },
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-youtube' },
+                          _react2.default.createElement('i', { className: 'fa fa-youtube-play' })
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-twitter' },
+                          _react2.default.createElement('i', { className: 'fa fa-twitter' })
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-instagram' },
+                          _react2.default.createElement('i', { className: 'fa fa-instagram' })
+                        )
+                      )
+                    )
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'col-md-6' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'card card-profile card-plain' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-5' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-image' },
+                      _react2.default.createElement(
+                        'a',
+                        { href: '#pablo' },
+                        _react2.default.createElement('img', { className: 'img', src: '../resources/assets/img/faces/card-profile2-square.jpg' })
+                      )
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-7' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-content' },
+                      _react2.default.createElement(
+                        'h4',
+                        { className: 'card-title' },
+                        'George West'
+                      ),
+                      _react2.default.createElement(
+                        'h6',
+                        { className: 'category text-muted' },
+                        'Backend Hacker'
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-description' },
+                        'I love you like Kanye loves Kanye. Don\'t be scared of the truth because we need to restart the human foundation.'
+                      ),
+                      _react2.default.createElement(
+                        'div',
+                        { className: 'footer' },
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-linkedin' },
+                          _react2.default.createElement('i', { className: 'fa fa-linkedin' })
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-facebook' },
+                          _react2.default.createElement('i', { className: 'fa fa-facebook-square' })
+                        ),
+                        _react2.default.createElement(
+                          'a',
+                          { href: '#pablo', className: 'btn btn-just-icon btn-simple btn-google' },
+                          _react2.default.createElement('i', { className: 'fa fa-google' })
+                        )
+                      )
+                    )
+                  )
+                )
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'section section-contacts' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-8 col-md-offset-2' },
+              _react2.default.createElement(
+                'h2',
+                { className: 'text-center title' },
+                'Work with us'
+              ),
+              _react2.default.createElement(
+                'h4',
+                { className: 'text-center description' },
+                'Divide details about your product or agency work into parts. Write a few lines about each one and contact us about any further collaboration. We will responde get back to you in a couple of hours.'
+              ),
+              _react2.default.createElement(
+                'form',
+                { className: 'contact-form' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'row' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-6' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'form-group label-floating' },
+                      _react2.default.createElement(
+                        'label',
+                        { className: 'control-label' },
+                        'Your Name'
+                      ),
+                      _react2.default.createElement('input', { type: 'email', className: 'form-control' })
+                    )
+                  ),
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-6' },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'form-group label-floating' },
+                      _react2.default.createElement(
+                        'label',
+                        { className: 'control-label' },
+                        'Your Email'
+                      ),
+                      _react2.default.createElement('input', { type: 'email', className: 'form-control' })
+                    )
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'form-group label-floating' },
+                  _react2.default.createElement(
+                    'label',
+                    { className: 'control-label' },
+                    'Your Messge'
+                  ),
+                  _react2.default.createElement('textarea', { className: 'form-control', rows: '4' })
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { className: 'row' },
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'col-md-4 col-md-offset-4 text-center' },
+                    _react2.default.createElement(
+                      'button',
+                      { className: 'btn btn-primary btn-raised' },
+                      'Send Message'
+                    )
+                  )
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+  );
+};
+
+exports.default = UserHome;
+
+/**
+ * PROP TYPES
+ */
+
+UserHome.propTypes = {
+  email: _propTypes2.default.string
+};
+
+/***/ }),
+/* 361 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(6);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(29);
+
+var _UserHome = __webpack_require__(360);
+
+var _UserHome2 = _interopRequireDefault(_UserHome);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * CONTAINER
+ */
+var mapState = function mapState(state) {
+  return {};
+};
+// import { something } from '../reducers';
+exports.default = (0, _reactRedux.connect)(mapState)(_UserHome2.default);
 
 /***/ })
 /******/ ]);
