@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux'
 import { withRouter, Link } from 'react-router-dom';
+import {logout} from '../store'
 
 
-export default (props) => (
+const Navbar = (props) => (
 <nav className="navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll" colorOnScroll=" " id="sectionsNav">
     	<div className="container">
         	<div className="navbar-header">
@@ -23,12 +25,14 @@ export default (props) => (
 						{
 							props.isLoggedIn ?
 							<li>
-								<div onClick={handleClick}>Logout</div>
+								<a onClick={props.handleClick}>
+								<i className="material-icons">apps</i> Logout
+								</a>
 							</li>
 							:
 							<li>
 								<Link to='/login'>
-									<i className="material-icons">apps</i> Login
+									<i className="material-icons">account_circle</i> Login
 								</Link>
 							</li>
 						}
@@ -50,7 +54,7 @@ export default (props) => (
 							:
 							<li>
 							<Link to='/signup'>
-								<i className="material-icons">apps</i> Sign Up
+								<i className="material-icons">assignment</i> Sign Up
 							</Link>
 						</li>
 
@@ -125,3 +129,25 @@ export default (props) => (
     	</div>
     </nav>
     )
+
+
+/**
+ * CONTAINER
+ */
+const mapState = (state) => {
+  return {
+    isLoggedIn: !!state.user.id
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    handleClick () {
+      dispatch(logout())
+    }
+  }
+}
+
+// The `withRouter` wrapper makes sure that updates are not blocked
+// when the url changes
+export default withRouter(connect(mapState, mapDispatch)(Navbar))

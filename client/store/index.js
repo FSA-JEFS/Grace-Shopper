@@ -4,7 +4,8 @@ import thunkMiddleware from 'redux-thunk'
 import user from './user'
 
 const reducer = combineReducers({user})
-const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+// const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+const middleware = applyMiddleware(thunkMiddleware, createLogger())
 const store = createStore(reducer, middleware)
 
 export default store

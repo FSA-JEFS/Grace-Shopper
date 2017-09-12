@@ -5155,7 +5155,8 @@ var _user2 = _interopRequireDefault(_user);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var reducer = (0, _redux.combineReducers)({ user: _user2.default });
-var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger2.default)({ collapsed: true }));
+// const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger2.default)());
 var store = (0, _redux.createStore)(reducer, middleware);
 
 exports.default = store;
@@ -19606,11 +19607,15 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(23);
+
 var _reactRouterDom = __webpack_require__(76);
+
+var _store = __webpack_require__(36);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (props) {
+var Navbar = function Navbar(props) {
 	return _react2.default.createElement(
 		'nav',
 		{ className: 'navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll', colorOnScroll: ' ', id: 'sectionsNav' },
@@ -19648,9 +19653,14 @@ exports.default = function (props) {
 						'li',
 						null,
 						_react2.default.createElement(
-							'div',
-							{ onClick: handleClick },
-							'Logout'
+							'a',
+							{ onClick: props.handleClick },
+							_react2.default.createElement(
+								'i',
+								{ className: 'material-icons' },
+								'apps'
+							),
+							' Logout'
 						)
 					) : _react2.default.createElement(
 						'li',
@@ -19661,7 +19671,7 @@ exports.default = function (props) {
 							_react2.default.createElement(
 								'i',
 								{ className: 'material-icons' },
-								'apps'
+								'account_circle'
 							),
 							' Login'
 						)
@@ -19707,7 +19717,7 @@ exports.default = function (props) {
 							_react2.default.createElement(
 								'i',
 								{ className: 'material-icons' },
-								'apps'
+								'assignment'
 							),
 							' Sign Up'
 						)
@@ -19877,6 +19887,27 @@ exports.default = function (props) {
 	);
 };
 
+/**
+ * CONTAINER
+ */
+var mapState = function mapState(state) {
+	return {
+		isLoggedIn: !!state.user.id
+	};
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+	return {
+		handleClick: function handleClick() {
+			dispatch((0, _store.logout)());
+		}
+	};
+};
+
+// The `withRouter` wrapper makes sure that updates are not blocked
+// when the url changes
+exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapState, mapDispatch)(Navbar));
+
 /***/ }),
 /* 182 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -19947,7 +19978,7 @@ var AuthForm = function AuthForm(props) {
 						{ className: 'card card-signup' },
 						_react2.default.createElement(
 							'form',
-							{ className: 'form', method: '', action: '' },
+							{ className: 'form', onSubmit: handleSubmit, name: name },
 							_react2.default.createElement(
 								'div',
 								{ className: 'header header-primary text-center', style: { display: "block" } },
@@ -19971,7 +20002,7 @@ var AuthForm = function AuthForm(props) {
 									),
 									_react2.default.createElement(
 										'a',
-										{ href: '#pablo', className: 'btn btn-just-icon btn-simple' },
+										{ href: '/auth/google', className: 'btn btn-just-icon btn-simple' },
 										_react2.default.createElement('i', { className: 'fa fa-google-plus' })
 									)
 								)
@@ -19984,7 +20015,7 @@ var AuthForm = function AuthForm(props) {
 							_react2.default.createElement(
 								'div',
 								{ className: 'card-content' },
-								_react2.default.createElement(
+								name !== 'login' && _react2.default.createElement(
 									'div',
 									{ className: 'input-group' },
 									_react2.default.createElement(
@@ -19996,7 +20027,7 @@ var AuthForm = function AuthForm(props) {
 											'face'
 										)
 									),
-									_react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'First Name...' })
+									_react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'firstName', placeholder: 'First Name...' })
 								),
 								_react2.default.createElement(
 									'div',
@@ -20010,7 +20041,7 @@ var AuthForm = function AuthForm(props) {
 											'email'
 										)
 									),
-									_react2.default.createElement('input', { type: 'text', className: 'form-control', placeholder: 'Email...' })
+									_react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'email', placeholder: 'Email...' })
 								),
 								_react2.default.createElement(
 									'div',
@@ -20024,7 +20055,7 @@ var AuthForm = function AuthForm(props) {
 											'lock_outline'
 										)
 									),
-									_react2.default.createElement('input', { type: 'password', placeholder: 'Password...', className: 'form-control' })
+									_react2.default.createElement('input', { type: 'password', placeholder: 'Password...', name: 'password', className: 'form-control' })
 								),
 								_react2.default.createElement(
 									'div',
@@ -20045,6 +20076,13 @@ var AuthForm = function AuthForm(props) {
 									{ href: '#pablo', className: 'btn btn-primary btn-simple btn-wd btn-lg' },
 									'Get Started'
 								)
+							),
+							error && error.response && _react2.default.createElement(
+								'div',
+								null,
+								' ',
+								error.response.data,
+								' '
 							)
 						)
 					)
@@ -20084,7 +20122,8 @@ var mapDispatch = function mapDispatch(dispatch) {
 			var formName = evt.target.name;
 			var email = evt.target.email.value;
 			var password = evt.target.password.value;
-			dispatch((0, _store.auth)(email, password, formName));
+			var firstName = evt.target.firstName.value;
+			dispatch((0, _store.auth)(email, password, formName, firstName));
 		}
 	};
 };

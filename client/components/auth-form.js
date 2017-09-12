@@ -33,7 +33,7 @@ const AuthForm = (props) => {
 			<div className="row">
 				<div className="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 					<div className="card card-signup">
-						<form className="form" method="" action="">
+						<form className="form" onSubmit={handleSubmit} name={name}>
 							<div className="header header-primary text-center" style={{display: "block"}}>
 								<h4 className="card-title">{displayName}</h4>
 								<div className="social-line">
@@ -43,7 +43,7 @@ const AuthForm = (props) => {
 									<a href="#pablo" className="btn btn-just-icon btn-simple">
 										<i className="fa fa-twitter"></i>
 									</a>
-									<a href="#pablo" className="btn btn-just-icon btn-simple">
+									<a href="/auth/google" className="btn btn-just-icon btn-simple">
 										<i className="fa fa-google-plus"></i>
 									</a>
 								</div>
@@ -51,25 +51,25 @@ const AuthForm = (props) => {
 							<p className="description text-center">Or</p>
 							<div className="card-content">
 
-								<div className="input-group">
+								{name !== 'login' && <div className="input-group">
 									<span className="input-group-addon">
 										<i className="material-icons">face</i>
 									</span>
-									<input type="text" className="form-control" placeholder="First Name..." />
-								</div>
+									<input type="text" className="form-control" name="firstName" placeholder="First Name..." />
+								</div>}
 
 								<div className="input-group">
 									<span className="input-group-addon">
 										<i className="material-icons">email</i>
 									</span>
-									<input type="text" className="form-control" placeholder="Email..." />
+									<input type="text" className="form-control" name="email" placeholder="Email..." />
 								</div>
 
 								<div className="input-group">
 									<span className="input-group-addon">
 										<i className="material-icons">lock_outline</i>
 									</span>
-									<input type="password" placeholder="Password..." className="form-control" />
+									<input type="password" placeholder="Password..." name="password" className="form-control" />
 								</div>
 
 								<div className="checkbox">
@@ -82,6 +82,7 @@ const AuthForm = (props) => {
 							<div className="footer text-center" style={{display: "block"}}>
 								<a href="#pablo" className="btn btn-primary btn-simple btn-wd btn-lg" >Get Started</a>
 							</div>
+              {error && error.response && <div> {error.response.data} </div>}
 						</form>
 					</div>
 				</div>
@@ -121,7 +122,8 @@ const mapDispatch = (dispatch) => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      dispatch(auth(email, password, formName))
+      const firstName = evt.target.firstName.value
+      dispatch(auth(email, password, formName, firstName))
     }
   }
 }
