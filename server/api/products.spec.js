@@ -14,7 +14,7 @@ describe('Products routes', () => {
     let puppy;
     let puppy2
     beforeEach(function(){
-      puppy = Products.create({
+      let promise1 = Products.create({
         name: "Milkshakes",
         breed: "spaniel",
         breeder: "Jannine",
@@ -22,10 +22,10 @@ describe('Products routes', () => {
         description: "eiugrh fIOWAHGUIRW ofejhguieroils",
         price: 500,
         photos: ["http://cdn1-www.dogtime.com/assets/uploads/gallery/english-spaniel-dog-breed-pictures/8-fullbody.jpg"],
-        categories: ["social", "wet", "beach-friendly"],
+        tags: ["social", "wet", "beach-friendly"],
         inventory: 5
-      });
-      puppy2 = Products.create({
+      })
+      let promise2 = Products.create({
         name: "CookiesAndCream",
         breed: "Chowchow",
         breeder: "Eli",
@@ -33,9 +33,13 @@ describe('Products routes', () => {
         description: "BEARS!",
         price: 740,
         photos: ["https://i.pinimg.com/736x/11/12/09/1112097172845da1ab30cf3fc3eed160--white-chow-chow-chow-chow-puppies.jpg"],
-        categories: ["fluffy", "adventurous", "beach-friendly"],
+        tags: ["fluffy", "adventurous", "beach-friendly"],
         inventory: 1
       });
+      return Promise.all([promise1, promise2])
+      .then(results => {
+        [puppy, puppy2] = results
+      })
     });
 
     it('GET /api/products', () => {
