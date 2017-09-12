@@ -31,3 +31,18 @@ router.delete('/:id', (req, res, next) => {
   .then(() => res.sendStatus(200))
   .catch(next)
 })
+
+router.put('/:id', (req, res, next) => {
+  User.update(req.body, {
+    where: {
+      id: req.params.id
+    },
+    // Returns actual user that was updated
+    returning: true
+  })
+    .then(function (user) {
+      console.log(user);
+      if (!user) return res.sendStatus(404);
+      else res.json(user)
+    })
+})
