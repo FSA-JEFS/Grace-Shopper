@@ -113,75 +113,63 @@ describe("Products routes", () => {
       });
     });
 
-    it('GET /api/products', () => {
-      return request(app)
-        .get('/api/products')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(2)
-          expect(res.body[0].name).to.be.equal("Milkshakes")
-        })
-    })
-    it('GET /api/products/:id', () => {
-      return request(app)
-        .get('/api/products/' + puppy.id)
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('object')
-          expect(res.body.name).to.be.equal(puppy.name)
-          expect(res.body.breeder).to.be.equal(puppy.breeder)
-        })
-    })
-    it('GET /api/products/breed/', () => {
-      return request(app)
-        .get('/api/products/breed/spaniel')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(1)
-          expect(res.body[0].name).to.be.equal('Milkshakes')
-        })
-    })
-    it('GET /api/products/breeder/', () => {
-      return request(app)
-        .get('/api/products/breeder/Jannine')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(1)
-          expect(res.body[0].name).to.be.equal('Milkshakes')
-        })
-    })
-    it('GET /api/products/price/', () => {
-      return request(app)
-        .get('/api/products/price/600')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(1)
-          expect(res.body[0].name).to.be.equal('Milkshakes')
-        })
-    })
-    it('GET /api/products/tags/', () => {
-      return request(app)
-        .get('/api/products/tag/fluffy')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(1)
-          expect(res.body[0].name).to.be.equal('CookiesAndCream')
-        })
-    })
+    describe("DELETE requests", () => {
+      it("deletes a product", () => {
+        return request(app)
+          .delete("/api/products/" + puppy.id)
+          .expect(200)
+          .then(() => Products.findAll())
+          .then(products => {
+            expect(products.length).to.equal(1);
+          });
+      });
 
-    it('GET /api/products/tags/', () => {
-      return request(app)
-        .get('/api/products/tag/beach-friendly')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(2)
-        })
-    })
-  }) // end describe('/api/products')
-}) // end describe('Products routes')
+      it("returns a 404 error if the ID is not correct", function() {
+        return request(app).delete("/api/products/76142896").expect(404);
+      });
+    });
+
+    describe("POST requests", () => {
+      let gaspode = {
+        name: "Gaspode",
+        breed: "terrier-like",
+        breeder: "Foul Ole Ron",
+        breederEmail: "foulron@beggarsguild.net",
+        description: "Woof bloody woof",
+        price: 500,
+        photos: [],
+        tags: ["canTalk", "scruffy"],
+        inventory: 5
+      };
+
+      it("posts a product", () => {
+        request("app")
+          .post("/api/products")
+          .send(gaspode)
+          .expect(201) //201 'Created' status
+          .expect(response => {
+            expect(response.body.name).to.equal("Gaspode");
+          });
+      });
+
+      it("saves the posted product to the DB", () => {
+        request("app")
+          .post("/api/products")
+          .send(gaspode)
+          .then(() => {
+            return Products.findOne({ where: { name: gaspode.name } });
+          })
+          .then(product =>
+            expect(product.description).to.equal(gaspode.description)
+          );
+      })
+      
+      it('has status 500 when request.body is not a valid product', () => {
+        request("app")
+          .post("/api/products")
+          .send({}) //an empty object is not a valid product
+          .expect(500)
+      });
+    });
+  }); // end describe('/api/products')
+}); // end describe('Products routes')

@@ -63,3 +63,11 @@ router.post('/add-product', (req, res, next) => {
   .then(product => res.status(201).send(product))
   .catch(next)
 })
+
+// Delete one puppy from database
+router.delete('/:id', (req, res, next) => {
+  Products.findById(req.params.id)
+  .then( product => product ? product.destroy() : res.sendStatus(404))
+  .then(products => res.json(products))
+  .catch(next)
+})
