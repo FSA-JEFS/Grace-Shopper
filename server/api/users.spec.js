@@ -129,8 +129,8 @@ xdescribe("User routes", () => {
           })
           .expect(200)
           .expect(response => {
-            expect(response.name).to.equal("Loki");
-            expect(response.email).to.equal(cody.email);
+            expect(response.body.name).to.equal("Loki");
+            expect(response.body.email).to.equal(cody.email);
           });
       });
 
@@ -142,8 +142,9 @@ xdescribe("User routes", () => {
           })
           .then(() => User.findById(cody.id))
           .then(user => {
-            expect(user.name).to.equal("Loki");
-            expect(user.email).to.equal(cody.email);
+            console.log("!!!!!", user)
+            expect(user.dataValues.name).to.equal("Loki");
+            expect(user.dataValues.email).to.equal(cody.email);
           });
       });
 

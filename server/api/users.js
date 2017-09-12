@@ -31,3 +31,24 @@ router.delete('/:id', (req, res, next) => {
   .then(() => res.sendStatus(200))
   .catch(next)
 })
+
+router.put('/:id', (req, res, next) => {
+  User.findById(req.params.id)
+    .then(user => {
+      // console.log("@@@@@", user);      
+      if (!user) return res.sendStatus(404);
+      else {
+        user.update(req.body)
+        .then(updatedUser => {
+          // console.log(">>>>>", updatedUser);
+          res.status(200).json(updatedUser)
+      })
+    }})
+    .catch(next)
+})
+
+
+// Campus.findById(req.params.campusId)
+// .then(campus => campus.update(req.body))
+// .then(updatedCampus => res.sendStatus(201).json(updatedCampus))
+// .catch(next);
