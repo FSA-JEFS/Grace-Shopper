@@ -42,4 +42,16 @@ describe('Product model', () => {
     })
   })
 
+  describe('Product', function (){
+    it('includes all the fields', function(){
+      puppy.photos = ['invalidurl']
+      return puppy.validate()
+      .then(function(){
+        throw new Error('validation should fail when bio is null');
+      })
+      .catch(err => {
+          expect(err).to.be.an.instanceOf(Error);
+      })
+    })
+  })
 }) // end describe('User model')
