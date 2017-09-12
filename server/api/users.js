@@ -33,16 +33,22 @@ router.delete('/:id', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  User.update(req.body, {
-    where: {
-      id: req.params.id
-    },
-    // Returns actual user that was updated
-    returning: true
-  })
-    .then(function (user) {
-      console.log(user);
+  User.findById(req.params.id)
+    .then(user => {
+      // console.log("@@@@@", user);      
       if (!user) return res.sendStatus(404);
-      else res.json(user)
-    })
+      else {
+        user.update(req.body)
+        .then(updatedUser => {
+          // console.log(">>>>>", updatedUser);
+          res.status(200).json(updatedUser)
+      })
+    }})
+    .catch(next)
 })
+
+
+// Campus.findById(req.params.campusId)
+// .then(campus => campus.update(req.body))
+// .then(updatedCampus => res.sendStatus(201).json(updatedCampus))
+// .catch(next);
