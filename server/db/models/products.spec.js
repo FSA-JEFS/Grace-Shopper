@@ -18,8 +18,8 @@ describe('Product model', () => {
       breederEmail: "j@pew.com",
       description: "eiugrh fIOWAHGUIRW ofejhguieroils",
       price: 500,
-      photo: "http://cdn1-www.dogtime.com/assets/uploads/gallery/english-spaniel-dog-breed-pictures/8-fullbody.jpg",
-      categories: ["social", "wet", "beach-friendly"],
+      photos: ["http://cdn1-www.dogtime.com/assets/uploads/gallery/english-spaniel-dog-breed-pictures/8-fullbody.jpg"],
+      tags: ["social", "wet", "beach-friendly"],
       inventory: 5
     });
   });
@@ -34,12 +34,24 @@ describe('Product model', () => {
         expect(savedPuppy.breederEmail).to.equal('j@pew.com')
         expect(savedPuppy.description).to.equal('eiugrh fIOWAHGUIRW ofejhguieroils')
         expect(savedPuppy.price).to.equal(500)
-        expect(savedPuppy.photo).to.equal("http://cdn1-www.dogtime.com/assets/uploads/gallery/english-spaniel-dog-breed-pictures/8-fullbody.jpg")
-        expect(savedPuppy.categories[0]).to.equal("social")
-        expect(savedPuppy.categories).to.have.lengthOf(3)
+        expect(savedPuppy.photos[0]).to.equal("http://cdn1-www.dogtime.com/assets/uploads/gallery/english-spaniel-dog-breed-pictures/8-fullbody.jpg")
+        expect(savedPuppy.tags[0]).to.equal("social")
+        expect(savedPuppy.tags).to.have.lengthOf(3)
         expect(savedPuppy.inventory).to.equal(5)
       })
     })
   })
 
+  describe('Product', function (){
+    it('includes all the fields', function(){
+      puppy.photos = ['invalidurl']
+      return puppy.validate()
+      .then(function(){
+        throw new Error('validation should fail when bio is null');
+      })
+      .catch(err => {
+          expect(err).to.be.an.instanceOf(Error);
+      })
+    })
+  })
 }) // end describe('User model')

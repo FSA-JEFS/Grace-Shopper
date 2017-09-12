@@ -30,13 +30,14 @@ const Products = db.define('products', {
       min: 0,
     }
   },
-  photo: {
-    type: Sequelize.STRING,
+  photos: {
+    type: Sequelize.ARRAY(Sequelize.STRING),
     validate: {
-      isUrl: true
-    }
+        isUrl: true
+    },
+    defaultValue: ['https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQESkVtS1LQoEVN2-zr9ZlOeyndZbRD5DDrYfPnxcCOaOzFUV8w']
   },
-  categories: {
+  tags: {
     type: Sequelize.ARRAY(Sequelize.STRING),
     defaultValue: []
   },

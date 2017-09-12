@@ -1,111 +1,212 @@
-const {expect} = require('chai')
-const request = require('supertest')
-const db = require('../db')
-const app = require('../index')
-const Products = db.model('products')
+const { expect } = require("chai");
+const request = require("supertest");
+const db = require("../db");
+const app = require("../index");
+const Products = db.model("products");
 
-describe('Products routes', () => {
+describe("Products routes", () => {
   beforeEach(() => {
-    return db.sync({force: true})
-  })
+    return db.sync({ force: true });
+  });
 
-  describe('/api/products/', () => {
-
+  describe("/api/products/", () => {
     let puppy;
-    let puppy2
-    beforeEach(function(){
-      puppy = Products.create({
+    let puppy2;
+    beforeEach(function() {
+      let promise1 = Products.create({
         name: "Milkshakes",
         breed: "spaniel",
         breeder: "Jannine",
         breederEmail: "j@pew.com",
         description: "eiugrh fIOWAHGUIRW ofejhguieroils",
         price: 500,
-        photo: "http://cdn1-www.dogtime.com/assets/uploads/gallery/english-spaniel-dog-breed-pictures/8-fullbody.jpg",
-        categories: ["social", "wet", "beach-friendly"],
+        photos: [
+          "http://cdn1-www.dogtime.com/assets/uploads/gallery/english-spaniel-dog-breed-pictures/8-fullbody.jpg"
+        ],
+        tags: ["social", "wet", "beach-friendly"],
         inventory: 5
       });
-      puppy2 = Products.create({
+      let promise2 = Products.create({
         name: "CookiesAndCream",
         breed: "Chowchow",
         breeder: "Eli",
         breederEmail: "e@pew.com",
         description: "BEARS!",
         price: 740,
-        photo: "https://i.pinimg.com/736x/11/12/09/1112097172845da1ab30cf3fc3eed160--white-chow-chow-chow-chow-puppies.jpg",
-        categories: ["fluffy", "adventurous", "beach-friendly"],
+        photos: [
+          "https://i.pinimg.com/736x/11/12/09/1112097172845da1ab30cf3fc3eed160--white-chow-chow-chow-chow-puppies.jpg"
+        ],
+        tags: ["fluffy", "adventurous", "beach-friendly"],
         inventory: 1
+      });
+      return Promise.all([promise1, promise2]).then(results => {
+        [puppy, puppy2] = results;
+      });
+    });
+    describe("GET requests: ", () => {
+      it("/api/products", () => {
+        return request(app).get("/api/products").expect(200).then(res => {
+          expect(res.body).to.be.an("array");
+          expect(res.body).to.have.lengthOf(2);
+          expect(res.body[0].name).to.be.equal("Milkshakes");
+        });
+      });
+      it("/api/products/:id", () => {
+        return request(app)
+          .get("/api/products/" + puppy.id)
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an("object");
+            expect(res.body.name).to.be.equal(puppy.name);
+            expect(res.body.breeder).to.be.equal(puppy.breeder);
+          });
+      });
+      it("/api/products/breed/", () => {
+        return request(app)
+          .get("/api/products/breed/spaniel")
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an("array");
+            expect(res.body).to.have.lengthOf(1);
+            expect(res.body[0].name).to.be.equal("Milkshakes");
+          });
+      });
+      it("/api/products/breeder/", () => {
+        return request(app)
+          .get("/api/products/breeder/Jannine")
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an("array");
+            expect(res.body).to.have.lengthOf(1);
+            expect(res.body[0].name).to.be.equal("Milkshakes");
+          });
+      });
+      it("/api/products/price/", () => {
+        return request(app)
+          .get("/api/products/price/600")
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an("array");
+            expect(res.body).to.have.lengthOf(1);
+            expect(res.body[0].name).to.be.equal("Milkshakes");
+          });
+      });
+      it("/api/products/tags/", () => {
+        return request(app)
+          .get("/api/products/tag/fluffy")
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an("array");
+            expect(res.body).to.have.lengthOf(1);
+            expect(res.body[0].name).to.be.equal("CookiesAndCream");
+          });
+      });
+
+      it("/api/products/tags/", () => {
+        return request(app)
+          .get("/api/products/tag/beach-friendly")
+          .expect(200)
+          .then(res => {
+            expect(res.body).to.be.an("array");
+            expect(res.body).to.have.lengthOf(2);
+          });
       });
     });
 
-    it('GET /api/products', () => {
-      return request(app)
-        .get('/api/products')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(2)
-          expect(res.body[0].name).to.be.equal("Milkshakes")
-        })
-    })
-    it('GET /api/products/:name', () => {
-      return request(app)
-        .get('/api/products/Milkshakes')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('object')
-          expect(res.body.name).to.be.equal('Milkshakes')
-        })
-    })
-    it('GET /api/products/breed/', () => {
-      return request(app)
-        .get('/api/products/breed/spaniel')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(1)
-          expect(res.body[0].name).to.be.equal('Milkshakes')
-        })
-    })
-    it('GET /api/products/breeder/', () => {
-      return request(app)
-        .get('/api/products/breeder/Jannine')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(1)
-          expect(res.body[0].name).to.be.equal('Milkshakes')
-        })
-    })
-    it('GET /api/products/price/', () => {
-      return request(app)
-        .get('/api/products/price/600')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(1)
-          expect(res.body[0].name).to.be.equal('Milkshakes')
-        })
-    })
-    it('GET /api/products/tags/', () => {
-      return request(app)
-        .get('/api/products/tag/fluffy')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(1)
-          expect(res.body[0].name).to.be.equal('CookiesAndCream')
-        })
-    })
+    describe("DELETE requests", () => {
+      it("deletes a product", () => {
+        return request(app)
+          .delete("/api/products/" + puppy.id)
+          .expect(200)
+          .then(() => Products.findAll())
+          .then(products => {
+            expect(products.length).to.equal(1);
+          });
+      });
 
-    it('GET /api/products/tags/', () => {
-      return request(app)
-        .get('/api/products/tag/beach-friendly')
-        .expect(200)
-        .then(res => {
-          expect(res.body).to.be.an('array')
-          expect(res.body).to.have.lengthOf(2)
-        })
-    })
-  }) // end describe('/api/products')
-}) // end describe('Products routes')
+      it("returns a 404 error if the ID is not correct", function() {
+        return request(app).delete("/api/products/76142896").expect(404);
+      });
+    });
+
+    describe("POST requests", () => {
+      let gaspode = {
+        name: "Gaspode",
+        breed: "terrier-like",
+        breeder: "Foul Ole Ron",
+        breederEmail: "foulron@beggarsguild.net",
+        description: "Woof bloody woof",
+        price: 500,
+        photos: [],
+        tags: ["canTalk", "scruffy"],
+        inventory: 5
+      };
+
+      it("posts a product", () => {
+        request("app")
+          .post("/api/products")
+          .send(gaspode)
+          .expect(201) //201 'Created' status
+          .expect(response => {
+            expect(response.body.name).to.equal("Gaspode");
+          });
+      });
+
+      it("saves the posted product to the DB", () => {
+        request("app")
+          .post("/api/products")
+          .send(gaspode)
+          .then(() => {
+            return Products.findOne({ where: { name: gaspode.name } });
+          })
+          .then(product =>
+            expect(product.description).to.equal(gaspode.description)
+          );
+      })
+      
+      it('has status 500 when request.body is not a valid product', () => {
+        request("app")
+          .post("/api/products")
+          .send({}) //an empty object is not a valid product
+          .expect(500)
+      });
+    });
+
+    describe("PUT requests", () => {
+      it("updates a products", () => {
+        return request(app)
+          .put("/api/products/" + puppy.id)
+          .send({
+            name: "Lassie"
+          })
+          .expect(200)
+          .expect(response => {
+            expect(response.body.name).to.equal("Lassie");
+            expect(response.body.email).to.equal(puppy.email);
+          });
+      });
+
+      it("saves update to the DB", () => {
+        return request(app)
+          .put("/api/products/" + puppy.id)
+          .send({
+            name: "Lassie"
+          })
+          .then(() => Products.findById(puppy.id))
+          .then(user => {
+            expect(user.name).to.equal("Lassie");
+            expect(user.email).to.equal(puppy.email);
+          });
+      });
+
+      it("returns a 404 error if the ID is not correct", function() {
+        return request(app)
+          .put("/api/products/76344667")
+          .send({
+            name: "Lassie"
+          })
+          .expect(404);
+      });
+    });
+  }); // end describe('/api/products')
+}); // end describe('Products routes')
