@@ -5140,6 +5140,18 @@ Object.keys(_user).forEach(function (key) {
   });
 });
 
+var _products = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./products\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+Object.keys(_products).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _products[key];
+    }
+  });
+});
+
 var _redux = __webpack_require__(146);
 
 var _reduxLogger = __webpack_require__(346);
@@ -5152,9 +5164,11 @@ var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
 var _user2 = _interopRequireDefault(_user);
 
+var _products2 = _interopRequireDefault(_products);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var reducer = (0, _redux.combineReducers)({ user: _user2.default });
+var reducer = (0, _redux.combineReducers)({ user: _user2.default, products: _products2.default });
 var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger2.default)({ collapsed: true }));
 var store = (0, _redux.createStore)(reducer, middleware);
 
