@@ -18562,9 +18562,9 @@ var Routes = function (_Component) {
               _reactRouterDom.Switch,
               null,
               _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _UserHome2.default }),
-              _react2.default.createElement(_reactRouterDom.Route, { path: '/login', component: _components.Login }),
-              _react2.default.createElement(_reactRouterDom.Route, { path: '/signup', component: _components.Signup }),
-              _react2.default.createElement(_reactRouterDom.Route, { path: '/products', component: _AllProducts2.default }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _components.Login }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/signup', component: _components.Signup }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/products', component: _AllProducts2.default }),
               _react2.default.createElement(_reactRouterDom.Route, { component: _components.Login })
             )
           ),
@@ -20058,7 +20058,7 @@ var Navbar = function Navbar(props) {
             null,
             _react2.default.createElement(
               _reactRouterDom.Link,
-              { to: "/allProducts" },
+              { to: "/products" },
               _react2.default.createElement(
                 "i",
                 { className: "material-icons" },
@@ -20276,65 +20276,155 @@ exports.default = function (props) {
 
   return _react2.default.createElement(
     'div',
-    { className: 'team' },
+    { className: 'blog-posts' },
     _react2.default.createElement(
       'div',
-      { className: 'row' },
-      products.map(function (puppy) {
-        return _react2.default.createElement(
+      { className: 'page-header header-filter header-small', style: { backgroundImage: 'url("../resources/assets/img/examples/blog8.jpg")' } },
+      _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
           'div',
-          { className: 'col-md-6' },
+          { className: 'row' },
           _react2.default.createElement(
             'div',
-            { className: 'card card-profile card-plain' },
+            { className: 'col-md-8 col-md-offset-2 text-center' },
             _react2.default.createElement(
-              'div',
-              { className: 'col-md-5' },
-              _react2.default.createElement(
-                'div',
-                { className: 'card-image' },
-                _react2.default.createElement(
-                  'a',
-                  { href: '#pablo' },
-                  _react2.default.createElement('img', { className: 'img', src: puppy.photos[0] })
-                )
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'col-md-7' },
-              _react2.default.createElement(
-                'div',
-                { className: 'card-content' },
-                _react2.default.createElement(
-                  'h4',
-                  { className: 'card-title' },
-                  puppy.name
-                ),
-                _react2.default.createElement(
-                  'h6',
-                  { className: 'text-muted' },
-                  puppy.breeder
-                ),
-                _react2.default.createElement(
-                  'p',
-                  { className: 'card-description' },
-                  puppy.description
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { className: 'footer' },
-                  _react2.default.createElement(
-                    _reactRouterDom.Link,
-                    { to: "/products/" + puppy.id },
-                    ' See more cuteness... '
-                  )
-                )
-              )
+              'h2',
+              { className: 'title' },
+              'A Place for Entrepreneurs to Share and Discover New Stories'
             )
           )
-        );
-      })
+        )
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'main main-raised' },
+      _react2.default.createElement(
+        'div',
+        { className: 'container' },
+        _react2.default.createElement(
+          'div',
+          { className: 'section' },
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            _react2.default.createElement(
+              'div',
+              { className: 'col-md-6 col-md-offset-3 text-center' },
+              _react2.default.createElement(
+                'ul',
+                { className: 'nav nav-pills nav-pills-primary' },
+                _react2.default.createElement(
+                  'li',
+                  { className: 'active' },
+                  _react2.default.createElement(
+                    'a',
+                    { href: '#pill1', 'data-toggle': 'tab' },
+                    'All'
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    'a',
+                    { href: '#pill2', 'data-toggle': 'tab' },
+                    'World'
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    'a',
+                    { href: '#pill3', 'data-toggle': 'tab' },
+                    'Arts'
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    'a',
+                    { href: '#pill4', 'data-toggle': 'tab' },
+                    'Tech'
+                  )
+                ),
+                _react2.default.createElement(
+                  'li',
+                  null,
+                  _react2.default.createElement(
+                    'a',
+                    { href: '#pill5', 'data-toggle': 'tab' },
+                    'Business'
+                  )
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'tab-content tab-space' },
+                _react2.default.createElement('div', { className: 'tab-pane active', id: 'pill1' }),
+                _react2.default.createElement('div', { className: 'tab-pane', id: 'pill2' }),
+                _react2.default.createElement('div', { className: 'tab-pane', id: 'pill3' }),
+                _react2.default.createElement('div', { className: 'tab-pane', id: 'pill4' })
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'row' },
+            products.map(function (puppy) {
+              return _react2.default.createElement(
+                'div',
+                { className: 'col-md-4', key: puppy.id },
+                _react2.default.createElement(
+                  'div',
+                  null,
+                  _react2.default.createElement(
+                    'div',
+                    { className: 'card card-raised card-background', style: { backgroundImage: 'url(' + puppy.photos[0] + ')' } },
+                    _react2.default.createElement(
+                      'div',
+                      { className: 'card-content' },
+                      _react2.default.createElement(
+                        'h6',
+                        { className: 'category text-info' },
+                        puppy.breed
+                      ),
+                      _react2.default.createElement(
+                        'a',
+                        { href: '#pablo' },
+                        _react2.default.createElement(
+                          'h3',
+                          { className: 'card-title' },
+                          puppy.name
+                        )
+                      ),
+                      _react2.default.createElement(
+                        'p',
+                        { className: 'card-description' },
+                        puppy.description
+                      ),
+                      _react2.default.createElement(
+                        _reactRouterDom.Link,
+                        { className: 'btn btn-danger btn-round', to: "/products/" + puppy.id },
+                        _react2.default.createElement(
+                          'i',
+                          { className: 'material-icons' },
+                          'format_align_left'
+                        ),
+                        ' Cuddle with meee \u2764'
+                      )
+                    )
+                  )
+                )
+              );
+            })
+          )
+        )
+      )
     )
   );
 };
@@ -20544,7 +20634,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
  */
 
 var mapState = function mapState(state) {
-    console.log('Mapping state', state);
+    // console.log('Mapping state', state)
     return {
         products: state.product
     };
