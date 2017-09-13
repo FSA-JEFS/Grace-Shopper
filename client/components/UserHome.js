@@ -8,6 +8,9 @@ import {connect} from 'react-redux'
 const UserHome = (props) => {
   const {email} = props
 
+  // component to list all puppies
+  // randomly pic 4 from all puppies and display them on home
+
   return (
     <div className="landing-page">
           <div className="page-header header-filter" data-parallax="true" style={{backgroundImage: "url('../resources/assets/img/bg8.jpg')"}}>
