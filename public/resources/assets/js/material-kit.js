@@ -21,7 +21,7 @@ var big_image;
      window_width = $(window).width();
 
      $navbar = $('.navbar[color-on-scroll]');
-     scroll_distance = $navbar.attr('color-on-scroll') || 500;
+     scroll_distance = $navbar.attr('color-on-scroll') || 150;
 
      $navbar_collapse = $('.navbar').find('.navbar-collapse');
 
@@ -217,7 +217,8 @@ var big_image;
          });
      }, 17),
 
-     checkScrollForTransparentNavbar: debounce(function() {
+    //  checkScrollForTransparentNavbar: debounce(function() {
+     checkScrollForTransparentNavbar: function() {
              if($(document).scrollTop() > scroll_distance ) {
                  if(materialKit.misc.transparent) {
                      materialKit.misc.transparent = false;
@@ -229,7 +230,8 @@ var big_image;
                      $('.navbar-color-on-scroll').addClass('navbar-transparent');
                  }
              }
-     }, 17),
+     },
+    //  }, 17),
 
      initFormExtendedDatetimepickers: function(){
          $('.datetimepicker').datetimepicker({
