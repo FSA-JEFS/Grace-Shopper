@@ -5,7 +5,7 @@ const db = require('../index')
 const User = db.model('user')
 let cody
 
-describe('User model', () => {
+xdescribe('User model', () => {
   beforeEach(() => {
     return db.sync({force: true}).then(() => {
       return User.create({
