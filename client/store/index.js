@@ -9,7 +9,6 @@ const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: tru
 )
 const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), middleware)
 
-
 export default store
 export * from './user'
 export * from './product'

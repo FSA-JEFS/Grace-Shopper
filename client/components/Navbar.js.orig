@@ -3,6 +3,28 @@ import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
 import { logout } from "../store";
 
+<<<<<<< HEAD
+export default () => (
+	<nav className="navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll" colorOnScroll=" " id="sectionsNav">
+		<div className="container">
+			<div className="navbar-header">
+				<button type="button" className="navbar-toggle" data-toggle="collapse">
+					<span className="sr-only">Toggle navigation</span>
+					<span className="icon-bar"></span>
+					<span className="icon-bar"></span>
+					<span className="icon-bar"></span>
+				</button>
+				<a className="navbar-brand" href="presentation.html">Material Kit PRO</a>
+			</div>
+
+			<div className="collapse navbar-collapse">
+				<ul className="nav navbar-nav navbar-right">
+					<li>
+						<a href="index.html">
+							<i className="material-icons">apps</i> Components
+						</a>
+					</li>
+=======
 const Navbar = props =>
   <nav
     className="navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll"
@@ -54,6 +76,7 @@ const Navbar = props =>
                 </Link>
               </li>
 					}
+>>>>>>> master
 
           <li>
             <Link to="/allProducts">
@@ -124,7 +147,18 @@ const Navbar = props =>
     </div>
   </nav>;
 
-
+<<<<<<< HEAD
+					<li className="button-container">
+						<a href="http://www.creative-tim.com/buy/material-kit-pro?ref=presentation" target="_blank" className="btn btn-rose btn-round">
+							<i className="material-icons">shopping_cart</i> Buy Now
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+)
+=======
 /**
  * CONTAINER
  */
@@ -145,3 +179,4 @@ const mapDispatch = dispatch => {
 // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 export default withRouter(connect(mapState, mapDispatch)(Navbar));
+>>>>>>> master
