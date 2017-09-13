@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import { withRouter, NavLink } from 'react-router-dom';
 
 export default () => (
-<nav className="navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll" colorOnScroll=" " id="sectionsNav">
-    	<div className="container">
-        	<div className="navbar-header">
-        		<button type="button" className="navbar-toggle" data-toggle="collapse">
-            		<span className="sr-only">Toggle navigation</span>
-		            <span className="icon-bar"></span>
-		            <span className="icon-bar"></span>
-		            <span className="icon-bar"></span>
-        		</button>
-        		<a className="navbar-brand" href="presentation.html">Material Kit PRO</a>
-        	</div>
+	<nav className="navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll" colorOnScroll=" " id="sectionsNav">
+		<div className="container">
+			<div className="navbar-header">
+				<button type="button" className="navbar-toggle" data-toggle="collapse">
+					<span className="sr-only">Toggle navigation</span>
+					<span className="icon-bar"></span>
+					<span className="icon-bar"></span>
+					<span className="icon-bar"></span>
+				</button>
+				<a className="navbar-brand" href="presentation.html">Material Kit PRO</a>
+			</div>
 
-        	<div className="collapse navbar-collapse">
-        		<ul className="nav navbar-nav navbar-right">
-    				<li>
+			<div className="collapse navbar-collapse">
+				<ul className="nav navbar-nav navbar-right">
+					<li>
 						<a href="index.html">
 							<i className="material-icons">apps</i> Components
 						</a>
@@ -141,8 +141,8 @@ export default () => (
 							<i className="material-icons">shopping_cart</i> Buy Now
 						</a>
 					</li>
-        		</ul>
-        	</div>
-    	</div>
-    </nav>
-    )
+				</ul>
+			</div>
+		</div>
+	</nav>
+)

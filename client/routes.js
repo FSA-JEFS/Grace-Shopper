@@ -1,38 +1,41 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
-import {Router} from 'react-router'
-import {Route, Switch} from 'react-router-dom'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { Router } from 'react-router'
+import { Route, Switch } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, Navbar, BlackSimpleFooter} from './components'
+import { Main, Login, Signup, Navbar, BlackSimpleFooter } from './components'
 import UserHome from './containers/UserHome'
-import {me} from './store'
+import AllProducts from './containers/AllProducts'
+import { me } from './store'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount () {
+  componentDidMount() {
+    console.log(this.props)
     this.props.loadInitialData()
   }
 
-  render () {
-    const {isLoggedIn} = this.props
+  render() {
+    const { isLoggedIn } = this.props
 
     return (
       <Router history={history}>
-      <div>
-      <Navbar />
-        <Main>
-          <Switch>
-            {/* Routes placed here are available to all visitors */}
-            <Route exact path='/' component={UserHome} />
-            <Route path='/login' component={Login} />
-            <Route path='/signup' component={Signup} />
-            <Route component={Login} />
-          </Switch>
-        </Main>
-        <BlackSimpleFooter />
+        <div>
+          <Navbar />
+          <Main>
+            <Switch>
+              {/* Routes placed here are available to all visitors */}
+              <Route exact path='/' component={UserHome} />
+              <Route path='/login' component={Login} />
+              <Route path='/signup' component={Signup} />
+              <Route path='/products' component={AllProducts} />
+              <Route component={Login} />
+            </Switch>
+          </Main>
+          <BlackSimpleFooter />
         </div>
       </Router>
     )
@@ -41,14 +44,14 @@ class Routes extends Component {
 
 // unused for now
 
-            // {
-            //   isLoggedIn &&
-            //     <Switch>
-            //       {/* Routes placed here are only available after logging in */}
-            //       <Route path='/home' component={UserHome} />
-            //     </Switch>
-            // }
-            // {/* Displays our Login component as a fallback */}
+// {
+//   isLoggedIn &&
+//     <Switch>
+//       {/* Routes placed here are only available after logging in */}
+//       <Route path='/home' component={UserHome} />
+//     </Switch>
+// }
+// {/* Displays our Login component as a fallback */}
 
 // unused for now
 
@@ -65,7 +68,7 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
+    loadInitialData() {
       dispatch(me())
     }
   }
