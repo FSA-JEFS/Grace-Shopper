@@ -1752,7 +1752,7 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(5);
 
 var CallbackQueue = __webpack_require__(105);
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 var ReactFeatureFlags = __webpack_require__(110);
 var ReactReconciler = __webpack_require__(27);
 var Transaction = __webpack_require__(44);
@@ -2233,7 +2233,7 @@ function localstorage() {
 
 var _assign = __webpack_require__(5);
 
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 
 var emptyFunction = __webpack_require__(13);
 var warning = __webpack_require__(2);
@@ -2703,6 +2703,25 @@ module.exports = DOMProperty;
 
 /***/ }),
 /* 21 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(309);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(126);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(310);
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createProvider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["b"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connect", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
+
+
+
+
+
+
+/***/ }),
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2820,7 +2839,7 @@ module.exports = PooledClass;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3165,25 +3184,6 @@ ReactElement.isValidElement = function (object) {
 
 module.exports = ReactElement;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 23 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Provider__ = __webpack_require__(309);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__ = __webpack_require__(126);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__connect_connect__ = __webpack_require__(310);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Provider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "createProvider", function() { return __WEBPACK_IMPORTED_MODULE_0__components_Provider__["b"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connectAdvanced", function() { return __WEBPACK_IMPORTED_MODULE_1__components_connectAdvanced__["a"]; });
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "connect", function() { return __WEBPACK_IMPORTED_MODULE_2__connect_connect__["a"]; });
-
-
-
-
-
 
 /***/ }),
 /* 24 */
@@ -4284,7 +4284,7 @@ var _assign = __webpack_require__(5);
 var ReactBaseClasses = __webpack_require__(138);
 var ReactChildren = __webpack_require__(332);
 var ReactDOMFactories = __webpack_require__(333);
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 var ReactPropTypes = __webpack_require__(335);
 var ReactVersion = __webpack_require__(337);
 
@@ -4451,6 +4451,50 @@ module.exports = reactProdInvariant;
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _user = __webpack_require__(187);
+
+Object.keys(_user).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _user[key];
+    }
+  });
+});
+
+var _redux = __webpack_require__(146);
+
+var _reduxLogger = __webpack_require__(346);
+
+var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
+
+var _reduxThunk = __webpack_require__(347);
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
+var _user2 = _interopRequireDefault(_user);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var reducer = (0, _redux.combineReducers)({ user: _user2.default });
+// const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
+var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger2.default)());
+var store = (0, _redux.createStore)(reducer, middleware);
+
+exports.default = store;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 exports.__esModule = true;
 var addLeadingSlash = exports.addLeadingSlash = function addLeadingSlash(path) {
   return path.charAt(0) === '/' ? path : '/' + path;
@@ -4512,7 +4556,7 @@ var createPath = exports.createPath = function createPath(location) {
 };
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4583,7 +4627,7 @@ var createPath = function createPath(location) {
 };
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4863,7 +4907,7 @@ module.exports = EventPluginHub;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4879,7 +4923,7 @@ module.exports = EventPluginHub;
 
 
 
-var EventPluginHub = __webpack_require__(32);
+var EventPluginHub = __webpack_require__(33);
 var EventPluginUtils = __webpack_require__(61);
 
 var accumulateInto = __webpack_require__(117);
@@ -5003,7 +5047,7 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5054,7 +5098,7 @@ var ReactInstanceMap = {
 module.exports = ReactInstanceMap;
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5118,50 +5162,6 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _user = __webpack_require__(187);
-
-Object.keys(_user).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function get() {
-      return _user[key];
-    }
-  });
-});
-
-var _redux = __webpack_require__(146);
-
-var _reduxLogger = __webpack_require__(346);
-
-var _reduxLogger2 = _interopRequireDefault(_reduxLogger);
-
-var _reduxThunk = __webpack_require__(347);
-
-var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
-
-var _user2 = _interopRequireDefault(_user);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var reducer = (0, _redux.combineReducers)({ user: _user2.default });
-// const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
-var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger2.default)());
-var store = (0, _redux.createStore)(reducer, middleware);
-
-exports.default = store;
-
-/***/ }),
 /* 37 */
 /***/ (function(module, exports) {
 
@@ -5208,7 +5208,7 @@ module.exports = emptyObject;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return locationsAreEqual; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_resolve_pathname__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_value_equal__ = __webpack_require__(153);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PathUtils__ = __webpack_require__(32);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -5923,7 +5923,7 @@ module.exports = ReactBrowserEventEmitter;
 
 
 
-var SyntheticUIEvent = __webpack_require__(35);
+var SyntheticUIEvent = __webpack_require__(36);
 var ViewportMetrics = __webpack_require__(116);
 
 var getEventModifierState = __webpack_require__(69);
@@ -7076,7 +7076,7 @@ var _valueEqual = __webpack_require__(153);
 
 var _valueEqual2 = _interopRequireDefault(_valueEqual);
 
-var _PathUtils = __webpack_require__(30);
+var _PathUtils = __webpack_require__(31);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -8258,7 +8258,7 @@ module.exports = ReactErrorUtils;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(17);
-var ReactInstanceMap = __webpack_require__(34);
+var ReactInstanceMap = __webpack_require__(35);
 var ReactInstrumentation = __webpack_require__(15);
 var ReactUpdates = __webpack_require__(16);
 
@@ -10155,7 +10155,7 @@ var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactRedux = __webpack_require__(23);
+var _reactRedux = __webpack_require__(21);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11367,7 +11367,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(54);
 
-var _PathUtils = __webpack_require__(30);
+var _PathUtils = __webpack_require__(31);
 
 var _createTransitionManager = __webpack_require__(55);
 
@@ -11674,7 +11674,7 @@ var _warning = __webpack_require__(10);
 
 var _warning2 = _interopRequireDefault(_warning);
 
-var _PathUtils = __webpack_require__(30);
+var _PathUtils = __webpack_require__(31);
 
 var _LocationUtils = __webpack_require__(54);
 
@@ -12774,7 +12774,7 @@ var _prodInvariant = __webpack_require__(3);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 
 var invariant = __webpack_require__(1);
 
@@ -13639,7 +13639,7 @@ var ReactDOMComponentTree = __webpack_require__(6);
 var ReactDOMContainerInfo = __webpack_require__(254);
 var ReactDOMFeatureFlags = __webpack_require__(256);
 var ReactFeatureFlags = __webpack_require__(110);
-var ReactInstanceMap = __webpack_require__(34);
+var ReactInstanceMap = __webpack_require__(35);
 var ReactInstrumentation = __webpack_require__(15);
 var ReactMarkupChecksum = __webpack_require__(276);
 var ReactReconciler = __webpack_require__(27);
@@ -15808,7 +15808,7 @@ Redirect.contextTypes = {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_prop_types___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_prop_types__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history_PathUtils__ = __webpack_require__(30);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history_PathUtils__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_history_PathUtils___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_history_PathUtils__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__Router__ = __webpack_require__(47);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -16317,7 +16317,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 var ReactCurrentOwner = __webpack_require__(17);
 var ReactComponentTreeHook = __webpack_require__(11);
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 
 var checkReactTypeSpec = __webpack_require__(338);
 
@@ -18382,7 +18382,7 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(23);
+var _reactRedux = __webpack_require__(21);
 
 var _reactRouter = __webpack_require__(328);
 
@@ -18402,7 +18402,7 @@ var _UserHome = __webpack_require__(185);
 
 var _UserHome2 = _interopRequireDefault(_UserHome);
 
-var _store = __webpack_require__(36);
+var _store = __webpack_require__(30);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19600,308 +19600,315 @@ exports.default = function () {
 
 
 Object.defineProperty(exports, "__esModule", {
-	value: true
+  value: true
 });
 
 var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(23);
+var _reactRedux = __webpack_require__(21);
 
 var _reactRouterDom = __webpack_require__(76);
 
-var _store = __webpack_require__(36);
+var _store = __webpack_require__(30);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Navbar = function Navbar(props) {
-	return _react2.default.createElement(
-		'nav',
-		{ className: 'navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll', colorOnScroll: ' ', id: 'sectionsNav' },
-		_react2.default.createElement(
-			'div',
-			{ className: 'container' },
-			_react2.default.createElement(
-				'div',
-				{ className: 'navbar-header' },
-				_react2.default.createElement(
-					'button',
-					{ type: 'button', className: 'navbar-toggle', 'data-toggle': 'collapse' },
-					_react2.default.createElement(
-						'span',
-						{ className: 'sr-only' },
-						'Toggle navigation'
-					),
-					_react2.default.createElement('span', { className: 'icon-bar' }),
-					_react2.default.createElement('span', { className: 'icon-bar' }),
-					_react2.default.createElement('span', { className: 'icon-bar' })
-				),
-				_react2.default.createElement(
-					_reactRouterDom.Link,
-					{ className: 'navbar-brand', to: '/' },
-					'Puppy Basket'
-				)
-			),
-			_react2.default.createElement(
-				'div',
-				{ className: 'collapse navbar-collapse' },
-				_react2.default.createElement(
-					'ul',
-					{ className: 'nav navbar-nav navbar-right' },
-					props.isLoggedIn ? _react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							'a',
-							{ onClick: props.handleClick },
-							_react2.default.createElement(
-								'i',
-								{ className: 'material-icons' },
-								'apps'
-							),
-							' Logout'
-						)
-					) : _react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouterDom.Link,
-							{ to: '/login' },
-							_react2.default.createElement(
-								'i',
-								{ className: 'material-icons' },
-								'account_circle'
-							),
-							' Login'
-						)
-					),
-					props.isLoggedIn ? _react2.default.createElement(
-						'li',
-						{ className: 'dropdown' },
-						_react2.default.createElement(
-							'a',
-							{ href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown' },
-							_react2.default.createElement(
-								'i',
-								{ className: 'material-icons' },
-								'view_carousel'
-							),
-							' My Account',
-							_react2.default.createElement('b', { className: 'caret' })
-						),
-						_react2.default.createElement(
-							'ul',
-							{ className: 'dropdown-menu dropdown-with-icons' },
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: 'examples/about-us.html' },
-									_react2.default.createElement(
-										'i',
-										{ className: 'material-icons' },
-										'account_balance'
-									),
-									' About Us'
-								)
-							)
-						)
-					) : _react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouterDom.Link,
-							{ to: '/signup' },
-							_react2.default.createElement(
-								'i',
-								{ className: 'material-icons' },
-								'assignment'
-							),
-							' Sign Up'
-						)
-					),
-					_react2.default.createElement(
-						'li',
-						null,
-						_react2.default.createElement(
-							_reactRouterDom.Link,
-							{ to: '/allProducts' },
-							_react2.default.createElement(
-								'i',
-								{ className: 'material-icons' },
-								'apps'
-							),
-							' All Puppies'
-						)
-					),
-					_react2.default.createElement(
-						'li',
-						{ className: 'dropdown' },
-						_react2.default.createElement(
-							'a',
-							{ href: '#', className: 'dropdown-toggle', 'data-toggle': 'dropdown' },
-							_react2.default.createElement(
-								'i',
-								{ className: 'material-icons' },
-								'view_day'
-							),
-							' Sections',
-							_react2.default.createElement('b', { className: 'caret' })
-						),
-						_react2.default.createElement(
-							'ul',
-							{ className: 'dropdown-menu dropdown-with-icons' },
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: 'sections.html#headers' },
-									_react2.default.createElement(
-										'i',
-										{ className: 'material-icons' },
-										'dns'
-									),
-									' Headers'
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: 'sections.html#features' },
-									_react2.default.createElement(
-										'i',
-										{ className: 'material-icons' },
-										'build'
-									),
-									' Features'
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: 'sections.html#blogs' },
-									_react2.default.createElement(
-										'i',
-										{ className: 'material-icons' },
-										'list'
-									),
-									' Blogs'
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: 'sections.html#teams' },
-									_react2.default.createElement(
-										'i',
-										{ className: 'material-icons' },
-										'people'
-									),
-									' Teams'
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: 'sections.html#projects' },
-									_react2.default.createElement(
-										'i',
-										{ className: 'material-icons' },
-										'assignment'
-									),
-									' Projects'
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: 'sections.html#pricing' },
-									_react2.default.createElement(
-										'i',
-										{ className: 'material-icons' },
-										'monetization_on'
-									),
-									' Pricing'
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: 'sections.html#testimonials' },
-									_react2.default.createElement(
-										'i',
-										{ className: 'material-icons' },
-										'chat'
-									),
-									' Testimonials'
-								)
-							),
-							_react2.default.createElement(
-								'li',
-								null,
-								_react2.default.createElement(
-									'a',
-									{ href: 'sections.html#contactus' },
-									_react2.default.createElement(
-										'i',
-										{ className: 'material-icons' },
-										'call'
-									),
-									' Contacts'
-								)
-							)
-						)
-					),
-					_react2.default.createElement(
-						'li',
-						{ className: 'button-container' },
-						_react2.default.createElement(
-							'a',
-							{ href: 'http://www.creative-tim.com/buy/material-kit-pro?ref=presentation', target: '_blank', className: 'btn btn-rose btn-round' },
-							_react2.default.createElement(
-								'i',
-								{ className: 'material-icons' },
-								'shopping_cart'
-							),
-							' Buy Now'
-						)
-					)
-				)
-			)
-		)
-	);
+  return _react2.default.createElement(
+    "nav",
+    {
+      className: "navbar navbar-default navbar-transparent navbar-fixed-top navbar-color-on-scroll",
+      id: "sectionsNav"
+    },
+    _react2.default.createElement(
+      "div",
+      { className: "container" },
+      _react2.default.createElement(
+        "div",
+        { className: "navbar-header" },
+        _react2.default.createElement(
+          "button",
+          { type: "button", className: "navbar-toggle", "data-toggle": "collapse" },
+          _react2.default.createElement(
+            "span",
+            { className: "sr-only" },
+            "Toggle navigation"
+          ),
+          _react2.default.createElement("span", { className: "icon-bar" }),
+          _react2.default.createElement("span", { className: "icon-bar" }),
+          _react2.default.createElement("span", { className: "icon-bar" })
+        ),
+        _react2.default.createElement(
+          _reactRouterDom.Link,
+          { className: "navbar-brand", to: "/" },
+          "Puppy Basket"
+        )
+      ),
+      _react2.default.createElement(
+        "div",
+        { className: "collapse navbar-collapse" },
+        _react2.default.createElement(
+          "ul",
+          { className: "nav navbar-nav navbar-right" },
+          props.isLoggedIn ? _react2.default.createElement(
+            "li",
+            null,
+            _react2.default.createElement(
+              "a",
+              { onClick: props.handleClick },
+              _react2.default.createElement(
+                "i",
+                { className: "material-icons" },
+                "apps"
+              ),
+              " Logout"
+            )
+          ) : _react2.default.createElement(
+            "li",
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: "/login" },
+              _react2.default.createElement(
+                "i",
+                { className: "material-icons" },
+                "account_circle"
+              ),
+              " Login"
+            )
+          ),
+          props.isLoggedIn ? _react2.default.createElement(
+            "li",
+            { className: "dropdown" },
+            _react2.default.createElement(
+              "a",
+              { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown" },
+              _react2.default.createElement(
+                "i",
+                { className: "material-icons" },
+                "view_carousel"
+              ),
+              " My Account",
+              _react2.default.createElement("b", { className: "caret" })
+            ),
+            _react2.default.createElement(
+              "ul",
+              { className: "dropdown-menu dropdown-with-icons" },
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "examples/about-us.html" },
+                  _react2.default.createElement(
+                    "i",
+                    { className: "material-icons" },
+                    "account_balance"
+                  ),
+                  " About Us"
+                )
+              )
+            )
+          ) : _react2.default.createElement(
+            "li",
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: "/signup" },
+              _react2.default.createElement(
+                "i",
+                { className: "material-icons" },
+                "assignment"
+              ),
+              " Sign Up"
+            )
+          ),
+          _react2.default.createElement(
+            "li",
+            null,
+            _react2.default.createElement(
+              _reactRouterDom.Link,
+              { to: "/allProducts" },
+              _react2.default.createElement(
+                "i",
+                { className: "material-icons" },
+                "apps"
+              ),
+              " All Puppies"
+            )
+          ),
+          _react2.default.createElement(
+            "li",
+            { className: "dropdown" },
+            _react2.default.createElement(
+              "a",
+              { href: "#", className: "dropdown-toggle", "data-toggle": "dropdown" },
+              _react2.default.createElement(
+                "i",
+                { className: "material-icons" },
+                "view_day"
+              ),
+              " Sections",
+              _react2.default.createElement("b", { className: "caret" })
+            ),
+            _react2.default.createElement(
+              "ul",
+              { className: "dropdown-menu dropdown-with-icons" },
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "sections.html#headers" },
+                  _react2.default.createElement(
+                    "i",
+                    { className: "material-icons" },
+                    "dns"
+                  ),
+                  " Headers"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "sections.html#features" },
+                  _react2.default.createElement(
+                    "i",
+                    { className: "material-icons" },
+                    "build"
+                  ),
+                  " Features"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "sections.html#blogs" },
+                  _react2.default.createElement(
+                    "i",
+                    { className: "material-icons" },
+                    "list"
+                  ),
+                  " Blogs"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "sections.html#teams" },
+                  _react2.default.createElement(
+                    "i",
+                    { className: "material-icons" },
+                    "people"
+                  ),
+                  " Teams"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "sections.html#projects" },
+                  _react2.default.createElement(
+                    "i",
+                    { className: "material-icons" },
+                    "assignment"
+                  ),
+                  " Projects"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "sections.html#pricing" },
+                  _react2.default.createElement(
+                    "i",
+                    { className: "material-icons" },
+                    "monetization_on"
+                  ),
+                  " Pricing"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "sections.html#testimonials" },
+                  _react2.default.createElement(
+                    "i",
+                    { className: "material-icons" },
+                    "chat"
+                  ),
+                  " Testimonials"
+                )
+              ),
+              _react2.default.createElement(
+                "li",
+                null,
+                _react2.default.createElement(
+                  "a",
+                  { href: "sections.html#contactus" },
+                  _react2.default.createElement(
+                    "i",
+                    { className: "material-icons" },
+                    "call"
+                  ),
+                  " Contacts"
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            "li",
+            { className: "button-container" },
+            _react2.default.createElement(
+              "a",
+              {
+                href: "http://www.creative-tim.com/buy/material-kit-pro?ref=presentation",
+                target: "_blank",
+                className: "xbtn xbtn-white xbtn-simple"
+              },
+              _react2.default.createElement(
+                "i",
+                { className: "material-icons" },
+                "shopping_cart"
+              ),
+              " Buy Now"
+            )
+          )
+        )
+      )
+    )
+  );
 };
 
 /**
  * CONTAINER
  */
 var mapState = function mapState(state) {
-	return {
-		isLoggedIn: !!state.user.id
-	};
+  return {
+    isLoggedIn: !!state.user.id
+  };
 };
 
 var mapDispatch = function mapDispatch(dispatch) {
-	return {
-		handleClick: function handleClick() {
-			dispatch((0, _store.logout)());
-		}
-	};
+  return {
+    handleClick: function handleClick() {
+      dispatch((0, _store.logout)());
+    }
+  };
 };
 
 // The `withRouter` wrapper makes sure that updates are not blocked
@@ -19909,239 +19916,7 @@ var mapDispatch = function mapDispatch(dispatch) {
 exports.default = (0, _reactRouterDom.withRouter)((0, _reactRedux.connect)(mapState, mapDispatch)(Navbar));
 
 /***/ }),
-/* 182 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-	value: true
-});
-exports.Signup = exports.Login = undefined;
-
-var _react = __webpack_require__(4);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactRedux = __webpack_require__(23);
-
-var _propTypes = __webpack_require__(7);
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _store = __webpack_require__(36);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * COMPONENT
- */
-// <div>
-//   <form onSubmit={handleSubmit} name={name}>
-//     <div>
-//       <label htmlFor='email'><small>Email</small></label>
-//       <input name='email' type='text' />
-//     </div>
-//     <div>
-//       <label htmlFor='password'><small>Password</small></label>
-//       <input name='password' type='password' />
-//     </div>
-//     <div>
-//       <button type='submit'>{displayName}</button>
-//     </div>
-//     {error && error.response && <div> {error.response.data} </div>}
-//   </form>
-//   <a href='/auth/google'>{displayName} with Google</a>
-// </div>
-var AuthForm = function AuthForm(props) {
-	var name = props.name,
-	    displayName = props.displayName,
-	    handleSubmit = props.handleSubmit,
-	    error = props.error;
-
-
-	return _react2.default.createElement(
-		'div',
-		{ className: 'page-header header-filter', style: { backgroundImage: "url('../resources/assets/img/bg7.jpg')", backgroundSize: 'cover', backgroundPosition: 'top center' } },
-		_react2.default.createElement(
-			'div',
-			{ className: 'container' },
-			_react2.default.createElement(
-				'div',
-				{ className: 'row' },
-				_react2.default.createElement(
-					'div',
-					{ className: 'col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3' },
-					_react2.default.createElement(
-						'div',
-						{ className: 'card card-signup' },
-						_react2.default.createElement(
-							'form',
-							{ className: 'form', onSubmit: handleSubmit, name: name },
-							_react2.default.createElement(
-								'div',
-								{ className: 'header header-primary text-center', style: { display: "block" } },
-								_react2.default.createElement(
-									'h4',
-									{ className: 'card-title' },
-									displayName
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'social-line' },
-									_react2.default.createElement(
-										'a',
-										{ href: '#pablo', className: 'btn btn-just-icon btn-simple' },
-										_react2.default.createElement('i', { className: 'fa fa-facebook-square' })
-									),
-									_react2.default.createElement(
-										'a',
-										{ href: '#pablo', className: 'btn btn-just-icon btn-simple' },
-										_react2.default.createElement('i', { className: 'fa fa-twitter' })
-									),
-									_react2.default.createElement(
-										'a',
-										{ href: '/auth/google', className: 'btn btn-just-icon btn-simple' },
-										_react2.default.createElement('i', { className: 'fa fa-google-plus' })
-									)
-								)
-							),
-							_react2.default.createElement(
-								'p',
-								{ className: 'description text-center' },
-								'Or'
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'card-content' },
-								name !== 'login' && _react2.default.createElement(
-									'div',
-									{ className: 'input-group' },
-									_react2.default.createElement(
-										'span',
-										{ className: 'input-group-addon' },
-										_react2.default.createElement(
-											'i',
-											{ className: 'material-icons' },
-											'face'
-										)
-									),
-									_react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'firstName', placeholder: 'First Name...' })
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'input-group' },
-									_react2.default.createElement(
-										'span',
-										{ className: 'input-group-addon' },
-										_react2.default.createElement(
-											'i',
-											{ className: 'material-icons' },
-											'email'
-										)
-									),
-									_react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'email', placeholder: 'Email...' })
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'input-group' },
-									_react2.default.createElement(
-										'span',
-										{ className: 'input-group-addon' },
-										_react2.default.createElement(
-											'i',
-											{ className: 'material-icons' },
-											'lock_outline'
-										)
-									),
-									_react2.default.createElement('input', { type: 'password', placeholder: 'Password...', name: 'password', className: 'form-control' })
-								),
-								_react2.default.createElement(
-									'div',
-									{ className: 'checkbox' },
-									_react2.default.createElement(
-										'label',
-										null,
-										_react2.default.createElement('input', { type: 'checkbox', name: 'optionsCheckboxes', checked: true }),
-										'Subscribe to newsletter'
-									)
-								)
-							),
-							_react2.default.createElement(
-								'div',
-								{ className: 'footer text-center', style: { display: "block" } },
-								_react2.default.createElement(
-									'a',
-									{ href: '#pablo', className: 'btn btn-primary btn-simple btn-wd btn-lg' },
-									'Get Started'
-								)
-							),
-							error && error.response && _react2.default.createElement(
-								'div',
-								null,
-								' ',
-								error.response.data,
-								' '
-							)
-						)
-					)
-				)
-			)
-		)
-	);
-};
-
-/**
- * CONTAINER
- *   Note that we have two different sets of 'mapStateToProps' functions -
- *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
- *   function, and share the same Component. This is a good example of how we
- *   can stay DRY with interfaces that are very similar to each other!
- */
-var mapLogin = function mapLogin(state) {
-	return {
-		name: 'login',
-		displayName: 'Login',
-		error: state.user.error
-	};
-};
-
-var mapSignup = function mapSignup(state) {
-	return {
-		name: 'signup',
-		displayName: 'Sign Up',
-		error: state.user.error
-	};
-};
-
-var mapDispatch = function mapDispatch(dispatch) {
-	return {
-		handleSubmit: function handleSubmit(evt) {
-			evt.preventDefault();
-			var formName = evt.target.name;
-			var email = evt.target.email.value;
-			var password = evt.target.password.value;
-			var firstName = evt.target.firstName.value;
-			dispatch((0, _store.auth)(email, password, formName, firstName));
-		}
-	};
-};
-
-var Login = exports.Login = (0, _reactRedux.connect)(mapLogin, mapDispatch)(AuthForm);
-var Signup = exports.Signup = (0, _reactRedux.connect)(mapSignup, mapDispatch)(AuthForm);
-
-/**
- * PROP TYPES
- */
-AuthForm.propTypes = {
-	name: _propTypes2.default.string.isRequired,
-	displayName: _propTypes2.default.string.isRequired,
-	handleSubmit: _propTypes2.default.func.isRequired,
-	error: _propTypes2.default.object
-};
-
-/***/ }),
+/* 182 */,
 /* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20170,18 +19945,18 @@ Object.defineProperty(exports, 'UserHome', {
   }
 });
 
-var _authForm = __webpack_require__(182);
+var _AuthForm = __webpack_require__(361);
 
 Object.defineProperty(exports, 'Login', {
   enumerable: true,
   get: function get() {
-    return _authForm.Login;
+    return _AuthForm.Login;
   }
 });
 Object.defineProperty(exports, 'Signup', {
   enumerable: true,
   get: function get() {
-    return _authForm.Signup;
+    return _AuthForm.Signup;
   }
 });
 
@@ -20224,11 +19999,11 @@ var _propTypes = __webpack_require__(7);
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _reactRedux = __webpack_require__(23);
+var _reactRedux = __webpack_require__(21);
 
 var _reactRouterDom = __webpack_require__(76);
 
-var _store = __webpack_require__(36);
+var _store = __webpack_require__(30);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -20297,7 +20072,7 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRedux = __webpack_require__(23);
+var _reactRedux = __webpack_require__(21);
 
 var _UserHome = __webpack_require__(85);
 
@@ -20331,9 +20106,9 @@ var _reactDom = __webpack_require__(158);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _reactRedux = __webpack_require__(23);
+var _reactRedux = __webpack_require__(21);
 
-var _store = __webpack_require__(36);
+var _store = __webpack_require__(30);
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -25207,7 +24982,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _LocationUtils = __webpack_require__(54);
 
-var _PathUtils = __webpack_require__(30);
+var _PathUtils = __webpack_require__(31);
 
 var _createTransitionManager = __webpack_require__(55);
 
@@ -25526,7 +25301,7 @@ exports.default = createHashHistory;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(97);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -25830,7 +25605,7 @@ var createBrowserHistory = function createBrowserHistory() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PathUtils__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__createTransitionManager__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__DOMUtils__ = __webpack_require__(97);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -26148,7 +25923,7 @@ var createHashHistory = function createHashHistory() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_warning___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_warning__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PathUtils__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PathUtils__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__LocationUtils__ = __webpack_require__(39);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__createTransitionManager__ = __webpack_require__(56);
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
@@ -26323,7 +26098,7 @@ var createMemoryHistory = function createMemoryHistory() {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__LocationUtils__ = __webpack_require__(39);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["a"]; });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return __WEBPACK_IMPORTED_MODULE_3__LocationUtils__["b"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PathUtils__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__PathUtils__ = __webpack_require__(32);
 /* unused harmony reexport parsePath */
 /* unused harmony reexport createPath */
 
@@ -27023,7 +26798,7 @@ module.exports = AutoFocusUtils;
 
 
 
-var EventPropagators = __webpack_require__(33);
+var EventPropagators = __webpack_require__(34);
 var ExecutionEnvironment = __webpack_require__(8);
 var FallbackCompositionState = __webpack_require__(247);
 var SyntheticCompositionEvent = __webpack_require__(290);
@@ -27633,8 +27408,8 @@ module.exports = CSSPropertyOperations;
 
 
 
-var EventPluginHub = __webpack_require__(32);
-var EventPropagators = __webpack_require__(33);
+var EventPluginHub = __webpack_require__(33);
+var EventPropagators = __webpack_require__(34);
 var ExecutionEnvironment = __webpack_require__(8);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactUpdates = __webpack_require__(16);
@@ -28033,7 +27808,7 @@ module.exports = DefaultEventPluginOrder;
 
 
 
-var EventPropagators = __webpack_require__(33);
+var EventPropagators = __webpack_require__(34);
 var ReactDOMComponentTree = __webpack_require__(6);
 var SyntheticMouseEvent = __webpack_require__(43);
 
@@ -28138,7 +27913,7 @@ module.exports = EnterLeaveEventPlugin;
 
 var _assign = __webpack_require__(5);
 
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 
 var getTextContentAccessor = __webpack_require__(120);
 
@@ -28676,7 +28451,7 @@ var React = __webpack_require__(28);
 var ReactComponentEnvironment = __webpack_require__(64);
 var ReactCurrentOwner = __webpack_require__(17);
 var ReactErrorUtils = __webpack_require__(65);
-var ReactInstanceMap = __webpack_require__(34);
+var ReactInstanceMap = __webpack_require__(35);
 var ReactInstrumentation = __webpack_require__(15);
 var ReactNodeTypes = __webpack_require__(114);
 var ReactReconciler = __webpack_require__(27);
@@ -29703,7 +29478,7 @@ var DOMLazyTree = __webpack_require__(26);
 var DOMNamespaces = __webpack_require__(60);
 var DOMProperty = __webpack_require__(20);
 var DOMPropertyOperations = __webpack_require__(106);
-var EventPluginHub = __webpack_require__(32);
+var EventPluginHub = __webpack_require__(33);
 var EventPluginRegistry = __webpack_require__(41);
 var ReactBrowserEventEmitter = __webpack_require__(42);
 var ReactDOMComponentFlags = __webpack_require__(107);
@@ -32810,7 +32585,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var EventPluginHub = __webpack_require__(32);
+var EventPluginHub = __webpack_require__(33);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -32851,7 +32626,7 @@ var _assign = __webpack_require__(5);
 
 var EventListener = __webpack_require__(90);
 var ExecutionEnvironment = __webpack_require__(8);
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactUpdates = __webpack_require__(16);
 
@@ -33047,7 +32822,7 @@ module.exports = ReactHostOperationHistoryHook;
 
 
 var DOMProperty = __webpack_require__(20);
-var EventPluginHub = __webpack_require__(32);
+var EventPluginHub = __webpack_require__(33);
 var EventPluginUtils = __webpack_require__(61);
 var ReactComponentEnvironment = __webpack_require__(64);
 var ReactEmptyComponent = __webpack_require__(109);
@@ -33186,7 +32961,7 @@ module.exports = ReactMarkupChecksum;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactComponentEnvironment = __webpack_require__(64);
-var ReactInstanceMap = __webpack_require__(34);
+var ReactInstanceMap = __webpack_require__(35);
 var ReactInstrumentation = __webpack_require__(15);
 
 var ReactCurrentOwner = __webpack_require__(17);
@@ -33768,7 +33543,7 @@ module.exports = ReactPropTypeLocationNames;
 var _assign = __webpack_require__(5);
 
 var CallbackQueue = __webpack_require__(105);
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 var ReactBrowserEventEmitter = __webpack_require__(42);
 var ReactInputSelection = __webpack_require__(112);
 var ReactInstrumentation = __webpack_require__(15);
@@ -34045,7 +33820,7 @@ module.exports = ReactRef;
 
 var _assign = __webpack_require__(5);
 
-var PooledClass = __webpack_require__(21);
+var PooledClass = __webpack_require__(22);
 var Transaction = __webpack_require__(44);
 var ReactInstrumentation = __webpack_require__(15);
 var ReactServerUpdateQueue = __webpack_require__(283);
@@ -34610,7 +34385,7 @@ module.exports = SVGDOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(33);
+var EventPropagators = __webpack_require__(34);
 var ExecutionEnvironment = __webpack_require__(8);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactInputSelection = __webpack_require__(112);
@@ -34807,7 +34582,7 @@ module.exports = SelectEventPlugin;
 var _prodInvariant = __webpack_require__(3);
 
 var EventListener = __webpack_require__(90);
-var EventPropagators = __webpack_require__(33);
+var EventPropagators = __webpack_require__(34);
 var ReactDOMComponentTree = __webpack_require__(6);
 var SyntheticAnimationEvent = __webpack_require__(288);
 var SyntheticClipboardEvent = __webpack_require__(289);
@@ -34818,7 +34593,7 @@ var SyntheticMouseEvent = __webpack_require__(43);
 var SyntheticDragEvent = __webpack_require__(291);
 var SyntheticTouchEvent = __webpack_require__(295);
 var SyntheticTransitionEvent = __webpack_require__(296);
-var SyntheticUIEvent = __webpack_require__(35);
+var SyntheticUIEvent = __webpack_require__(36);
 var SyntheticWheelEvent = __webpack_require__(297);
 
 var emptyFunction = __webpack_require__(13);
@@ -35204,7 +34979,7 @@ module.exports = SyntheticDragEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(35);
+var SyntheticUIEvent = __webpack_require__(36);
 
 /**
  * @interface FocusEvent
@@ -35287,7 +35062,7 @@ module.exports = SyntheticInputEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(35);
+var SyntheticUIEvent = __webpack_require__(36);
 
 var getEventCharCode = __webpack_require__(68);
 var getEventKey = __webpack_require__(303);
@@ -35376,7 +35151,7 @@ module.exports = SyntheticKeyboardEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(35);
+var SyntheticUIEvent = __webpack_require__(36);
 
 var getEventModifierState = __webpack_require__(69);
 
@@ -35757,7 +35532,7 @@ var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(17);
 var ReactDOMComponentTree = __webpack_require__(6);
-var ReactInstanceMap = __webpack_require__(34);
+var ReactInstanceMap = __webpack_require__(35);
 
 var getHostComponentFromComposite = __webpack_require__(119);
 var invariant = __webpack_require__(1);
@@ -37836,7 +37611,7 @@ module.exports = PooledClass;
 
 
 var PooledClass = __webpack_require__(331);
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 
 var emptyFunction = __webpack_require__(13);
 var traverseAllChildren = __webpack_require__(342);
@@ -38031,7 +37806,7 @@ module.exports = ReactChildren;
 
 
 
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 
 /**
  * Create a factory that creates HTML tag elements.
@@ -38237,7 +38012,7 @@ module.exports = ReactPropTypeLocationNames;
 
 
 
-var _require = __webpack_require__(22),
+var _require = __webpack_require__(23),
     isValidElement = _require.isValidElement;
 
 var factory = __webpack_require__(102);
@@ -38398,7 +38173,7 @@ module.exports = checkReactTypeSpec;
 var _require = __webpack_require__(138),
     Component = _require.Component;
 
-var _require2 = __webpack_require__(22),
+var _require2 = __webpack_require__(23),
     isValidElement = _require2.isValidElement;
 
 var ReactNoopUpdateQueue = __webpack_require__(141);
@@ -38450,7 +38225,7 @@ module.exports = getNextDebugID;
 
 var _prodInvariant = __webpack_require__(29);
 
-var ReactElement = __webpack_require__(22);
+var ReactElement = __webpack_require__(23);
 
 var invariant = __webpack_require__(1);
 
@@ -40065,6 +39840,239 @@ function toArray(list, index) {
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 361 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.Signup = exports.Login = undefined;
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(21);
+
+var _propTypes = __webpack_require__(7);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _store = __webpack_require__(30);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * COMPONENT
+ */
+// <div>
+//   <form onSubmit={handleSubmit} name={name}>
+//     <div>
+//       <label htmlFor='email'><small>Email</small></label>
+//       <input name='email' type='text' />
+//     </div>
+//     <div>
+//       <label htmlFor='password'><small>Password</small></label>
+//       <input name='password' type='password' />
+//     </div>
+//     <div>
+//       <button type='submit'>{displayName}</button>
+//     </div>
+//     {error && error.response && <div> {error.response.data} </div>}
+//   </form>
+//   <a href='/auth/google'>{displayName} with Google</a>
+// </div>
+var AuthForm = function AuthForm(props) {
+	var name = props.name,
+	    displayName = props.displayName,
+	    handleSubmit = props.handleSubmit,
+	    error = props.error;
+
+
+	return _react2.default.createElement(
+		'div',
+		{ className: 'page-header header-filter', style: { backgroundImage: "url('../resources/assets/img/bg7.jpg')", backgroundSize: 'cover', backgroundPosition: 'top center' } },
+		_react2.default.createElement(
+			'div',
+			{ className: 'container' },
+			_react2.default.createElement(
+				'div',
+				{ className: 'row' },
+				_react2.default.createElement(
+					'div',
+					{ className: 'col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3' },
+					_react2.default.createElement(
+						'div',
+						{ className: 'card card-signup' },
+						_react2.default.createElement(
+							'form',
+							{ className: 'form', onSubmit: handleSubmit, name: name },
+							_react2.default.createElement(
+								'div',
+								{ className: 'header header-primary text-center', style: { display: "block" } },
+								_react2.default.createElement(
+									'h4',
+									{ className: 'card-title' },
+									displayName
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'social-line' },
+									_react2.default.createElement(
+										'a',
+										{ href: '#pablo', className: 'btn btn-just-icon btn-simple' },
+										_react2.default.createElement('i', { className: 'fa fa-facebook-square' })
+									),
+									_react2.default.createElement(
+										'a',
+										{ href: '#pablo', className: 'btn btn-just-icon btn-simple' },
+										_react2.default.createElement('i', { className: 'fa fa-twitter' })
+									),
+									_react2.default.createElement(
+										'a',
+										{ href: '/auth/google', className: 'btn btn-just-icon btn-simple' },
+										_react2.default.createElement('i', { className: 'fa fa-google-plus' })
+									)
+								)
+							),
+							_react2.default.createElement(
+								'p',
+								{ className: 'description text-center' },
+								'Or'
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'card-content' },
+								name !== 'login' && _react2.default.createElement(
+									'div',
+									{ className: 'input-group' },
+									_react2.default.createElement(
+										'span',
+										{ className: 'input-group-addon' },
+										_react2.default.createElement(
+											'i',
+											{ className: 'material-icons' },
+											'face'
+										)
+									),
+									_react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'firstName', placeholder: 'First Name...' })
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'input-group' },
+									_react2.default.createElement(
+										'span',
+										{ className: 'input-group-addon' },
+										_react2.default.createElement(
+											'i',
+											{ className: 'material-icons' },
+											'email'
+										)
+									),
+									_react2.default.createElement('input', { type: 'text', className: 'form-control', name: 'email', placeholder: 'Email...' })
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'input-group' },
+									_react2.default.createElement(
+										'span',
+										{ className: 'input-group-addon' },
+										_react2.default.createElement(
+											'i',
+											{ className: 'material-icons' },
+											'lock_outline'
+										)
+									),
+									_react2.default.createElement('input', { type: 'password', placeholder: 'Password...', name: 'password', className: 'form-control' })
+								),
+								_react2.default.createElement(
+									'div',
+									{ className: 'checkbox' },
+									_react2.default.createElement(
+										'label',
+										null,
+										_react2.default.createElement('input', { type: 'checkbox', name: 'optionsCheckboxes', checked: true }),
+										'Subscribe to newsletter'
+									)
+								)
+							),
+							_react2.default.createElement(
+								'div',
+								{ className: 'footer text-center', style: { display: "block" } },
+								_react2.default.createElement(
+									'a',
+									{ href: '#pablo', className: 'btn btn-primary btn-simple btn-wd btn-lg' },
+									'Get Started'
+								)
+							),
+							error && error.response && _react2.default.createElement(
+								'div',
+								null,
+								' ',
+								error.response.data,
+								' '
+							)
+						)
+					)
+				)
+			)
+		)
+	);
+};
+
+/**
+ * CONTAINER
+ *   Note that we have two different sets of 'mapStateToProps' functions -
+ *   one for Login, and one for Signup. However, they share the same 'mapDispatchToProps'
+ *   function, and share the same Component. This is a good example of how we
+ *   can stay DRY with interfaces that are very similar to each other!
+ */
+var mapLogin = function mapLogin(state) {
+	return {
+		name: 'login',
+		displayName: 'Login',
+		error: state.user.error
+	};
+};
+
+var mapSignup = function mapSignup(state) {
+	return {
+		name: 'signup',
+		displayName: 'Sign Up',
+		error: state.user.error
+	};
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+	return {
+		handleSubmit: function handleSubmit(evt) {
+			evt.preventDefault();
+			var formName = evt.target.name;
+			var email = evt.target.email.value;
+			var password = evt.target.password.value;
+			var firstName = evt.target.firstName.value;
+			dispatch((0, _store.auth)(email, password, formName, firstName));
+		}
+	};
+};
+
+var Login = exports.Login = (0, _reactRedux.connect)(mapLogin, mapDispatch)(AuthForm);
+var Signup = exports.Signup = (0, _reactRedux.connect)(mapSignup, mapDispatch)(AuthForm);
+
+/**
+ * PROP TYPES
+ */
+AuthForm.propTypes = {
+	name: _propTypes2.default.string.isRequired,
+	displayName: _propTypes2.default.string.isRequired,
+	handleSubmit: _propTypes2.default.func.isRequired,
+	error: _propTypes2.default.object
+};
 
 /***/ })
 /******/ ]);
