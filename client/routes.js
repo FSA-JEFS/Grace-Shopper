@@ -14,7 +14,6 @@ import { me } from './store'
  */
 class Routes extends Component {
   componentDidMount() {
-    console.log(this.props)
     this.props.loadInitialData()
   }
 
@@ -41,19 +40,6 @@ class Routes extends Component {
     )
   }
 }
-
-// unused for now
-
-// {
-//   isLoggedIn &&
-//     <Switch>
-//       {/* Routes placed here are only available after logging in */}
-//       <Route path='/home' component={UserHome} />
-//     </Switch>
-// }
-// {/* Displays our Login component as a fallback */}
-
-// unused for now
 
 /**
  * CONTAINER
