@@ -10,17 +10,17 @@ import fetchProducts from '../store/product';
  */
 const mapState = (state) => {
 
-    let getRandomPuppies = function(n) {
+    let getRandomProducts = function(n) {
         let results = []
         while (results.length < n) {
-            var rand = Math.floor(Math.random()*{state.puppies.length})
-            results.push(state.puppies[rand])
+            var rand = Math.floor(Math.random()*{state.products.length})
+            results.push(state.products[rand])
         }
         return results
     }
 
     return {
-        puppies: getRandomPuppies(4)
+        products: getRandomProducts(4)
     }
 }
 

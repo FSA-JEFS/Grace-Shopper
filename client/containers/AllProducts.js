@@ -10,7 +10,7 @@ import PuppyList from '../components/PuppyList';
 const mapState = (state) => {
     console.log('Mapping state', state)
     return {
-        puppies: state.product
+        products: state.product
     }
 }
 

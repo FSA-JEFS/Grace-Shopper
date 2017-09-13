@@ -8,8 +8,8 @@ import {connect} from 'react-redux'
 const UserHome = (props) => {
   const {email} = props
 
-  // component to list all puppies
-  // randomly pic 4 from all puppies and display them on home
+  // component to list all products
+  // randomly pic 4 from all products and display them on home
 
   return (
     <div className="landing-page">

@@ -15,13 +15,9 @@ class Main extends Component {
   constructor(props) {
     super(props)
   }
-
   componentDidMount() {
-    console.log("Main did mount ##################")
     this.props.fetchData()
   }
-
-
   render() {
     const { children, handleClick, isLoggedIn } = this.props
 
@@ -49,7 +45,6 @@ const mapDispatch = (dispatch) => {
       dispatch(logout())
     },
     fetchData() {
-      console.log('about to dispatch fetch', fetchProducts)
       dispatch(fetchProducts())
     }
   }

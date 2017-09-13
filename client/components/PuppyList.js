@@ -6,15 +6,15 @@ import { Link } from 'react-router-dom'
 
 export default (props) => {
   console.log(props)
-  const puppies = props.puppies
+  const products = props.products
 
-  // component to list all puppies
+  // component to list all products
 
   return (
     <div className="team">
       <div className="row">
         {
-          puppies.map(puppy => {
+          products.map(puppy => {
             return (<div className="col-md-6">
               <div className="card card-profile card-plain">
                 <div className="col-md-5">
