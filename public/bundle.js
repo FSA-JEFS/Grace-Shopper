@@ -4479,6 +4479,18 @@ Object.keys(_product).forEach(function (key) {
   });
 });
 
+var _selectedProduct = __webpack_require__(366);
+
+Object.keys(_selectedProduct).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function get() {
+      return _selectedProduct[key];
+    }
+  });
+});
+
 var _redux = __webpack_require__(148);
 
 var _reduxLogger = __webpack_require__(349);
@@ -4493,9 +4505,11 @@ var _user2 = _interopRequireDefault(_user);
 
 var _product2 = _interopRequireDefault(_product);
 
+var _selectedProduct2 = _interopRequireDefault(_selectedProduct);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var reducer = (0, _redux.combineReducers)({ user: _user2.default, product: _product2.default });
+var reducer = (0, _redux.combineReducers)({ user: _user2.default, product: _product2.default, selectedProduct: _selectedProduct2.default });
 var middleware = (0, _redux.applyMiddleware)(_reduxThunk2.default, (0, _reduxLogger2.default)({ collapsed: true }));
 var store = (0, _redux.createStore)(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), middleware);
 
@@ -18515,6 +18529,10 @@ var _AllProducts = __webpack_require__(187);
 
 var _AllProducts2 = _interopRequireDefault(_AllProducts);
 
+var _SingleProduct = __webpack_require__(365);
+
+var _SingleProduct2 = _interopRequireDefault(_SingleProduct);
+
 var _store = __webpack_require__(30);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -18565,6 +18583,7 @@ var Routes = function (_Component) {
               _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/login', component: _components.Login }),
               _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/signup', component: _components.Signup }),
               _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/products', component: _AllProducts2.default }),
+              _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/products/:id', component: _SingleProduct2.default }),
               _react2.default.createElement(_reactRouterDom.Route, { component: _components.Login })
             )
           ),
@@ -40425,6 +40444,872 @@ function toArray(list, index) {
 /***/ (function(module, exports) {
 
 /* (ignored) */
+
+/***/ }),
+/* 364 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _propTypes = __webpack_require__(7);
+
+var _propTypes2 = _interopRequireDefault(_propTypes);
+
+var _reactRedux = __webpack_require__(18);
+
+var _reactRouterDom = __webpack_require__(47);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SinglePuppy = function (_Component) {
+    _inherits(SinglePuppy, _Component);
+
+    function SinglePuppy() {
+        _classCallCheck(this, SinglePuppy);
+
+        return _possibleConstructorReturn(this, (SinglePuppy.__proto__ || Object.getPrototypeOf(SinglePuppy)).apply(this, arguments));
+    }
+
+    _createClass(SinglePuppy, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.props.fetchPuppy();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var product = this.props.selectedProduct;
+
+            // component to show one product (a single puppy)
+
+            return _react2.default.createElement(
+                'div',
+                { className: 'product-page' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'page-header header-filter', 'data-parallax': 'true', 'filter-color': 'rose', style: { backgroundImage: "url('../resources/assets/img/bg6.jpg')" } },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'container' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'row title-row' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'col-md-4 col-md-offset-8' },
+                                _react2.default.createElement(
+                                    'button',
+                                    { className: 'btn btn-white pull-right' },
+                                    _react2.default.createElement(
+                                        'i',
+                                        { className: 'material-icons' },
+                                        'shopping_cart'
+                                    ),
+                                    ' 0 Items'
+                                )
+                            )
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'section section-gray' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'container' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'main main-raised main-product' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'row' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-md-6 col-sm-6' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'tab-content' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'tab-pane', id: 'product-page1' },
+                                            _react2.default.createElement('img', { src: '../assets/img/examples/product1.jpg' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'tab-pane active', id: 'product-page2' },
+                                            _react2.default.createElement('img', { src: product.photo && product.photo[0] })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'tab-pane', id: 'product-page3' },
+                                            _react2.default.createElement('img', { src: '../assets/img/examples/product3.jpg' })
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'tab-pane', id: 'product-page4' },
+                                            _react2.default.createElement('img', { src: '../assets/img/examples/product4.jpg' })
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'ul',
+                                        { className: 'nav flexi-nav', role: 'tablist', id: 'flexiselDemo1' },
+                                        _react2.default.createElement(
+                                            'li',
+                                            null,
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#product-page1', role: 'tab', 'data-toggle': 'tab', 'aria-expanded': 'false' },
+                                                _react2.default.createElement('img', { src: '../assets/img/examples/product1.jpg' })
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'li',
+                                            { className: 'active' },
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#product-page2', role: 'tab', 'data-toggle': 'tab', 'aria-expanded': 'false' },
+                                                _react2.default.createElement('img', { src: '../assets/img/examples/product2.jpg' })
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'li',
+                                            null,
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#product-page3', role: 'tab', 'data-toggle': 'tab', 'aria-expanded': 'false' },
+                                                _react2.default.createElement('img', { src: '../assets/img/examples/product3.jpg' })
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'li',
+                                            null,
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#product-page4', role: 'tab', 'data-toggle': 'tab', 'aria-expanded': 'true' },
+                                                _react2.default.createElement('img', { src: '../assets/img/examples/product4.jpg' })
+                                            )
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-md-6 col-sm-6' },
+                                    _react2.default.createElement(
+                                        'h2',
+                                        { className: 'title' },
+                                        ' ',
+                                        product.name,
+                                        ' '
+                                    ),
+                                    _react2.default.createElement(
+                                        'h3',
+                                        { className: 'main-price' },
+                                        '$',
+                                        product.price
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { id: 'acordeon' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'panel-group', id: 'accordion' },
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'panel panel-border panel-default' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'panel-heading', role: 'tab', id: 'headingOne' },
+                                                    _react2.default.createElement(
+                                                        'a',
+                                                        { role: 'button', 'data-toggle': 'collapse', 'data-parent': '#accordion', href: '#collapseOne', 'aria-expanded': 'true', 'aria-controls': 'collapseOne' },
+                                                        _react2.default.createElement(
+                                                            'h4',
+                                                            { className: 'panel-title' },
+                                                            'Description',
+                                                            _react2.default.createElement(
+                                                                'i',
+                                                                { className: 'material-icons' },
+                                                                'keyboard_arrow_down'
+                                                            )
+                                                        )
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { id: 'collapseOne', className: 'panel-collapse collapse in' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'panel-body' },
+                                                        _react2.default.createElement(
+                                                            'p',
+                                                            null,
+                                                            product.description
+                                                        )
+                                                    )
+                                                )
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'panel panel-border panel-default' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'panel-heading', role: 'tab', id: 'headingOne' },
+                                                    _react2.default.createElement(
+                                                        'a',
+                                                        { role: 'button', 'data-toggle': 'collapse', 'data-parent': '#accordion', href: '#collapseTwo', 'aria-controls': 'collapseOne' },
+                                                        _react2.default.createElement(
+                                                            'h4',
+                                                            { className: 'panel-title' },
+                                                            'Designer Information',
+                                                            _react2.default.createElement(
+                                                                'i',
+                                                                { className: 'material-icons' },
+                                                                'keyboard_arrow_down'
+                                                            )
+                                                        )
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { id: 'collapseTwo', className: 'panel-collapse collapse' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'panel-body' },
+                                                        'An infusion of West Coast cool and New York attitude, Rebecca Minkoff is synonymous with It girl style. Minkoff burst on the fashion scene with her best-selling \'Morning After Bag\' and later expanded her offering with the Rebecca Minkoff Collection - a range of luxe city staples with a "downtown romantic" theme.'
+                                                    )
+                                                )
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'panel panel-border panel-default' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'panel-heading', role: 'tab', id: 'headingOne' },
+                                                    _react2.default.createElement(
+                                                        'a',
+                                                        { role: 'button', 'data-toggle': 'collapse', 'data-parent': '#accordion', href: '#collapseThree', 'aria-controls': 'collapseOne' },
+                                                        _react2.default.createElement(
+                                                            'h4',
+                                                            { className: 'panel-title' },
+                                                            'Details and Care',
+                                                            _react2.default.createElement(
+                                                                'i',
+                                                                { className: 'material-icons' },
+                                                                'keyboard_arrow_down'
+                                                            )
+                                                        )
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { id: 'collapseThree', className: 'panel-collapse collapse' },
+                                                    _react2.default.createElement(
+                                                        'div',
+                                                        { className: 'panel-body' },
+                                                        _react2.default.createElement(
+                                                            'ul',
+                                                            null,
+                                                            _react2.default.createElement(
+                                                                'li',
+                                                                null,
+                                                                'Storm and midnight-blue stretch cotton-blend'
+                                                            ),
+                                                            _react2.default.createElement(
+                                                                'li',
+                                                                null,
+                                                                'Notch lapels, functioning buttoned cuffs, two front flap pockets, single vent, internal pocket'
+                                                            ),
+                                                            _react2.default.createElement(
+                                                                'li',
+                                                                null,
+                                                                'Two button fastening'
+                                                            ),
+                                                            _react2.default.createElement(
+                                                                'li',
+                                                                null,
+                                                                '84% cotton, 14% nylon, 2% elastane'
+                                                            ),
+                                                            _react2.default.createElement(
+                                                                'li',
+                                                                null,
+                                                                'Dry clean'
+                                                            )
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'row pick-size' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'col-md-6 col-sm-6' },
+                                            _react2.default.createElement(
+                                                'label',
+                                                null,
+                                                'Select color'
+                                            ),
+                                            _react2.default.createElement(
+                                                'select',
+                                                { className: 'selectpicker', 'data-style': 'select-with-transition', 'data-size': '7' },
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '1' },
+                                                    'Rose '
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '2' },
+                                                    'Gray'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '3' },
+                                                    'White'
+                                                )
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'col-md-6 col-sm-6' },
+                                            _react2.default.createElement(
+                                                'label',
+                                                null,
+                                                'Select size'
+                                            ),
+                                            _react2.default.createElement(
+                                                'select',
+                                                { className: 'selectpicker', 'data-style': 'select-with-transition', 'data-size': '7' },
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '1' },
+                                                    'Small '
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '2' },
+                                                    'Medium'
+                                                ),
+                                                _react2.default.createElement(
+                                                    'option',
+                                                    { value: '3' },
+                                                    'Large'
+                                                )
+                                            )
+                                        )
+                                    ),
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'row text-right' },
+                                        _react2.default.createElement(
+                                            'button',
+                                            { className: 'btn btn-rose btn-round' },
+                                            'Add to Cart \xA0',
+                                            _react2.default.createElement(
+                                                'i',
+                                                { className: 'material-icons' },
+                                                'shopping_cart'
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'features text-center' },
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'row' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-md-4' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'info' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'icon icon-info' },
+                                            _react2.default.createElement(
+                                                'i',
+                                                { className: 'material-icons' },
+                                                'local_shipping'
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'h4',
+                                            { className: 'info-title' },
+                                            '2 Days Delivery '
+                                        ),
+                                        _react2.default.createElement(
+                                            'p',
+                                            null,
+                                            'Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.'
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-md-4' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'info' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'icon icon-success' },
+                                            _react2.default.createElement(
+                                                'i',
+                                                { className: 'material-icons' },
+                                                'verified_user'
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'h4',
+                                            { className: 'info-title' },
+                                            'Refundable Policy'
+                                        ),
+                                        _react2.default.createElement(
+                                            'p',
+                                            null,
+                                            'Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.'
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-md-4' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'info' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'icon icon-rose' },
+                                            _react2.default.createElement(
+                                                'i',
+                                                { className: 'material-icons' },
+                                                'favorite'
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'h4',
+                                            { className: 'info-title' },
+                                            'Popular Item'
+                                        ),
+                                        _react2.default.createElement(
+                                            'p',
+                                            null,
+                                            'Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.'
+                                        )
+                                    )
+                                )
+                            )
+                        ),
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'related-products' },
+                            _react2.default.createElement(
+                                'h3',
+                                { className: 'title text-center' },
+                                'You may also be interested in:'
+                            ),
+                            _react2.default.createElement(
+                                'div',
+                                { className: 'row' },
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-sm-6 col-md-3' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'card card-product' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'card-image' },
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#pablo' },
+                                                _react2.default.createElement('img', { className: 'img', src: '../assets/img/examples/card-product1.jpg' })
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'card-content' },
+                                            _react2.default.createElement(
+                                                'h6',
+                                                { className: 'category text-rose' },
+                                                'Trending'
+                                            ),
+                                            _react2.default.createElement(
+                                                'h4',
+                                                { className: 'card-title' },
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { href: '#pablo' },
+                                                    'Dolce & Gabbana'
+                                                )
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'card-description' },
+                                                'Dolce & Gabbana\'s \'Greta\' tote has been crafted in Italy from hard-wearing red textured-leather.'
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'footer' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'price' },
+                                                    _react2.default.createElement(
+                                                        'h4',
+                                                        null,
+                                                        '$1,459'
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'stats' },
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { type: 'button', rel: 'tooltip', title: 'Saved to Wishlist', className: 'btn btn-just-icon btn-simple btn-rose' },
+                                                        _react2.default.createElement(
+                                                            'i',
+                                                            { className: 'material-icons' },
+                                                            'favorite'
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-sm-6 col-md-3' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'card card-product' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'card-image' },
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#pablo' },
+                                                _react2.default.createElement('img', { className: 'img', src: '../assets/img/examples/card-product3.jpg' })
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'card-content' },
+                                            _react2.default.createElement(
+                                                'h6',
+                                                { className: 'category text-muted' },
+                                                'Popular'
+                                            ),
+                                            _react2.default.createElement(
+                                                'h4',
+                                                { className: 'card-title' },
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { href: '#pablo' },
+                                                    'Balmain'
+                                                )
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'card-description' },
+                                                'Balmain\'s mid-rise skinny jeans are cut with stretch to ensure they retain their second-skin fit but move comfortably.'
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'footer' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'price' },
+                                                    _react2.default.createElement(
+                                                        'h4',
+                                                        null,
+                                                        '$459'
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'stats' },
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { type: 'button', rel: 'tooltip', title: 'Save to Wishlist', className: 'btn btn-just-icon btn-simple btn-default' },
+                                                        _react2.default.createElement(
+                                                            'i',
+                                                            { className: 'material-icons' },
+                                                            'favorite'
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-sm-6 col-md-3' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'card card-product' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'card-image' },
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#pablo' },
+                                                _react2.default.createElement('img', { className: 'img', src: '../assets/img/examples/card-product4.jpg' })
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'card-content' },
+                                            _react2.default.createElement(
+                                                'h6',
+                                                { className: 'category text-muted' },
+                                                'Popular'
+                                            ),
+                                            _react2.default.createElement(
+                                                'h4',
+                                                { className: 'card-title' },
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { href: '#pablo' },
+                                                    'Balenciaga'
+                                                )
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'card-description' },
+                                                'Balenciaga\'s black textured-leather wallet is finished with the label\'s iconic \'Giant\' studs. This is where you can...'
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'footer' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'price' },
+                                                    _react2.default.createElement(
+                                                        'h4',
+                                                        null,
+                                                        '$590'
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'stats' },
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { type: 'button', rel: 'tooltip', title: 'Saved to Wishlist', className: 'btn btn-just-icon btn-simple btn-rose' },
+                                                        _react2.default.createElement(
+                                                            'i',
+                                                            { className: 'material-icons' },
+                                                            'favorite'
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                ),
+                                _react2.default.createElement(
+                                    'div',
+                                    { className: 'col-sm-6 col-md-3' },
+                                    _react2.default.createElement(
+                                        'div',
+                                        { className: 'card card-product' },
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'card-image' },
+                                            _react2.default.createElement(
+                                                'a',
+                                                { href: '#pablo' },
+                                                _react2.default.createElement('img', { className: 'img', src: '../assets/img/examples/card-product2.jpg' })
+                                            )
+                                        ),
+                                        _react2.default.createElement(
+                                            'div',
+                                            { className: 'card-content' },
+                                            _react2.default.createElement(
+                                                'h6',
+                                                { className: 'category text-rose' },
+                                                'Trending'
+                                            ),
+                                            _react2.default.createElement(
+                                                'h4',
+                                                { className: 'card-title' },
+                                                _react2.default.createElement(
+                                                    'a',
+                                                    { href: '#pablo' },
+                                                    'Dolce & Gabbana'
+                                                )
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'card-description' },
+                                                'Dolce & Gabbana\'s \'Greta\' tote has been crafted in Italy from hard-wearing red textured-leather.'
+                                            ),
+                                            _react2.default.createElement(
+                                                'div',
+                                                { className: 'footer' },
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'price' },
+                                                    _react2.default.createElement(
+                                                        'h4',
+                                                        null,
+                                                        '$1,459'
+                                                    )
+                                                ),
+                                                _react2.default.createElement(
+                                                    'div',
+                                                    { className: 'stats' },
+                                                    _react2.default.createElement(
+                                                        'button',
+                                                        { type: 'button', rel: 'tooltip', title: 'Save to Wishlist', className: 'btn btn-just-icon btn-simple btn-default' },
+                                                        _react2.default.createElement(
+                                                            'i',
+                                                            { className: 'material-icons' },
+                                                            'favorite'
+                                                        )
+                                                    )
+                                                )
+                                            )
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return SinglePuppy;
+}(_react.Component);
+
+exports.default = SinglePuppy;
+
+/***/ }),
+/* 365 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactRedux = __webpack_require__(18);
+
+var _store = __webpack_require__(30);
+
+var _SinglePuppy = __webpack_require__(364);
+
+var _SinglePuppy2 = _interopRequireDefault(_SinglePuppy);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * CONTAINER
+ */
+
+var mapState = function mapState(state) {
+    // console.log('Mapping state', state)
+    return {
+        selectedProduct: state.selectedProduct
+    };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch, ownProps) {
+    return {
+        fetchPuppy: function fetchPuppy() {
+            dispatch((0, _store.fetchPuppy)(ownProps.match.params.id));
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapState, mapDispatchToProps)(_SinglePuppy2.default);
+
+/***/ }),
+/* 366 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.getPuppy = getPuppy;
+exports.fetchPuppy = fetchPuppy;
+exports.default = reducer;
+
+var _axios = __webpack_require__(81);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// Action Types
+var GET_PUPPY = 'GET_PUPPY';
+
+// Action Creator
+function getPuppy(puppy) {
+    var action = { type: GET_PUPPY, puppy: puppy };
+    return action;
+}
+
+// Thunk Creator
+function fetchPuppy(puppyId) {
+
+    return function thunk(dispatch) {
+        return _axios2.default.get('/api/products/' + puppyId).then(function (res) {
+            return res.data;
+        }).then(function (puppy) {
+            dispatch(getPuppy(puppy));
+        });
+    };
+}
+
+// Reducer
+function reducer() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+    var action = arguments[1];
+
+    switch (action.type) {
+        case GET_PUPPY:
+            return action.puppy;
+        default:
+            return state;
+    }
+}
 
 /***/ })
 /******/ ]);

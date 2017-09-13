@@ -7,6 +7,7 @@ import history from './history'
 import { Main, Login, Signup, Navbar, BlackSimpleFooter } from './components'
 import UserHome from './containers/UserHome'
 import AllProducts from './containers/AllProducts'
+import SingleProduct from './containers/SingleProduct'
 import { me } from './store'
 
 /**
@@ -31,6 +32,7 @@ class Routes extends Component {
               <Route exact path='/login' component={Login} />
               <Route exact path='/signup' component={Signup} />
               <Route exact path='/products' component={AllProducts} />
+              <Route exact path='/products/:id' component={SingleProduct} />
               <Route component={Login} />
             </Switch>
           </Main>
