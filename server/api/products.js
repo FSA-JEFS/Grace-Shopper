@@ -1,5 +1,10 @@
 const router = require('express').Router()
 const {Product} = require('../db/models')
+const {
+  isLoggedIn,
+  isAdmin,
+  isSelfOrAdmin
+} = require('./gatekeepers')
 module.exports = router
 
 // Get ALL the puppies
@@ -57,14 +62,14 @@ router.get('/tag/:tag', (req, res, next) => {
 })
 
 //Create a new product
-router.post('/add-product', (req, res, next) => {
+router.post('/add-product', isAdmin, (req, res, next) => {
   Product.create(req.body)
   .then(product => res.status(201).send(product))
   .catch(next)
 })
 
 // Delete one puppy from database
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', isAdmin, (req, res, next) => {
   Product.findById(req.params.id)
   .then( product => product ? product.destroy() : res.sendStatus(404))
   .then(product => res.json(product))
@@ -72,7 +77,7 @@ router.delete('/:id', (req, res, next) => {
 })
 
 // edit puppy details
-router.put('/:id', (req, res, next) => {
+router.put('/:id', isAdmin, (req, res, next) => {
   Product.update(req.body, {where: {id: req.params.id}, returning: true})
   .then(result => {
     result[1][0] ? res.json(result[1][0]) : res.sendStatus(404)

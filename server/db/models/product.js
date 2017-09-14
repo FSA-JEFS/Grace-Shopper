@@ -51,7 +51,7 @@ const Products = db.define('products', {
   }
 })
 
-Product.prototype.decrementInventory = function(num){
+Products.prototype.decrementInventory = function(num){
   this.inventory = Math.max(this.inventory - num, 0)
   //could delete when inventory reaches 0
   //or add 'Out of stock' to the description

@@ -48,7 +48,7 @@ let review1Promise = Review.create({
   reviewText: reviewText
 });
 
-describe("review model", () => {
+xdescribe("review model", () => {
   beforeEach(() => {
     return db
       .sync({ force: true })

@@ -1,10 +1,16 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
+const {Order} = require('../db/models')
+const {
+  isLoggedIn,
+  isAdmin,
+  isSelfOrAdmin
+} = require('./gatekeepers')
 module.exports = router
 
 // TODO: permissioning/gatekeeping for isAdmin
 
-router.get('/', (req, res, next) => {
+router.get('/', isAdmin, (req, res, next) => {
   User.findAll({
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
@@ -15,26 +21,40 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-router.get('/:id', (req, res, next) => {
+// get a user by id
+router.get('/:id', isSelfOrAdmin, (req, res, next) => {
   User.findById(req.params.id)
     .then(user => user ? res.json(user) : res.sendStatus(404))
     .catch(next)
 })
 
+// get ordeers by user
+router.get('/:id/orders', isSelfOrAdmin, (req, res, next) => {
+  const userId = req.params.id;
+  console.log('req.params.id', req.params.id)
+  Order.findAll({ where: { userId } })
+    .then(orders => res.json(orders))
+    .catch(next);
+})
+
+// create user; unprotected
 router.post('/', (req, res, next) => {
   User.create(req.body)
   .then(user => res.json(user))
   .catch(next)
 })
 
-router.delete('/:id', (req, res, next) => {
+// delete user
+router.delete('/:id',isSelfOrAdmin, (req, res, next) => {
   return User.findById(req.params.id)
   .then(user => user ? User.destroy({where: {id: req.params.id}}) : res.sendStatus(404))
   .then(() => res.sendStatus(200))
   .catch(next)
 })
 
-router.put('/:id', (req, res, next) => {
+//  edit user 
+// TODO: what if user wants to edit own info but we have block from making himself an admin.
+router.put('/:id', isAdmin, (req, res, next) => {
   User.findById(req.params.id)
     .then(user => {
       if (!user) return res.sendStatus(404);
