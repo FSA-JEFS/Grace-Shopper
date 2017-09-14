@@ -110,15 +110,16 @@ const Navbar = props =>
             </ul>
           </li>
 
-          <li className="button-container">
-            <a
-              href="http://www.creative-tim.com/buy/material-kit-pro?ref=presentation"
-              target="_blank"
-              className="xbtn xbtn-white xbtn-simple"
-            >
-              <i className="material-icons">shopping_cart</i> Buy Now
-            </a>
-          </li>
+          <Link to={'/cart'}>
+            <button className="btn btn-white pull-right"><i className="material-icons">shopping_cart</i> {(props.cart.length && props.cart.reduce((a, b) => {
+                if(typeof b === 'object'){
+                  return a + b.quantity
+                }
+                return a + b}, 0)
+              )}
+              &nbsp;Items</button>
+          </Link>
+
         </ul>
       </div>
     </div>
@@ -130,7 +131,8 @@ const Navbar = props =>
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    cart: state.cart
   };
 };
 

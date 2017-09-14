@@ -10,6 +10,7 @@ import AllProducts from './containers/AllProducts'
 import SingleProduct from './containers/SingleProduct'
 import ShoppingCart from './components/ShoppingCart'
 import { me } from './store'
+import Scroll from './components/Scroll'
 
 /**
  * COMPONENT
@@ -29,13 +30,13 @@ class Routes extends Component {
           <Main>
             <Switch>
               {/* Routes placed here are available to all visitors */}
-              <Route exact path='/' component={UserHome} />
-              <Route exact path='/login' component={Login} />
-              <Route exact path='/signup' component={Signup} />
-              <Route exact path='/products' component={AllProducts} />
-              <Route exact path='/products/:id' component={SingleProduct} />
-              <Route exact path='/cart' component={ShoppingCart} />
-              <Route component={Login} />
+              <Scroll exact path='/' component={UserHome} />
+              <Scroll exact path='/login' component={Login} />
+              <Scroll exact path='/signup' component={Signup} />
+              <Scroll exact path='/products' component={AllProducts} />
+              <Scroll exact path='/products/:id' component={SingleProduct} />
+              <Scroll exact path='/cart' component={ShoppingCart} />
+              <Scroll component={Login} />
             </Switch>
           </Main>
           <BlackSimpleFooter />

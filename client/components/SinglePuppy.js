@@ -7,6 +7,7 @@ export default class SinglePuppy extends Component {
 
     componentDidMount() {
         this.props.fetchPuppy();
+        this.props.getCart();
         let $ = window.$
         $("#flexiselDemo1").flexisel({
             visibleItems: 4,
@@ -32,27 +33,29 @@ export default class SinglePuppy extends Component {
 
     render() {
         const product = this.props.selectedProduct
-      
+
         // component to show one product (a single puppy)
-      
+
         return (
           <div className="product-page">
           <div className="page-header header-filter" style={{backgroundImage: "url('../resources/assets/img/bg6.jpg')"}}>
-              <div className="container">
+              {/* <div className="container">
                   <div className="row title-row">
                       <div className="col-md-4 col-md-offset-8">
-                          <button className="btn btn-white pull-right"><i className="material-icons">shopping_cart</i> 0 Items</button>
+                          <Link to={'/cart'}>
+                          <button className="btn btn-white pull-right"><i className="material-icons">shopping_cart</i> {this.props.cart.length} Items</button>
+                          </Link>
                       </div>
                   </div>
-              </div>
+              </div> */}
           </div>
-      
+
           <div className="section section-gray">
               <div className="container">
                   <div className="main main-raised main-product">
                       <div className="row">
                           <div className="col-md-6 col-sm-6">
-      
+
                           <div className="tab-content">
                                   <div className="tab-pane" id="product-page1">
                                       <img src={product.photos && product.photos[1]}/>
@@ -146,10 +149,10 @@ export default class SinglePuppy extends Component {
                                   </div>
                                   </div>
                               </div>
-      
+
                               </div>
                               </div>
-      
+
                               <div className="row pick-size">
                                   <div className="col-md-6 col-sm-6">
                                       <label>Select color</label>
@@ -169,13 +172,13 @@ export default class SinglePuppy extends Component {
                                   </div>
                               </div>
                               <div className="row text-right">
-                                  <button className="btn btn-rose btn-round">Add to Cart &nbsp;<i className="material-icons">shopping_cart</i></button>
+                                  <button className="btn btn-rose btn-round" onClick={() => this.props.handleClick(this.props.selectedProduct)}>Add to Cart &nbsp;<i className="material-icons" >shopping_cart</i></button>
                               </div>
                           </div>
                       </div>
                   </div>
-      
-                  <div className="features text-center">
+
+                  {/* <div className="features text-center">
                       <div className="row">
                           <div className="col-md-4">
                               <div className="info">
@@ -186,7 +189,7 @@ export default class SinglePuppy extends Component {
                                   <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
                               </div>
                           </div>
-      
+
                           <div className="col-md-4">
                               <div className="info">
                                   <div className="icon icon-success">
@@ -196,7 +199,7 @@ export default class SinglePuppy extends Component {
                                   <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
                               </div>
                           </div>
-      
+
                           <div className="col-md-4">
                               <div className="info">
                                   <div className="icon icon-rose">
@@ -206,13 +209,13 @@ export default class SinglePuppy extends Component {
                                   <p>Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough.</p>
                               </div>
                           </div>
-      
+
                       </div>
                   </div>
-      
+
                   <div className="related-products">
                       <h3 className="title text-center">You may also be interested in:</h3>
-      
+
                       <div className="row">
                           <div className="col-sm-6 col-md-3">
                               <div className="card card-product">
@@ -221,7 +224,7 @@ export default class SinglePuppy extends Component {
                                           <img className="img" src="../resources/assets/img/examples/card-product1.jpg" />
                                       </a>
                                   </div>
-      
+
                                   <div className="card-content">
                                       <h6 className="category text-rose">Trending</h6>
                                       <h4 className="card-title">
@@ -240,12 +243,12 @@ export default class SinglePuppy extends Component {
                                               </button>
                                           </div>
                                       </div>
-      
+
                                   </div>
-      
+
                               </div>
                           </div>
-      
+
                           <div className="col-sm-6 col-md-3">
                               <div className="card card-product">
                                   <div className="card-image">
@@ -253,7 +256,7 @@ export default class SinglePuppy extends Component {
                                           <img className="img" src="../resources/assets/img/examples/card-product3.jpg" />
                                       </a>
                                   </div>
-      
+
                                   <div className="card-content">
                                       <h6 className="category text-muted">Popular</h6>
                                       <h4 className="card-title">
@@ -272,12 +275,12 @@ export default class SinglePuppy extends Component {
                                               </button>
                                           </div>
                                       </div>
-      
+
                                   </div>
-      
+
                               </div>
                           </div>
-      
+
                           <div className="col-sm-6 col-md-3">
                               <div className="card card-product">
                                   <div className="card-image">
@@ -285,7 +288,7 @@ export default class SinglePuppy extends Component {
                                           <img className="img" src="../resources/assets/img/examples/card-product4.jpg" />
                                       </a>
                                   </div>
-      
+
                                   <div className="card-content">
                                       <h6 className="category text-muted">Popular</h6>
                                       <h4 className="card-title">
@@ -307,7 +310,7 @@ export default class SinglePuppy extends Component {
                                   </div>
                               </div>
                           </div>
-      
+
                           <div className="col-sm-6 col-md-3">
                               <div className="card card-product">
                                   <div className="card-image">
@@ -315,7 +318,7 @@ export default class SinglePuppy extends Component {
                                           <img className="img" src="../resources/assets/img/examples/card-product2.jpg" />
                                       </a>
                                   </div>
-      
+
                                   <div className="card-content">
                                       <h6 className="category text-rose">Trending</h6>
                                       <h4 className="card-title">
@@ -334,14 +337,14 @@ export default class SinglePuppy extends Component {
                                               </button>
                                           </div>
                                       </div>
-      
+
                                   </div>
-      
+
                               </div>
                           </div>
-      
+
                       </div>
-                  </div>
+                  </div> */}
               </div>
           </div>
           </div>

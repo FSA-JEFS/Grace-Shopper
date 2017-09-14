@@ -59,13 +59,13 @@ export default (props) => {
               <div className="card card-raised card-background" style={{backgroundImage: `url(${puppy.photos[0]})`}}>
                 <div className="card-content">
                   <h6 className="category text-info">{puppy.breed}</h6>
-                  <a href="#pablo">
+
                     <h3 className="card-title">{puppy.name}</h3>
-                  </a>
+
                   <p className="card-description">
                     {puppy.description}
                   </p>
-                  <Link className="btn btn-danger btn-round" to={"/products/" + puppy.id}> 
+                  <Link className="btn btn-danger btn-round" to={"/products/" + puppy.id}>
                     <i className="material-icons">format_align_left</i> Cuddle with meee ❤
                   </Link>
                 </div>
