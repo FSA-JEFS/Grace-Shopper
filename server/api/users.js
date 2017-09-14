@@ -28,14 +28,22 @@ router.get('/:id', isSelfOrAdmin, (req, res, next) => {
     .catch(next)
 })
 
-// get ordeers by user
+// get orders by user
 router.get('/:id/orders', isSelfOrAdmin, (req, res, next) => {
   const userId = req.params.id;
-  console.log('req.params.id', req.params.id)
   Order.findAll({ where: { userId } })
     .then(orders => res.json(orders))
     .catch(next);
 })
+
+// GET for a single order for a single user
+router.get('/:id/orders/:orderid', isSelfOrAdmin, (req, res, next) => {
+  // const userId = req.params.id;
+  Order.findById(orderid)
+    .then(orders => res.json(orders))
+    .catch(next);
+})
+
 
 // create user; unprotected
 router.post('/', (req, res, next) => {
@@ -61,14 +69,36 @@ router.put('/:id', isAdmin, (req, res, next) => {
       else {
         user.update(req.body)
         .then(updatedUser => {
-          res.status(200).json(updatedUser)
+          res.json(updatedUser)
       })
     }})
     .catch(next)
 })
 
+// post order given a specific user
+router.post('/:id/orders', isSelfOrAdmin, (req, res, next) => {
+  // no need to find user
+  // create order
+    let neworder = req.body
+    neworder['userId'] = req.params.id
+    Order.create(neworder)
+    .then(order => res.json(order))
+    .catch(next)
+})
 
-// Campus.findById(req.params.campusId)
-// .then(campus => campus.update(req.body))
-// .then(updatedCampus => res.sendStatus(201).json(updatedCampus))
-// .catch(next);
+
+// NO DELETES OF ORDERS BECAUSE WE WANT AN AUDITABLE HISTORY
+
+// PUT to change status of orders
+router.put('/:id/orders/:orderid', isSelfOrAdmin, (req, res, next) => {
+  Order.findById(req.params.orderid)
+    .then(order => {
+      if (!order) return res.sendStatus(404);
+      else {
+        order.update(req.body)
+        .then(updatedOrder => {
+          res.json(updatedOrder)
+      })
+    }})
+    .catch(next)
+})
