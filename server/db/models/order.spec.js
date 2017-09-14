@@ -1,6 +1,8 @@
 /* global describe beforeEach it */
 
-const { expect } = require("chai");
+const {
+  expect
+} = require("chai");
 const db = require("../index");
 const User = db.model("user");
 const Product = db.model("products");
@@ -51,42 +53,51 @@ const COMPLETED = "COMPLETED";
 describe("order model", () => {
   beforeEach(() => {
     return db
-      .sync({ force: true })
-      .then(() => {
-        return Promise.all([ user1Promise, product1Promise, product2Promise ]);
+      .sync({
+        force: true
       })
-      .then(result => {
-        [ user1, product1, product2 ] = result;
-        return Order.create({
-          status: CREATED,
-          items: [{ productId: product1.id, quantity: 1 }],
-          subTotal: 500
-        });
-      });
+    //     .then(() => {
+    //       return Promise.all([ user1Promise, product1Promise, product2Promise ]);
+    //     })
+    //     .then(result => {
+    //       [ user1, product1, product2 ] = result;
+    //       return Order.create({
+    //         status: CREATED,
+    //         items: [{ productId: product1.id, quantity: 1 }],
+    //         subTotal: 500
+    //       });
+    //     });
   });
 
-  describe("attributes definition", function() {
-    it("includes `status, subTotal, & items` field", function() {
-      return Order.create({
-        status: CREATED,
-        items: [{ productId: product1.id, quantity: 1 }],
-        subTotal: 500
-      }).then(function(order) {
-        expect(order.status).to.equal(CREATED);
-        expect(order.items).to.have.length(1);
-        expect(order.subTotal).to.equal(500);
-      });
+  describe("attributes definition", function () {
+    it("includes `status, subTotal, & items` field", function () {
+      return product1Promise
+        .then(product1 => {
+          return Order.create({
+            status: CREATED,
+            items: [{
+              productId: product1.id,
+              quantity: 1
+            }],
+            subTotal: 500
+          })
+        })
+        .then(function (order) {
+          expect(order.status).to.equal(CREATED);
+          expect(order.items).to.have.length(1);
+          expect(order.subTotal).to.equal(500);
+        });
     });
   });
 
-  describe("associations", function() {
+  describe("associations", function () {
     /**
      * Add a `belongsTo` relationship between order and user,
      * but make sure the user is aliased as `user` for each user.
      *
      * http://sequelize.readthedocs.io/en/v3/docs/associations/#belongsto
      */
-    it("belongs to a user, who is stored as the order's `user`", function() {
+    it("belongs to a user, who is stored as the order's `user`", function () {
       var creatingUser = User.create({
         name: "Cody the Dog",
         email: "cody@puppybook.com",
@@ -95,11 +106,18 @@ describe("order model", () => {
         isAdmin: true,
         googleId: null
       });
-      var creatingOrder = Order.create({
-        status: CREATED,
-        items: [{ productId: product1.id, quantity: 1 }],
-        subTotal: 500
-      });
+      
+      var creatingOrder = product1Promise
+        .then(product1 => {
+          return Order.create({
+            status: CREATED,
+            items: [{
+              productId: product1.dataValues.id,
+              quantity: 1
+            }],
+            subTotal: 500
+          });
+        })
 
       return Promise.all([creatingUser, creatingOrder])
         .then(([u, r]) => {
@@ -107,13 +125,18 @@ describe("order model", () => {
           user1 = u;
           return r.setUser(u);
         })
-        .then(function() {
+        .then(function () {
           return Order.findOne({
-            where: { userId: user1.id },
-            include: { model: User, as: "user" }
+            where: {
+              userId: user1.id
+            },
+            include: {
+              model: User,
+              as: "user"
+            }
           });
         })
-        .then(function(foundOrder) {
+        .then(function (foundOrder) {
           expect(foundOrder.user).to.exist; // eslint-disable-line no-unused-expressions
           expect(foundOrder.user.name).to.equal(user1.name);
         });

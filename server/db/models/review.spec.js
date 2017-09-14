@@ -10,7 +10,7 @@ let user1, product1, product2, review1;
 
 let user1Promise = User.create({
   name: "Cody the Dog",
-  email: "cody@puppybook.com",
+  email: "cody2@puppybook.com",
   password: "bones",
   tags: ["hasOwnedDog", "City Apartment"],
   isAdmin: true,
@@ -44,7 +44,7 @@ let product2Promise = Product.create({
 });
 let reviewText =
   "Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Maecenas sed diam eget risus varius blandit sit amet non magna.";
-let review1Promise = Review.build({
+let review1Promise = Review.create({
   reviewText: reviewText
 });
 
@@ -57,6 +57,7 @@ describe("review model", () => {
       })
       .then(result => {
         [user1, product1, product2] = result;
+        console.log(">>>>>", user1)
         review1 = review1Promise;
       });
   });
@@ -99,7 +100,7 @@ describe("review model", () => {
     it("belongs to a user, who is stored as the review's `user`", function () {
       var creatingUser = User.create({
         name: "Cody the Dog",
-        email: "cody@puppybook.com",
+        email: "cody2@puppybook.com",
         password: "bones",
         tags: ["hasOwnedDog", "City Apartment"],
         isAdmin: true,
