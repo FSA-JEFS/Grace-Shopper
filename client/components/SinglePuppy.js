@@ -2,8 +2,9 @@ import React,  { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { fetchPuppy, addToCart, getCart } from '../store';
 
-export default class SinglePuppy extends Component {
+class SinglePuppy extends Component {
 
     componentDidMount() {
         this.props.fetchPuppy();
@@ -153,7 +154,7 @@ export default class SinglePuppy extends Component {
                               </div>
                               </div>
 
-                              <div className="row pick-size">
+                              {/*<div className="row pick-size">
                                   <div className="col-md-6 col-sm-6">
                                       <label>Select color</label>
                                       <select className="selectpicker" data-style="select-with-transition" data-size="7">
@@ -170,7 +171,7 @@ export default class SinglePuppy extends Component {
                                           <option value="3">Large</option>
                                       </select>
                                   </div>
-                              </div>
+                              </div>*/}
                               <div className="row text-right">
                                   <button className="btn btn-rose btn-round" onClick={() => this.props.handleClick(this.props.selectedProduct)}>Add to Cart &nbsp;<i className="material-icons" >shopping_cart</i></button>
                               </div>
@@ -351,3 +352,33 @@ export default class SinglePuppy extends Component {
         )
     }
 }
+
+
+/**
+ * CONTAINER
+ */
+
+const mapState = (state) => {
+    // console.log('Mapping state', state)
+    return {
+        selectedProduct: state.selectedProduct,
+        cart: state.cart
+    }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        fetchPuppy() {
+            dispatch(fetchPuppy(ownProps.match.params.id))
+        },
+        handleClick(selectedProduct) {
+            console.log('CLICKED!', selectedProduct)
+            dispatch(addToCart(selectedProduct))
+        },
+        getCart() {
+            dispatch(getCart())
+        }
+    }
+}
+
+export default connect(mapState, mapDispatchToProps)(SinglePuppy)

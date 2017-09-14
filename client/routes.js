@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Router } from 'react-router'
+import { connect }    from 'react-redux'
+import { Router }     from 'react-router'
 import { Route, Switch } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import history from './history'
+import PropTypes      from 'prop-types'
+import history        from './history'
+import { me }         from './store'
 import { Main, Login, Signup, Navbar, BlackSimpleFooter } from './components'
-import UserHome from './containers/UserHome'
-import AllProducts from './containers/AllProducts'
-import SingleProduct from './containers/SingleProduct'
-import ShoppingCart from './components/ShoppingCart'
-import { me } from './store'
-import Scroll from './components/Scroll'
+import UserHome       from './components/UserHome'
+import PuppyList      from './components/PuppyList'
+import SinglePuppy  from './components/SinglePuppy'
+import ShoppingCart   from './components/ShoppingCart'
+import Scroll         from './components/Scroll'
 
 /**
  * COMPONENT
@@ -33,8 +33,8 @@ class Routes extends Component {
               <Scroll exact path='/' component={UserHome} />
               <Scroll exact path='/login' component={Login} />
               <Scroll exact path='/signup' component={Signup} />
-              <Scroll exact path='/products' component={AllProducts} />
-              <Scroll exact path='/products/:id' component={SingleProduct} />
+              <Scroll exact path='/products' component={PuppyList} />
+              <Scroll exact path='/products/:id' component={SinglePuppy} />
               <Scroll exact path='/cart' component={ShoppingCart} />
               <Scroll component={Login} />
             </Switch>
