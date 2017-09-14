@@ -3,7 +3,7 @@
 const { expect } = require("chai");
 const db = require("../index");
 const User = db.model("user");
-const Product = db.model("products");
+const Product = db.model("product");
 const Order = db.model("order");
 
 let user1, product1, product2, order1;
@@ -53,14 +53,10 @@ describe("order model", () => {
     return db
       .sync({ force: true })
       .then(() => {
-        return Promise.all([
-          user1Promise,
-          product1Promise,
-          product2Promise
-        ]);
+        return Promise.all([ user1Promise, product1Promise, product2Promise ]);
       })
       .then(result => {
-        [user1, product1, product2] = result;
+        [ user1, product1, product2 ] = result;
         return Order.create({
           status: CREATED,
           items: [{ productId: product1.id, quantity: 1 }],

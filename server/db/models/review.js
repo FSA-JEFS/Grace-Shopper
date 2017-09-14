@@ -1,6 +1,5 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
-const User = require("./user");
 const Review = db.define("review", {
   reviewText: {
     type: Sequelize.TEXT,
@@ -14,7 +13,5 @@ const Review = db.define("review", {
   }
 });
 
-Review.belongsTo(User, { as: "user" });
-// User.hasMany(Review)
 
 module.exports = Review;

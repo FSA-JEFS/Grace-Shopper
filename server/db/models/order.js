@@ -1,11 +1,5 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
-const User = require("./user");
-
-const CREATED = "CREATED";
-const PROCESSING = "PROCESSING";
-const CANCELLED = "CANCELLED";
-const COMPLETED = "COMPLETED";
 
 const Order = db.define("order", {
   status: {
@@ -24,7 +18,6 @@ const Order = db.define("order", {
   }
 });
 
-Order.belongsTo(User, { as: "user" });
-// User.hasMany(Review)
+module.exports = Order;
 
-module.exports = {Order, CREATED, PROCESSING, CANCELLED, COMPLETED};
+// TODO: create join table for items (products) and order
