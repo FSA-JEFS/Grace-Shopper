@@ -3,7 +3,7 @@
 const { expect } = require("chai");
 const db = require("../index");
 const User = db.model("user");
-const Product = db.model("product");
+const Product = db.model("products");
 const Order = db.model("order");
 
 let user1, product1, product2, order1;
