@@ -51,7 +51,11 @@ const Products = db.define('products', {
   }
 })
 
-// TODO: instance method: to decrement inventory
+Product.prototype.decrementInventory = function(num){
+  this.inventory = Math.max(this.inventory - num, 0)
+  //could delete when inventory reaches 0
+  //or add 'Out of stock' to the description
+}
 
 // THINK ABOUT: class method find by breed, find by breeder (implemented in API not class method)
 
