@@ -12,9 +12,8 @@ const Order = require('./order')
 
 Review.belongsTo(User, { as: "user" });
 // User.hasMany(Review)
-// TODO: link review to Product
-
-Order.belongsTo(User, { as: "user" });
+Review.belongsTo(Product, { as: "product" });
+Order.belongsTo(User, { as: "user" });;
 // User.hasMany(Order)
 
 /**
