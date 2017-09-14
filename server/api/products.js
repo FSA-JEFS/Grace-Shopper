@@ -5,14 +5,14 @@ module.exports = router
 // Get ALL the puppies
 router.get('/', (req, res, next) => {
   Product.findAll()
-    .then(product => res.json(Product))
+    .then(product => res.json(product))
     .catch(next)
 })
 
 // Get one puppy
 router.get('/:id', (req, res, next) => {
   Product.findById(req.params.id)
-  .then(product => res.json(Product))
+  .then(product => res.json(product))
   .catch(next)
 })
 
@@ -21,7 +21,7 @@ router.get('/breeder/:breeder', (req, res, next) => {
   Product.findAll({
     where: { breeder: req.params.breeder }
   })
-    .then(product => res.json(Product))
+    .then(product => res.json(product))
     .catch(next)
 })
 
@@ -30,7 +30,7 @@ router.get('/breed/:breed', (req, res, next) => {
   Product.findAll({
     where: { breed: req.params.breed }
   })
-    .then(product => res.json(Product))
+    .then(product => res.json(product))
     .catch(next)
 })
 
@@ -41,7 +41,7 @@ router.get('/price/:price', (req, res, next) => {
       $lt: req.params.price }
     }
   })
-    .then(product => res.json(Product))
+    .then(product => res.json(product))
     .catch(next)
 })
 
@@ -52,7 +52,7 @@ router.get('/tag/:tag', (req, res, next) => {
       $contains: [req.params.tag] }
     }
   })
-    .then(product => res.json(Product))
+    .then(product => res.json(product))
     .catch(next)
 })
 
