@@ -19,35 +19,60 @@ else {
   currentCart = []
 }
 
-//const currentCart = localStorage.getItem('cart') || []
+// cart is going to be an array of objects
+// keys:
+//    id (integer)
+//    product (object)
+//    quantity (integer)
 
 /**
  * ACTION CREATORS
  */
 export const getCart = () => ({ type: GET_CART })
 export const addToCart = product => ({type: ADD_TO_CART, product})
-export const deleteFromCart = productIndex => ({type: DELETE_FROM_CART, productIndex})
+export const deleteFromCart = product => ({type: DELETE_FROM_CART, product})
 
 /**
  * REDUCER
  */
 export default function (state = currentCart, action) {
-  let products;
+  let products, searchid;
   switch (action.type) {
+
     case GET_CART:
-      products = state
-      localStorage.setItem('cart', JSON.stringify(products))
-      return products
-      //return action.products
+      return state;
+
     case ADD_TO_CART:
-      console.log('********** I am reaching here')
-      products = state.concat([action.product])
+      // search state to find if id is already there
+      searchid = state.findIndex(el => el.id === action.product.id)
+      if (searchid > -1) {
+        // if its there add 1
+        products = state;
+        products[searchid].quantity += 1
+      } else {
+        // if not there concat
+        products = state.concat([{
+          id: action.product.id,
+          product: action.product,
+          quantity: 1
+        }
+      ])
+    }
+    localStorage.setItem('cart', JSON.stringify(products))
+    history.push('/cart')
+    return products
+
+    case DELETE_FROM_CART:
+    // search state to find if id is already there
+    searchid = state.findIndex(el => el.id === action.product.id)
+    if (searchid > -1) {
+        // if its there decrease by 1 or delete if quantity is already 1
+        products = state;
+        if (products[searchid].quantity > 1) products[searchid].quantity -= 1
+        else products.splice(searchid, 1)
+      }
       localStorage.setItem('cart', JSON.stringify(products))
       history.push('/cart')
-      return products
-    case DELETE_FROM_CART:
-      products = state.splice(action.productIndex, 1)
-      localStorage.setItem('cart', JSON.stringify(products))
       return products
     default:
       return state

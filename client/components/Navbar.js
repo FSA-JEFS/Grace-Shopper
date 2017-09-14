@@ -109,6 +109,17 @@ const Navbar = props =>
               </li>
             </ul>
           </li>
+
+          <Link to={'/cart'}>
+            <button className="btn btn-white pull-right"><i className="material-icons">shopping_cart</i> {(props.cart.length && props.cart.reduce((a, b) => {
+                if(typeof b === 'object'){
+                  return a + b.quantity
+                }
+                return a + b}, 0)
+              )}
+              &nbsp;Items</button>
+          </Link>
+
         </ul>
       </div>
     </div>
@@ -120,7 +131,8 @@ const Navbar = props =>
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
+    cart: state.cart
   };
 };
 

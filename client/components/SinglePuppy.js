@@ -39,7 +39,7 @@ export default class SinglePuppy extends Component {
         return (
           <div className="product-page">
           <div className="page-header header-filter" style={{backgroundImage: "url('../resources/assets/img/bg6.jpg')"}}>
-              <div className="container">
+              {/* <div className="container">
                   <div className="row title-row">
                       <div className="col-md-4 col-md-offset-8">
                           <Link to={'/cart'}>
@@ -47,7 +47,7 @@ export default class SinglePuppy extends Component {
                           </Link>
                       </div>
                   </div>
-              </div>
+              </div> */}
           </div>
 
           <div className="section section-gray">
@@ -178,7 +178,7 @@ export default class SinglePuppy extends Component {
                       </div>
                   </div>
 
-                  <div className="features text-center">
+                  {/* <div className="features text-center">
                       <div className="row">
                           <div className="col-md-4">
                               <div className="info">
@@ -344,7 +344,7 @@ export default class SinglePuppy extends Component {
                           </div>
 
                       </div>
-                  </div>
+                  </div> */}
               </div>
           </div>
           </div>
