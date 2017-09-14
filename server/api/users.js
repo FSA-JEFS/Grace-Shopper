@@ -2,6 +2,8 @@ const router = require('express').Router()
 const {User} = require('../db/models')
 module.exports = router
 
+// TODO: permissioning/gatekeeping for isAdmin
+
 router.get('/', (req, res, next) => {
   User.findAll({
     // explicitly select only the id and email fields - even though
@@ -35,12 +37,10 @@ router.delete('/:id', (req, res, next) => {
 router.put('/:id', (req, res, next) => {
   User.findById(req.params.id)
     .then(user => {
-      // console.log("@@@@@", user);      
       if (!user) return res.sendStatus(404);
       else {
         user.update(req.body)
         .then(updatedUser => {
-          // console.log(">>>>>", updatedUser);
           res.status(200).json(updatedUser)
       })
     }})

@@ -6,7 +6,10 @@ const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      isEmail: true // TODO: Write test
+    }
   },
   name: {
     type: Sequelize.STRING,
@@ -16,7 +19,7 @@ const User = db.define('user', {
     type: Sequelize.BOOLEAN,
   },
   tags: {
-    type: Sequelize.ARRAY(Sequelize.STRING)
+    type: Sequelize.ARRAY(Sequelize.STRING) // QTN: make enum or diff model?
   },
   password: {
     type: Sequelize.STRING

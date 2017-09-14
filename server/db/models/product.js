@@ -44,8 +44,15 @@ const Products = db.define('products', {
   inventory: {
     type: Sequelize.INTEGER,
     allowNull: false,
-    defaultValue: 1
+    defaultValue: 1,
+    validate: {
+      min: 0
+    }
   }
 })
+
+// TODO: instance method: to decrement inventory
+
+// THINK ABOUT: class method find by breed, find by breeder (implemented in API not class method)
 
 module.exports = Products
