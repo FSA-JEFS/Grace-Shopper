@@ -1,53 +1,96 @@
 /* global describe beforeEach it */
 
-const { expect } = require("chai");
+const {
+  expect
+} = require("chai");
 const request = require("supertest");
 const db = require("../db");
 const app = require("../index");
 const User = db.model("user");
+const Order = db.model("order");
 
-xdescribe("User routes", () => {
+describe("User routes", () => {
   beforeEach(() => {
-    return db.sync({ force: true });
+    return db.sync({
+      force: true
+    });
   });
 
   describe("/api/users/", () => {
     let cody;
 
     beforeEach(() => {
-      return User.create({
-        name: "Cody the Dog",
-        email: "cody@puppybook.com",
-        password: "bones",
-        tags: ["hasOwnedDog", "City Apartment"],
-        isAdmin: true,
-        googleId: null
-      }).then(user => {
-        cody = user;
-        return cody;
-      });
+      return db.sync({
+        force: true
+      })
+      // .then(() => {
+      //   return User.create({
+      //     name: "Cody the Dog",
+      //     email: "cody@puppybook.com",
+      //     password: "bones",
+      //     tags: ["hasOwnedDog", "City Apartment"],
+      //     isAdmin: true,
+      //     googleId: null
+      //   })}
+      // )
+      // .then(user => {
+      //   cody = user;
+      //   return cody;
+      // })
     });
 
-    it("GET /api/users", () => {
+    describe("GET /api/users/:id/orders", () => {
+      it("returns a list of orders from the specific user", () => {
+        console.log('******** im starting work now')
+        return User.create({
+          name: "Cody2 the Dog",
+          email: "cody2@puppybook.com",
+          password: "bo2nes",
+          tags: ["hasOwne2Dog", "City 2Apartment"],
+          isAdmin: true,
+          googleId: null
+        }).then(usr => {
+          cody = usr
+          console.log('888888888 hopefully no errors til here')
+          return Order.create({
+            status: 'CREATED',
+            items: [{
+              productId: 1,
+              quantity: 1
+            }],
+            subTotal: 500
+        })})
+        .then( order => {
+          order.setUser(cody.id)
+          return request(app).get("/api/users/" + cody.id + "/orders").expect(200).then(res => {
+            expect(res.body).to.be.an("array");
+            expect(res.body).to.have.lengthOf(1);
+          });
+        });
+      });
+    })
+
+    xit("GET /api/users", () => {
       return request(app).get("/api/users").expect(200).then(res => {
         expect(res.body).to.be.an("array");
         expect(res.body[0].email).to.be.equal("cody@puppybook.com");
       });
     });
 
-    it("GET /api/users/:id", () => {
+    xit("GET /api/users/:id", () => {
       return request(app).get("/api/users/" + cody.id).expect(200).then(res => {
         expect(res.body).to.be.an("object");
         expect(res.body.id).to.be.equal(cody.id);
       });
     });
 
-    it("GET /api/users/:id returns a 404 error if the ID is not correct", () => {
+    xit("GET /api/users/:id returns a 404 error if the ID is not correct", () => {
       return request(app).get("/api/users/8675309").expect(404);
     });
 
-    describe("POST /users", function() {
-      it("can create a student", () => {
+
+    describe("POST /users", function () {
+      xit("can create a student", () => {
         return request(app)
           .post("/api/users")
           .send({
@@ -66,7 +109,7 @@ xdescribe("User routes", () => {
           });
       });
 
-      it("post with insufficient information should fail with 500", () => {
+      xit("post with insufficient information should fail with 500", () => {
         return request(app)
           .post("/api/users")
           .send({
@@ -79,7 +122,7 @@ xdescribe("User routes", () => {
           .expect(500);
       });
 
-      it("saves the student to the DB", () => {
+      xit("saves the student to the DB", () => {
         return request(app)
           .post("/api/users")
           .send({
@@ -91,12 +134,14 @@ xdescribe("User routes", () => {
             googleId: null
           })
           .expect(200)
-          .then(function() {
+          .then(function () {
             return User.findOne({
-              where: { name: "Gaspode the Dog" }
+              where: {
+                name: "Gaspode the Dog"
+              }
             });
           })
-          .then(function(foundUser) {
+          .then(function (foundUser) {
             expect(foundUser).to.exist;
             expect(foundUser.email).to.equal("gaspode@discworld.com");
             expect(foundUser.createdAt).to.exist;
@@ -105,7 +150,7 @@ xdescribe("User routes", () => {
     });
 
     describe("DELETE /users", () => {
-      it("deletes a student", () => {
+      xit("deletes a student", () => {
         return request(app)
           .delete("/api/users/" + cody.id)
           .expect(200)
@@ -115,13 +160,13 @@ xdescribe("User routes", () => {
           });
       });
 
-      it("returns a 404 error if the ID is not correct", function() {
+      xit("returns a 404 error if the ID is not correct", function () {
         return request(app).delete("/api/users/76142896").expect(404);
       });
     });
 
     describe("PUT /users", () => {
-      it("updates a user", () => {
+      xit("updates a user", () => {
         return request(app)
           .put("/api/users/" + cody.id)
           .send({
@@ -134,7 +179,7 @@ xdescribe("User routes", () => {
           });
       });
 
-      it("saves update to the DB", () => {
+      xit("saves update to the DB", () => {
         return request(app)
           .put("/api/users/" + cody.id)
           .send({
@@ -142,13 +187,13 @@ xdescribe("User routes", () => {
           })
           .then(() => User.findById(cody.id))
           .then(user => {
-            console.log("!!!!!", user)
+            // console.log("!!!!!", user)
             expect(user.dataValues.name).to.equal("Loki");
             expect(user.dataValues.email).to.equal(cody.email);
           });
       });
 
-      it("returns a 404 error if the ID is not correct", function() {
+      xit("returns a 404 error if the ID is not correct", function () {
         return request(app)
           .put("/api/users/76344667")
           .send({

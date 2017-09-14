@@ -11,11 +11,9 @@ const Order = require('./order')
  */
 
 Review.belongsTo(User, { as: "user" });
-// User.hasMany(Review)
-// TODO: link review to Product
-
+Review.belongsTo(Product, { as: "product" });
+Product.hasMany(Review, { as: "review" });
 Order.belongsTo(User, { as: "user" });
-// User.hasMany(Order)
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
