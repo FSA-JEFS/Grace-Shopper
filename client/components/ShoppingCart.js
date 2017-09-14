@@ -11,74 +11,85 @@ const ShoppingCart = (props) => {
 
   return (
     <div className='signup-page'>
-      <div className="page-header header-filter" filter-color="purple" style={{backgroundImage: "url('../assets/img/bg7.jpg')", backgroundSize: "cover", backgroundPosition: "top center"}}>
-    	<div className="container">
-			<div className="row">
-    			<div className="col-md-10 col-md-offset-1">
+      <div className="page-header header-filter" style={{backgroundImage: "url('../resources/assets/img/bg7.jpg')", backgroundSize: "cover", backgroundPosition: "top center"}}>
+    	  <div className="container">
+			    <div className="row">
+    			  <div className="col-md-10 col-md-offset-1">
 
-					<div className="card card-signup">
-                        <h2 className="card-title text-center">Register</h2>
-                        <div className="row">
-                            <div className="col-md-5 col-md-offset-1">
-            					<div className="info info-horizontal">
-            						<div className="icon icon-rose">
-            							<i className="material-icons">timeline</i>
-            						</div>
-            						<div className="description">
-            							<h4 className="info-title">Marketing</h4>
-            							<p className="description">
-            								We've created the marketing campaign of the website. It was a very interesting collaboration.
-            							</p>
-            						</div>
-            		        	</div>
+					  <div className="card card-signup">
+            <div className="col-md-10 col-md-offset-1">
+		                        <div className="table-responsive">
+		                        <table className="table table-shopping">
+		                            <thead>
+		                                <tr>
+		                                    <th className="text-center"></th>
+		                                    <th >Product</th>
+		                                    <th className="th-description">Color</th>
+		                                    <th className="th-description">Size</th>
+		                                    <th className="text-right">Price</th>
+		                                    <th className="text-right">Qty</th>
+		                                    <th className="text-right">Amount</th>
+		                                    <th></th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+		                                <tr>
+		                                    <td>
+		                                        <div className="img-container">
+		                                            <img src="assets/img/product1.jpg" alt="..." />
+		                                        </div>
+		                                    </td>
+		                                    <td className="td-name">
+		                                        <a href="#jacket">{props.cart[0]}</a>
+		                                        <br /><small>by Dolce&Gabbana</small>
+		                                    </td>
+		                                    <td>
+		                                        Red
+		                                    </td>
+		                                    <td>
+		                                        M
+		                                    </td>
+		                                    <td className="td-number">
+		                                        <small>&euro;</small>549
+		                                    </td>
+		                                    <td className="td-number">
+		                                        1
+		                                        <div className="btn-group">
+		                                            <button className="btn btn-round btn-info btn-xs"> <i className="material-icons">remove</i> </button>
+		                                            <button className="btn btn-round btn-info btn-xs"> <i className="material-icons">add</i> </button>
+		                                        </div>
+		                                    </td>
+		                                    <td className="td-number">
+		                                        <small>&euro;</small>549
+		                                    </td>
+		                                    <td className="td-actions">
+		                                        <button type="button" rel="tooltip" data-placement="left" title="Remove item" className="btn btn-simple">
+		                                            <i className="material-icons">close</i>
+		                                        </button>
+		                                    </td>
+		                                </tr>
+		                                <tr>
+		                                    <td colSpan="3">
+		                                    </td>
+		                                    <td className="td-total">
+		                                       Total
+		                                    </td>
+		                                    <td className="td-price">
+		                                        <small>&euro;</small>2,346
+		                                    </td>
+		                                    <td colSpan="3" className="text-right"> <button type="button" className="btn btn-info btn-round">Complete Purchase <i className="material-icons">keyboard_arrow_right</i></button></td>
 
-            					<div className="info info-horizontal">
-            						<div className="icon icon-primary">
-            							<i className="material-icons">code</i>
-            						</div>
-            						<div className="description">
-            							<h4 className="info-title">Fully Coded in HTML5</h4>
-            							<p className="description">
-            								We've developed the website with HTML5 and CSS3. The client has access to the code using GitHub.
-            							</p>
-            						</div>
-            					</div>
-
-            					<div className="info info-horizontal">
-            						<div className="icon icon-info">
-            							<i className="material-icons">group</i>
-            						</div>
-            						<div className="description">
-            							<h4 className="info-title">Built Audience</h4>
-            							<p className="description">
-            								There is also a Fully Customizable CMS Admin Dashboard for this product.
-            							</p>
-            						</div>
-            					</div>
-            				</div>
-                            <div className="col-md-5">
-                                <div className="social text-center">
-                                    <button className="btn btn-just-icon btn-round btn-twitter">
-                                        <i className="fa fa-twitter"></i>
-                                    </button>
-                                    <button className="btn btn-just-icon btn-round btn-dribbble">
-                                        <i className="fa fa-dribbble"></i>
-                                    </button>
-                                    <button className="btn btn-just-icon btn-round btn-facebook">
-                                        <i className="fa fa-facebook"> </i>
-                                    </button>
-                                    <h4> or be classical </h4>
-                                </div>
-                                <button onClick={() => props.clickHandler('Hallo')}>hey</button>
-                              {JSON.stringify(props.cart)}
+		                                </tr>
+		                            </tbody>
+		                        </table>
+		                        </div>
                             </div>
-                        </div>
-                	</div>
-                </div>
-                </div>
             </div>
+          </div>
+        </div>
+      </div>
 		</div>
-    </div>
+  </div>
   )
 }
 
@@ -101,4 +112,4 @@ const mapDispatch = (dispatch) => {
   }
 }
 
-export default connect(mapPropToCart, mapDispatch)(ShoppingCart)
+export default connect(mapPropToCart, )(ShoppingCart)

@@ -11,7 +11,15 @@ const DELETE_FROM_CART = 'DELETE_FROM_CART'
 /**
  * INITIAL STATE
  */
-const currentCart = localStorage.getItem('cart') || []
+let currentCart;
+if (localStorage.getItem('cart')){
+  currentCart = JSON.parse(localStorage.getItem('cart'))
+}
+else {
+  currentCart = []
+}
+
+//const currentCart = localStorage.getItem('cart') || []
 
 /**
  * ACTION CREATORS
