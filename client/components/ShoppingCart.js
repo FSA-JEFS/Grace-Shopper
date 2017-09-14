@@ -7,25 +7,22 @@ import {getCart, addToCart, deleteFromCart} from '../store'
 const ShoppingCart = (props) => {
   const products = props.products
 
-  // component to list all products
-
   return (
     <div className='signup-page'>
       <div className="page-header header-filter" style={{backgroundImage: "url('../resources/assets/img/bg7.jpg')", backgroundSize: "cover", backgroundPosition: "top center"}}>
     	  <div className="container">
 			    <div className="row">
-    			  <div className="col-md-10 col-md-offset-1">
+    			  <div className="col-md-11 col-md-offset-1">
 
 					  <div className="card card-signup">
-            <div className="col-md-10 col-md-offset-1">
+            <div className="col-md-12">
 		                        <div className="table-responsive">
 		                        <table className="table table-shopping">
 		                            <thead>
 		                                <tr>
 		                                    <th className="text-center"></th>
 		                                    <th >Product</th>
-		                                    <th className="th-description">Color</th>
-		                                    <th className="th-description">Size</th>
+		                                    <th className="th-description">Breed</th>
 		                                    <th className="text-right">Price</th>
 		                                    <th className="text-right">Qty</th>
 		                                    <th className="text-right">Amount</th>
@@ -33,24 +30,22 @@ const ShoppingCart = (props) => {
 		                                </tr>
 		                            </thead>
 		                            <tbody>
-		                                <tr>
+                                  {props.cart && props.cart.map(element => (
+		                                <tr key={element.id}>
 		                                    <td>
 		                                        <div className="img-container">
-		                                            <img src="assets/img/product1.jpg" alt="..." />
+		                                            <img src={element.photos[0]} alt="..." />
 		                                        </div>
 		                                    </td>
 		                                    <td className="td-name">
-		                                        <a href="#jacket">{props.cart[0]}</a>
-		                                        <br /><small>by Dolce&Gabbana</small>
+		                                        <a href="#jacket">{element.name}</a>
+		                                        <br /><small>from {element.breeder}</small>
 		                                    </td>
 		                                    <td>
-		                                        Red
-		                                    </td>
-		                                    <td>
-		                                        M
+		                                        {element.breed}
 		                                    </td>
 		                                    <td className="td-number">
-		                                        <small>&euro;</small>549
+		                                        <small>&euro;</small>{element.price}
 		                                    </td>
 		                                    <td className="td-number">
 		                                        1
@@ -68,16 +63,17 @@ const ShoppingCart = (props) => {
 		                                        </button>
 		                                    </td>
 		                                </tr>
+                                  ))}
 		                                <tr>
-		                                    <td colSpan="3">
+		                                    <td colSpan="2">
 		                                    </td>
 		                                    <td className="td-total">
 		                                       Total
 		                                    </td>
 		                                    <td className="td-price">
-		                                        <small>&euro;</small>2,346
+		                                        <small>$</small>{props.cart.map(el => el.price).reduce((a,b) => a + b)}
 		                                    </td>
-		                                    <td colSpan="3" className="text-right"> <button type="button" className="btn btn-info btn-round">Complete Purchase <i className="material-icons">keyboard_arrow_right</i></button></td>
+		                                    <td colSpan="1" className="text-right"> <button type="button" className="btn btn-info btn-round">Complete Purchase <i className="material-icons">keyboard_arrow_right</i></button></td>
 
 		                                </tr>
 		                            </tbody>
@@ -105,10 +101,10 @@ const mapPropToCart = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    clickHandler(word){
-      console.log(word)
-      dispatch(addToCart(word))
-    }
+    // clickHandler(word){
+    //   console.log(word)
+    //   dispatch(addToCart(word))
+    // }
   }
 }
 

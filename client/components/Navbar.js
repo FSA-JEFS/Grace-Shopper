@@ -109,16 +109,6 @@ const Navbar = props =>
               </li>
             </ul>
           </li>
-
-          <li className="button-container">
-            <a
-              href="http://www.creative-tim.com/buy/material-kit-pro?ref=presentation"
-              target="_blank"
-              className="xbtn xbtn-white xbtn-simple"
-            >
-              <i className="material-icons">shopping_cart</i> Buy Now
-            </a>
-          </li>
         </ul>
       </div>
     </div>

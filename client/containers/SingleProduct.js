@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPuppy } from '../store'; 
+import { fetchPuppy, addToCart, getCart } from '../store';
 import SinglePuppy from '../components/SinglePuppy';
 
 /**
@@ -10,7 +10,8 @@ import SinglePuppy from '../components/SinglePuppy';
 const mapState = (state) => {
     // console.log('Mapping state', state)
     return {
-        selectedProduct: state.selectedProduct
+        selectedProduct: state.selectedProduct,
+        cart: state.cart
     }
 }
 
@@ -18,6 +19,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         fetchPuppy() {
             dispatch(fetchPuppy(ownProps.match.params.id))
+        },
+        handleClick(selectedProduct) {
+            console.log('CLICKED!', selectedProduct)
+            dispatch(addToCart(selectedProduct))
+        },
+        getCart() {
+            dispatch(getCart())
         }
     }
 }
