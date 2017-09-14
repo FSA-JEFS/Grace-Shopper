@@ -1,5 +1,5 @@
 const db = require("../db");
-const Products = require("./models/products");
+const Products = require("./models/product");
 
 const puppies = [
   {
