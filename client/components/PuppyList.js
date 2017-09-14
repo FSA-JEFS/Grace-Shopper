@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 
 
 export default (props) => {
-  console.log(props)
   const products = props.products
 
   // component to list all products

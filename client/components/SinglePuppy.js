@@ -3,11 +3,31 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-
 export default class SinglePuppy extends Component {
 
     componentDidMount() {
         this.props.fetchPuppy();
+        let $ = window.$
+        $("#flexiselDemo1").flexisel({
+            visibleItems: 4,
+            itemsToScroll: 1,
+            animationSpeed: 400,
+            enableResponsiveBreakpoints: true,
+            responsiveBreakpoints: {
+                portrait: {
+                    changePoint: 480,
+                    visibleItems: 3
+                },
+                landscape: {
+                    changePoint: 640,
+                    visibleItems: 3
+                },
+                tablet: {
+                    changePoint: 768,
+                    visibleItems: 3
+                }
+            }
+        });
     }
 
     render() {
@@ -17,7 +37,7 @@ export default class SinglePuppy extends Component {
       
         return (
           <div className="product-page">
-          <div className="page-header header-filter" data-parallax="true" filter-color="rose" style={{backgroundImage: "url('../resources/assets/img/bg6.jpg')"}}>
+          <div className="page-header header-filter" style={{backgroundImage: "url('../resources/assets/img/bg6.jpg')"}}>
               <div className="container">
                   <div className="row title-row">
                       <div className="col-md-4 col-md-offset-8">
@@ -35,37 +55,37 @@ export default class SinglePuppy extends Component {
       
                           <div className="tab-content">
                                   <div className="tab-pane" id="product-page1">
-                                      <img src="../assets/img/examples/product1.jpg"/>
+                                      <img src={product.photos && product.photos[1]}/>
                                   </div>
                                   <div className="tab-pane active" id="product-page2">
-                                      <img src={product.photo && product.photo[0]}/>
+                                      <img src={product.photos && product.photos[0]}/>
                                   </div>
                                   <div className="tab-pane" id="product-page3">
-                                      <img src="../assets/img/examples/product3.jpg"/>
+                                      <img src={product.photos && product.photos[2]}/>
                                   </div>
                                   <div className="tab-pane" id="product-page4">
-                                      <img src="../assets/img/examples/product4.jpg"/>
+                                      <img src={product.photos && product.photos[3]}/>
                                   </div>
                               </div>
                               <ul className="nav flexi-nav" role="tablist" id="flexiselDemo1">
                                   <li>
                                       <a href="#product-page1" role="tab" data-toggle="tab" aria-expanded="false">
-                                          <img src="../assets/img/examples/product1.jpg"/>
+                                          <img src={product.photos && product.photos[1]}/>
                                       </a>
                                   </li>
                                   <li className="active">
                                       <a href="#product-page2" role="tab" data-toggle="tab" aria-expanded="false">
-                                          <img src="../assets/img/examples/product2.jpg"/>
+                                          <img src={product.photos && product.photos[0]}/>
                                       </a>
                                   </li>
                                   <li>
                                       <a href="#product-page3" role="tab" data-toggle="tab" aria-expanded="false">
-                                          <img src="../assets/img/examples/product3.jpg"/>
+                                          <img src={product.photos && product.photos[2]}/>
                                       </a>
                                   </li>
                                   <li>
                                       <a href="#product-page4" role="tab" data-toggle="tab" aria-expanded="true">
-                                          <img src="../assets/img/examples/product4.jpg"/>
+                                          <img src={product.photos && product.photos[3]}/>
                                       </a>
                                   </li>
                               </ul>
@@ -198,7 +218,7 @@ export default class SinglePuppy extends Component {
                               <div className="card card-product">
                                   <div className="card-image">
                                       <a href="#pablo">
-                                          <img className="img" src="../assets/img/examples/card-product1.jpg" />
+                                          <img className="img" src="../resources/assets/img/examples/card-product1.jpg" />
                                       </a>
                                   </div>
       
@@ -230,7 +250,7 @@ export default class SinglePuppy extends Component {
                               <div className="card card-product">
                                   <div className="card-image">
                                       <a href="#pablo">
-                                          <img className="img" src="../assets/img/examples/card-product3.jpg" />
+                                          <img className="img" src="../resources/assets/img/examples/card-product3.jpg" />
                                       </a>
                                   </div>
       
@@ -262,7 +282,7 @@ export default class SinglePuppy extends Component {
                               <div className="card card-product">
                                   <div className="card-image">
                                       <a href="#pablo">
-                                          <img className="img" src="../assets/img/examples/card-product4.jpg" />
+                                          <img className="img" src="../resources/assets/img/examples/card-product4.jpg" />
                                       </a>
                                   </div>
       
@@ -292,7 +312,7 @@ export default class SinglePuppy extends Component {
                               <div className="card card-product">
                                   <div className="card-image">
                                       <a href="#pablo">
-                                          <img className="img" src="../assets/img/examples/card-product2.jpg" />
+                                          <img className="img" src="../resources/assets/img/examples/card-product2.jpg" />
                                       </a>
                                   </div>
       
