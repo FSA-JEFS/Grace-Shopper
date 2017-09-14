@@ -8,6 +8,7 @@ import { Main, Login, Signup, Navbar, BlackSimpleFooter } from './components'
 import UserHome from './containers/UserHome'
 import AllProducts from './containers/AllProducts'
 import SingleProduct from './containers/SingleProduct'
+import ShoppingCart from './components/ShoppingCart'
 import { me } from './store'
 
 /**
@@ -33,6 +34,7 @@ class Routes extends Component {
               <Route exact path='/signup' component={Signup} />
               <Route exact path='/products' component={AllProducts} />
               <Route exact path='/products/:id' component={SingleProduct} />
+              <Route exact path='/cart' component={ShoppingCart} />
               <Route component={Login} />
             </Switch>
           </Main>
