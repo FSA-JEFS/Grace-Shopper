@@ -56,7 +56,7 @@ const Navbar = props =>
 					}
 
           <li>
-            <Link to="/allProducts">
+            <Link to="/products">
               <i className="material-icons">apps</i> All Puppies
             </Link>
           </li>

@@ -8,7 +8,7 @@ import PuppyList from '../components/PuppyList';
  */
 
 const mapState = (state) => {
-    console.log('Mapping state', state)
+    // console.log('Mapping state', state)
     return {
         products: state.product
     }
