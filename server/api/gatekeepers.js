@@ -17,6 +17,8 @@ function isAdmin(req, res, next) {
 
 // route middleware to make sure a user is logged in
 function isSelfOrAdmin(req, res, next) {
+    // console.log('********', req.params)
+    // console.log('********', req.user.id)
     if (req.params.id == req.user.id || req.user.isAdmin) // if user is authenticated in the session, carry on 
         return next();
     res.redirect('/');     // if they aren't redirect them to the home page

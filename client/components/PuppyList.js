@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 
-export default (props) => {
+const PuppyList = (props) => {
   const products = props.products
 
   // component to list all products
@@ -81,3 +81,16 @@ export default (props) => {
     </div>
   )
 }
+
+/**
+ * CONTAINER
+ */
+
+const mapState = (state) => {
+    // console.log('Mapping state', state)
+    return {
+        products: state.product
+    }
+}
+
+export default connect(mapState)(PuppyList)

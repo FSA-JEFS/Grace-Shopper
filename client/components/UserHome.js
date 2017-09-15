@@ -242,7 +242,16 @@ const UserHome = (props) => {
   )
 }
 
-export default UserHome
+
+/**
+ * CONTAINER
+ */
+const mapState = (state) => {
+  return {
+  }
+}
+
+export default connect(mapState)(UserHome)
 
 /**
  * PROP TYPES

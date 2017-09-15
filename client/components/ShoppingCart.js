@@ -12,7 +12,7 @@ const ShoppingCart = (props) => {
       <div className="page-header header-filter" style={{backgroundImage: "url('../resources/assets/img/bg7.jpg')", backgroundSize: "cover", backgroundPosition: "top center"}}>
     	  <div className="container">
 			    <div className="row">
-    			  <div className="col-md-11 col-md-offset-1">
+    			  <div className="col-md-12">
 
 					  <div className="card card-signup">
             				<div className="col-md-12">
@@ -34,11 +34,15 @@ const ShoppingCart = (props) => {
 		                                <tr key={element.id}>
 		                                    <td>
 		                                        <div className="img-container">
-		                                            <img src={element.product.photos[0]} alt="..." />
+								  					<Link to={`/products/${element.product.id}`}>
+		                                            	<img src={element.product.photos[0]} alt="..." />
+													</Link>
 		                                        </div>
 		                                    </td>
 		                                    <td className="td-name">
-		                                        <a href="#jacket">{element.product.name}</a>
+								  					<Link to={`/products/${element.product.id}`}>
+		                                        		{element.product.name}
+													</Link>
 		                                        <br /><small>from {element.product.breeder}</small>
 		                                    </td>
 		                                    <td>
@@ -71,7 +75,7 @@ const ShoppingCart = (props) => {
 		                                       Total
 		                                    </td>
 		                                    <td className="td-price">
-		                                        <small>$</small>{props.cart.map(el => el.product.price).reduce((a,b) => a + b, 0)}
+		                                        <small>$</small>{props.cart.map(el => el.product.price * el.quantity).reduce((a,b) => a + b, 0)}
 		                                    </td>
 		                                    <td colSpan="1" className="text-right"> <button type="button" className="btn btn-info btn-round">Complete Purchase <i className="material-icons">keyboard_arrow_right</i></button></td>
 
