@@ -7,7 +7,7 @@ import history        from './history'
 import { me }         from './store'
 import { Main, Login, Signup, Navbar, BlackSimpleFooter } from './components'
 import UserHome       from './components/UserHome'
-import PuppyList      from './components/PuppyList'
+import AllProducts      from './components/AllProducts'
 import SinglePuppy  from './components/SinglePuppy'
 import ShoppingCart   from './components/ShoppingCart'
 import Scroll         from './components/Scroll'
@@ -33,7 +33,7 @@ class Routes extends Component {
               <Scroll exact path='/' component={UserHome} />
               <Scroll exact path='/login' component={Login} />
               <Scroll exact path='/signup' component={Signup} />
-              <Scroll exact path='/products' component={PuppyList} />
+              <Scroll exact path='/products' component={AllProducts} />
               <Scroll exact path='/products/:id' component={SinglePuppy} />
               <Scroll exact path='/cart' component={ShoppingCart} />
               <Scroll component={Login} />
