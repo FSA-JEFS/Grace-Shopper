@@ -11,6 +11,7 @@ import AllProducts      from './components/AllProducts'
 import SinglePuppy  from './components/SinglePuppy'
 import ShoppingCart   from './components/ShoppingCart'
 import Scroll         from './components/Scroll'
+import MyOrders         from './components/MyOrders'
 
 /**
  * COMPONENT
@@ -35,6 +36,7 @@ class Routes extends Component {
               <Scroll exact path='/signup' component={Signup} />
               <Scroll exact path='/products' component={AllProducts} />
               <Scroll exact path='/products/:id' component={SinglePuppy} />
+              <Scroll exact path='/orders' component={MyOrders} />
               <Scroll exact path='/cart' component={ShoppingCart} />
               <Scroll component={Login} />
             </Switch>
