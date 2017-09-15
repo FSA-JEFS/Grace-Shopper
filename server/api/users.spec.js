@@ -22,7 +22,7 @@ function promisedAuthRequest(loginDetails) {
   });
 }
 
-xdescribe("User routes", () => {
+describe("User routes", () => {
   describe("/api/users/", () => {
     let cody;
 
