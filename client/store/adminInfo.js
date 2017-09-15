@@ -7,6 +7,7 @@ import history from "../history";
 const ADMIN_GET_USERS = "ADMIN_GET_USERS";
 const ADMIN_DEL_USERS = "ADMIN_DEL_USERS";
 const ADMIN_PROMOTE_USER = "ADMIN_PROMOTE_USER";
+const ADMIN_GET_ORDERS = "ADMIN_GET_ORDERS";
 
 /**
  * INITIAL STATE
@@ -19,6 +20,7 @@ const defaultInfo = {};
 const adminGetUsersAC = users => ({ type: ADMIN_GET_USERS, users });
 const adminDelUsersAC = userid => ({ type: ADMIN_DEL_USERS, userid });
 const adminPromoteUserAC = userid => ({ type: ADMIN_PROMOTE_USER, userid });
+const adminGetOrdersAC = orders => ({ type: ADMIN_GET_ORDERS, orders });
 
 /**
  * THUNK CREATORS
@@ -39,6 +41,12 @@ export const adminPromoteUser = id => dispatch =>
   axios
     .put("/api/users/" + id, { isAdmin: true })
     .then(res => dispatch(adminPromoteUserAC(id)))
+    .catch(err => console.log(err));
+
+export const adminGetOrders = () => dispatch =>
+  axios
+    .get("/api/users")
+    .then(res => dispatch(adminGetOrdersAC(res.data || [])))
     .catch(err => console.log(err));
 
 // TODO: trigger password reset for a user (that is, the next time they successfully log in with their old password, they are prompted for a new one), so that I can be proactive in getting users to change their passwords after a period of time
