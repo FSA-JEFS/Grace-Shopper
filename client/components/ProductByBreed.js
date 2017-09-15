@@ -1,11 +1,17 @@
-import React from 'react'
+import React,  { Component } from 'react'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { fetchBreed } from '../store'
 
+class ProductByBreed extends Component {
 
-export default (props) => {
-  const products = props.products
+  componentDidMount() {
+    this.props.getProducts();
+  }
 
-  // component to list all products
+  render(){
+    const products = this.props.breed
 
   return (
     <div className="blog-posts">
@@ -22,43 +28,16 @@ export default (props) => {
         <div className="container">
 
           <div className="section">
-            <div className="row">
-              <div className="col-md-6 col-md-offset-3 text-center">
-                <ul className="nav nav-pills nav-pills-primary">
-                  <li className="active"><a href="#pill1" data-toggle="tab">All</a></li>
-                  <li><a href="#pill2" data-toggle="tab">World</a></li>
-                  <li><a href="#pill3" data-toggle="tab">Arts</a></li>
-                  <li><a href="#pill4" data-toggle="tab">Tech</a></li>
-                  <li><a href="#pill5" data-toggle="tab">Business</a></li>
-                </ul>
-                <div className="tab-content tab-space">
-                  <div className="tab-pane active" id="pill1">
 
-                  </div>
-                  <div className="tab-pane" id="pill2">
-
-                  </div>
-                  <div className="tab-pane" id="pill3">
-
-                  </div>
-                  <div className="tab-pane" id="pill4">
-
-                  </div>
-                </div>
-
-              </div>
-            </div>
             <div className="row">
               {
-                products.map(puppy => {
+                products && products.map(puppy => {
                   return (<div className="col-md-4" key={puppy.id}>
 
                     <div>
                       <div className="card card-raised card-background" style={{ backgroundImage: `url(${puppy.photos[0]})` }}>
                         <div className="card-content">
-                          <Link to={"/products/breed/"+ puppy.breed}>
-                          <h6 className="category text-info">{puppy.breed}</h6></Link>
-
+                          <h6 className="category text-info">{puppy.breed}</h6>
                           <h3 className="card-title">{puppy.name}</h3>
 
                           <p className="card-description">
@@ -78,5 +57,22 @@ export default (props) => {
         </div>
       </div>
     </div>
-  )
+  )}
 }
+
+const mapState = (state) => {
+  // console.log('Mapping state', state)
+  return {
+      breed: state.breed
+  }
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    getProducts() {
+      dispatch(fetchBreed(ownProps.match.params.breed))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatchToProps)(ProductByBreed)
