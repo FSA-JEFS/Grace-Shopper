@@ -10,6 +10,7 @@ import UserHome       from './components/UserHome'
 import PuppyList      from './components/PuppyList'
 import SinglePuppy  from './components/SinglePuppy'
 import ShoppingCart   from './components/ShoppingCart'
+import CheckoutPage   from './components/CheckoutPage'
 import Scroll         from './components/Scroll'
 
 /**
@@ -36,6 +37,7 @@ class Routes extends Component {
               <Scroll exact path='/products' component={PuppyList} />
               <Scroll exact path='/products/:id' component={SinglePuppy} />
               <Scroll exact path='/cart' component={ShoppingCart} />
+              <Scroll exact path='/checkout' component={CheckoutPage} />
               <Scroll component={Login} />
             </Switch>
           </Main>
