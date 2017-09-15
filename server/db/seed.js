@@ -174,7 +174,7 @@ function seed() {
     // create orders
     for (var i = 0; i < orders.length; i++){
       orders[i].userId = createdUsers[i].id
-      orders[i].items = [{productId: createdProducts[i].id, quantity: i + 1}]
+      orders[i].items = [{product: createdProducts[i], quantity: i + 1}]
     }
     return Promise.all(orders.map(order => Order.create(order)))
   })
