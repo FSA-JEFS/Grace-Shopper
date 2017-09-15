@@ -80,7 +80,7 @@ const AuthForm = (props) => {
 								</div>
 							</div>
 							<div className="footer text-center" style={{display: "block"}}>
-								<a href="#pablo" className="btn btn-primary btn-simple btn-wd btn-lg" >Get Started</a>
+								<button type="submit">Get Started</button>
 							</div>
               {error && error.response && <div> {error.response.data} </div>}
 						</form>
@@ -122,7 +122,7 @@ const mapDispatch = (dispatch) => {
       const formName = evt.target.name
       const email = evt.target.email.value
       const password = evt.target.password.value
-      const firstName = evt.target.firstName.value
+      const firstName = evt.target.firstName && evt.target.firstName.value
       dispatch(auth(email, password, formName, firstName))
     }
   }
