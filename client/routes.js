@@ -11,6 +11,7 @@ import PuppyList      from './components/PuppyList'
 import SinglePuppy  from './components/SinglePuppy'
 import ShoppingCart   from './components/ShoppingCart'
 import Scroll         from './components/Scroll'
+import Admin         from './components/Admin'
 
 /**
  * COMPONENT
@@ -31,6 +32,7 @@ class Routes extends Component {
             <Switch>
               {/* Routes placed here are available to all visitors */}
               <Scroll exact path='/' component={UserHome} />
+              <Scroll exact path='/admin' component={Admin} />
               <Scroll exact path='/login' component={Login} />
               <Scroll exact path='/signup' component={Signup} />
               <Scroll exact path='/products' component={PuppyList} />
