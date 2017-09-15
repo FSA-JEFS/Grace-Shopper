@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import UserPageDetails from './UserPage-Details'
 import { } from '../store'
 
 class UserPage extends Component {
@@ -12,6 +13,7 @@ class UserPage extends Component {
 
   render(){
     const {user} = this.props
+    console.log(user.tags)
 
   return (
     <div className='signup-page'>
@@ -21,84 +23,64 @@ class UserPage extends Component {
     			  <div className="col-md-12">
 
 					  <div className="card card-signup">
-            				<div className="col-md-12">
-                        <h2>Welcome {user.name}</h2>
-                        <h3>Review Active Orders</h3>
-		                        <div className="table-responsive">
-		                        {/* <table className="table table-shopping">
-		                            <thead>
-		                                <tr>
-		                                    <th className="text-center"></th>
-		                                    <th >Product</th>
-		                                    <th className="th-description">Breed</th>
-		                                    <th className="text-right">Price</th>
-		                                    <th className="text-right">Qty</th>
-		                                    <th className="text-right">Amount</th>
-		                                    <th></th>
-		                                </tr>
-		                            </thead>
-		                            <tbody>
-                                  {props.cart.length && props.cart.map((element, index) => (
-		                                <tr key={element.id}>
-		                                    <td>
-		                                        <div className="img-container">
-								  					<Link to={`/products/${element.product.id}`}>
-		                                            	<img src={element.product.photos[0]} alt="..." />
-													</Link>
-		                                        </div>
-		                                    </td>
-		                                    <td className="td-name">
-								  					<Link to={`/products/${element.product.id}`}>
-		                                        		{element.product.name}
-													</Link>
-		                                        <br /><small>from {element.product.breeder}</small>
-		                                    </td>
-		                                    <td>
-		                                        {element.product.breed}
-		                                    </td>
-		                                    <td className="td-number">
-		                                        <small>&euro;</small>{element.product.price}
-		                                    </td>
-		                                    <td className="td-number">
-		                                        {element.quantity}
-		                                        <div className="btn-group">
-		                                            <button className="btn btn-round btn-info btn-xs" onClick={() => props.handleMinus(element)}> <i className="material-icons">remove</i> </button>
-		                                            <button className="btn btn-round btn-info btn-xs" onClick={() => props.handlePlus(element)}> <i className="material-icons">add</i> </button>
-		                                        </div>
-		                                    </td>
-		                                    <td className="td-number">
-		                                        <small>&euro;</small>xxx
-		                                    </td>
-		                                    <td className="td-actions">
-		                                        <button type="button" rel="tooltip" data-placement="left" title="Remove item" className="btn btn-simple" onClick={() => props.handlDelete(index)}>
-		                                            <i className="material-icons">close</i>
-		                                        </button>
-		                                    </td>
-		                                </tr>
-                                  ))}
-		                                <tr>
-		                                    <td colSpan="2">
-		                                    </td>
-		                                    <td className="td-total">
-		                                       Total
-		                                    </td>
-		                                    <td className="td-price">
-		                                        <small>$</small>{props.cart.map(el => el.product.price * el.quantity).reduce((a,b) => a + b, 0)}
-		                                    </td>
-		                                    <td colSpan="1" className="text-right"> <button type="button" className="btn btn-info btn-round">Complete Purchase <i className="material-icons">keyboard_arrow_right</i></button></td>
 
-		                                </tr>
-		                            </tbody>
-		                        </table> */}
-		                </div>
-                  </div>
-                <h3>View Order History</h3>
+					<nav className="navbar navbar-primary">
+							<div className="navbar-header">
+								<button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-primary">
+									<span className="sr-only">Toggle navigation</span>
+									<span className="icon-bar"></span>
+									<span className="icon-bar"></span>
+									<span className="icon-bar"></span>
+								</button>
+								<a className="navbar-brand" href="#pablo">Welcome {user.name}</a>
+							</div>
+
+							<div className="collapse navbar-collapse" id="example-navbar-primary">
+								<ul className="nav navbar-nav navbar-right">
+									<li className="active">
+                  <a href="#pablo">
+											<i className="material-icons">account_circle</i>
+		                                    Profile
+		                                </a>
+		                            </li>
+		                            <li>
+                                <a href="#pablo">
+											<i className="material-icons">explore</i>
+											Orders
+		                                </a>
+
+		                            </li>
+		                            <li>
+		                                <a href="#pablo">
+											<i className="material-icons">settings</i>
+											Settings
+		                                </a>
+		                            </li>
+								</ul>
+						</div>
+					</nav>
+
+                {/* <div className="col-md-12">
+                  <div className="table-responsive">
+                    <div className="tim-typo">
+                      <h3 className="tim-note"> {user.name}
+                      </h3>
+                      <br />
+                      <h4 className="tim-typo">Details</h4>
+                        <small>{user.email}</small>
+                      <br />
+                      <br />
+                      <h4 className="tim-typo">My Preferences</h4>
+                        <ul>{user.tags && user.tags.map( tag => <li>{tag}</li>)}</ul>
+                    </div>
+		            </div> */}
+                <UserPageDetails user={user} />
+              </div>
             </div>
           </div>
         </div>
       </div>
 		</div>
-  </div>
   )
 }}
 
