@@ -55,8 +55,11 @@ router.post('/', (req, res, next) => {
 // delete user
 router.delete('/:id',isSelfOrAdmin, (req, res, next) => {
   return User.findById(req.params.id)
-  .then(user => user ? User.destroy({where: {id: req.params.id}}) : res.sendStatus(404))
-  .then(() => res.sendStatus(200))
+  .then(user => {
+    if (user) {
+      return User.destroy({where: {id: req.params.id}}).then(() => res.sendStatus(200))
+    } else res.sendStatus(404)
+  })
   .catch(next)
 })
 

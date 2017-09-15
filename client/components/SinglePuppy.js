@@ -372,7 +372,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
             dispatch(fetchPuppy(ownProps.match.params.id))
         },
         handleClick(selectedProduct) {
-            console.log('CLICKED!', selectedProduct)
             dispatch(addToCart(selectedProduct))
         },
         getCart() {
