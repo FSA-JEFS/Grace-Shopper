@@ -32,7 +32,7 @@ export default props => {
               </tr>
             </thead>
             <tbody>
-              {props.users && props.users.map(user => makeRow(user, props.adminDelUsers))}
+              {props.users && props.users.map(user => makeRow(user, props.adminDelUsers, props.adminPromoteUser))}
             </tbody>
           </table>
         </div>
@@ -41,7 +41,7 @@ export default props => {
   );
 };
 
-const makeRow = (user, adminDelUsers) => 
+const makeRow = (user, adminDelUsers, adminPromoteUser) => 
               <tr key={user.id}>
                 <td className="text-center">{user.id}</td>
                 <td>{user.name}</td>
@@ -64,8 +64,9 @@ const makeRow = (user, adminDelUsers) =>
                     className="btn btn-success"
                     data-original-title=""
                     title=""
+                    onClick={() => adminPromoteUser(user.id)}
                   >
-                    <i className="material-icons">edit</i>
+                    <i className="material-icons">star</i>
                   </button>
                   <button
                     type="button"

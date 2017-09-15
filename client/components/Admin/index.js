@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {adminGetUsers, adminDelUsers} from '../../store'
+import {adminGetUsers, adminDelUsers, adminPromoteUser} from '../../store'
 import User from './User'
 import Product from './Product'
 import Order from './Order'
@@ -13,7 +13,7 @@ class AdminPage extends React.Component {
 		this.props.getAdminInfo()
 	}
 	render(){
-		const {users, adminDelUsers} = this.props
+		const {users, adminDelUsers, adminPromoteUser} = this.props
 
 		return (
 			<div className='signup-page'>
@@ -62,7 +62,7 @@ class AdminPage extends React.Component {
 									</div>
 									<div className="card-content">
 										<div className="tab-content text-center">
-											<User tabid="users" users={users} adminDelUsers={adminDelUsers}/>
+											<User tabid="users" users={users} adminDelUsers={adminDelUsers} adminPromoteUser={adminPromoteUser}/>
 											<Product tabid="orders"/>
 											<Order tabid="products"/>
 										</div>
@@ -92,6 +92,10 @@ const mapDispatch = (dispatch) => {
 		},
 		adminDelUsers(id) {
 			dispatch(adminDelUsers(id))
+		},
+		adminPromoteUser(id) {
+			console.log('promote', id)
+			dispatch(adminPromoteUser(id))
 		}
 	}
 }
