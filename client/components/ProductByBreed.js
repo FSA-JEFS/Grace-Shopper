@@ -19,7 +19,7 @@ class ProductByBreed extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 col-md-offset-2 text-center">
-              <h2 className="title">A Place for Entrepreneurs to Share and Discover New Stories</h2>
+              <h2 className="title">{this.props.breedName} Puppies</h2>
             </div>
           </div>
         </div>
@@ -60,10 +60,11 @@ class ProductByBreed extends Component {
   )}
 }
 
-const mapState = (state) => {
+const mapState = (state, ownProps) => {
   // console.log('Mapping state', state)
   return {
-      breed: state.breed
+      breed: state.breed,
+      breedName: ownProps.match.params.breed
   }
 }
 

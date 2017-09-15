@@ -7,7 +7,7 @@ import history        from './history'
 import { me }         from './store'
 import { Main, Login, Signup, Navbar, BlackSimpleFooter } from './components'
 import UserHome       from './components/UserHome'
-import AllProducts      from './components/AllProducts'
+import PuppyList      from './components/PuppyList'
 import SinglePuppy  from './components/SinglePuppy'
 import ProductByBreed from './components/ProductByBreed'
 import ShoppingCart   from './components/ShoppingCart'
@@ -39,7 +39,7 @@ class Routes extends Component {
               <Scroll exact path='/admin' component={Admin} />
               <Scroll exact path='/login' component={Login} />
               <Scroll exact path='/signup' component={Signup} />
-              <Scroll exact path='/products' component={AllProducts} />
+              <Scroll exact path='/products' component={PuppyList} />
               <Scroll exact path='/products/:id' component={SinglePuppy} />
               <Scroll exact path='/products/breed/:breed' component={ProductByBreed} />
               <Scroll exact path='/myaccount' component={UserPage} />
