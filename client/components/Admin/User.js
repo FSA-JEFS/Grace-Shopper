@@ -4,30 +4,22 @@ export default props => {
     <div className="tab-pane active" id={props.tabid}>
       <ul>
         <li>
-          promote other user accounts to have admin status, so that new
-          administrators can have the same privileges I have
-        </li>
-        <li>
-          delete a user, so users who should not be able to log in anymore
-          cannot
-        </li>
-        <li>
-          trigger password reset for a user (that is, the next time they
+          TODO: trigger password reset for a user (that is, the next time they
           successfully log in with their old password, they are prompted for a
           new one), so that I can be proactive in getting users to change their
           passwords after a period of time
         </li>
       </ul>
-      <div className="col-md-8 col-md-offset-2">
+      <div className="col-md-10 col-md-offset-1">
         <div className="table-responsive">
           <table className="table">
             <thead>
               <tr>
                 <th className="text-center">#</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Role</th>
-                <th className="text-right">Tags</th>
+                <th className="text-left">Name</th>
+                <th className="text-left">Email</th>
+                <th className="text-center">Role</th>
+                <th className="text-left">Tags</th>
                 <th className="text-right">Actions</th>
               </tr>
             </thead>
@@ -44,10 +36,10 @@ export default props => {
 const makeRow = (user, adminDelUsers, adminPromoteUser) => 
               <tr key={user.id}>
                 <td className="text-center">{user.id}</td>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
+                <td className="text-left">{user.name}</td>
+                <td className="text-left">{user.email}</td>
                 <td>{user.isAdmin ? <b>Admin</b> : <i>User</i>}</td>
-                <td className="text-right">{user.tags && user.tags.join(', ')}</td>
+                <td className="text-left">{user.tags && user.tags.join(', ')}</td>
                 <td className="td-actions text-right">
                   <button
                     type="button"
@@ -56,7 +48,7 @@ const makeRow = (user, adminDelUsers, adminPromoteUser) =>
                     data-original-title=""
                     title=""
                   >
-                    <i className="material-icons">person</i>
+                    <i className="material-icons">key</i>
                   </button>
                   <button
                     type="button"
