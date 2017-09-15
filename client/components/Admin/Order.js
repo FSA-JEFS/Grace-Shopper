@@ -1,6 +1,22 @@
-import React from 'react';
+import React from "react";
 export default props =>
   <div className="tab-pane" id={props.tabid}>
-    <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Nulla vitae elit libero, a pharetra augue. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Nullam id dolor id nibh ultricies vehicula ut id elit.
-    </p>
-  </div>
+    <ul>
+      <li>
+        view a list of all orders, so that I can find specific orders to review
+      </li>
+      <li>
+        filter orders by status (Created, Processing, Cancelled, Completed), so
+        that I can more easily find the orders I'm interested in
+      </li>
+      <li>
+        view details of a specific order, so that I can review it and update its
+        status
+      </li>
+      <li>
+        change the status of the order (Created -> Processing, Processing ->
+        Cancelled || Completed), so that others will know what stage of the
+        process the order is in
+      </li>
+    </ul>
+  </div>;

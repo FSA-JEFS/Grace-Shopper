@@ -63,8 +63,8 @@ class AdminPage extends React.Component {
 									<div className="card-content">
 										<div className="tab-content text-center">
 											<User tabid="users" users={users} adminDelUsers={adminDelUsers} adminPromoteUser={adminPromoteUser}/>
-											<Product tabid="orders"/>
-											<Order tabid="products"/>
+											<Order tabid="orders"/>
+											<Product tabid="products"/>
 										</div>
 									</div>
 								</div>
