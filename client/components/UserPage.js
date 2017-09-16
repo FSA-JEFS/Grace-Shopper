@@ -9,7 +9,7 @@ class UserPage extends Component {
 
   render(){
     const {user, isLoggedIn} = this.props
-    console.log(user.tags)
+    console.log('loggedin', isLoggedIn)
 
   return (
     <div className='signup-page'>
@@ -52,12 +52,11 @@ class UserPage extends Component {
 						</div>
 					</nav>
 
-                {isLoggedIn
-                  ?
+                {isLoggedIn ?
                   <div>
                     {/* <Switch>
-                    <Route patg="/myaccount" render={() => <UserPageDetails user={user} />} />
-                    <Route path="/myaccount/edit" render={() => <UserPageEdits user={user} />} />
+                      <Route path="/myaccount" render={() => <UserPageDetails user={user} />} />
+                      <Route path="/myaccount/edit" render={() => <UserPageEdits user={user} />} />
                     </Switch> */}
                     <UserPageDetails user={user} />
                     <UserPageEdits user={user} />
