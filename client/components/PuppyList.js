@@ -33,7 +33,7 @@ class AllPuppies extends Component {
               </div>
               <form className="navbar-form navbar-right" role="search" onSubmit={this.props.handleSubmit}>
                 <div className="form-group form-white">
-                <input name="searchPuppy" type="text" className="form-control" placeholder="Find a Breed" onChange={this.props.handleChange}/>
+                <input name="searchPuppy" type="text" className="form-control" placeholder="Find a Breed" />
                 </div>
                 <button type="submit" className="btn btn-white btn-raised btn-fab btn-fab-mini" ><i className="material-icons">search</i></button>
               </form>
@@ -74,22 +74,15 @@ class AllPuppies extends Component {
 const mapState = (state, ownProps) => {
   return {
       products: state.product,
-      searchedBreed: state.breed.selectedBreed
   }
 }
 
 const mapDispatch = (dispatch, ownProps) => {
   return {
-    // handleChange(e){
-    //   //console.log('I reached here', e.target.value)
-    //   dispatch(setBreed(e.target.value))
-    // },
     handleSubmit(e) {
       e.preventDefault()
       let searchInput = e.target.searchPuppy.value
-      console.log('i was clicked!', searchInput)
       dispatch(fetchBreed(searchInput, ownProps.history))
-      //history.push('/products/breed'+ searchInput)
     }
   }
 }
