@@ -31,7 +31,8 @@ class ProductByBreed extends Component {
 
             <div className="row">
               {
-                products && products.map(puppy => {
+                products.length
+                ? products.map(puppy => {
                   return (<div className="col-md-4" key={puppy.id}>
 
                     <div>
@@ -51,6 +52,8 @@ class ProductByBreed extends Component {
                     </div>
                   </div>)
                 })
+                :
+                <h2>No Puppies Found</h2>
               }
             </div>
           </div>

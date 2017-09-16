@@ -15,7 +15,7 @@ import CheckoutPage   from './components/CheckoutPage'
 import UserPage       from './Components/UserPage'
 import Scroll         from './components/Scroll'
 import MyOrders         from './components/MyOrders'
-import Admin         from './components/Admin'
+import Admin          from './components/Admin'
 
 /**
  * COMPONENT

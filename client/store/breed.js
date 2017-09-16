@@ -29,6 +29,7 @@ export const fetchBreed = (breed, history) => {
         if (history){
           history.push('/products/breed/'+ breed)
         }
+        //history.push('/error')
       })
       .catch(err => console.log(err))
 }
