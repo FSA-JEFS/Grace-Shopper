@@ -2,7 +2,7 @@ import React,  { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { fetchBreed } from '../store'
+import { fetchBreed, setBreed } from '../store'
 
 class ProductByBreed extends Component {
 
@@ -63,7 +63,7 @@ class ProductByBreed extends Component {
 const mapState = (state, ownProps) => {
   // console.log('Mapping state', state)
   return {
-      breed: state.breed,
+      breed: state.breed.allProductsByBreed,
       breedName: ownProps.match.params.breed
   }
 }
@@ -71,6 +71,7 @@ const mapState = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getProducts() {
+      //dispatch(setBreed(ownProps.match.params.breed))
       dispatch(fetchBreed(ownProps.match.params.breed))
     }
   }

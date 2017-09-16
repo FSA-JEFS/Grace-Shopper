@@ -2,12 +2,14 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
+import { fetchBreed, setBreed } from '../store'
 //import PuppyList from './PuppyList'
 
 class AllPuppies extends Component {
-
   // component to list all products
+
   render() {
+    console.log(this.props)
     const products = this.props.products
 
   return (
@@ -29,9 +31,9 @@ class AllPuppies extends Component {
               <div>
                 <h4>Currently Available</h4>
               </div>
-              <form className="navbar-form navbar-right" role="search" onSubmit={() => this.props.handleSubmit}>
+              <form className="navbar-form navbar-right" role="search" onSubmit={this.props.handleSubmit}>
                 <div className="form-group form-white">
-                <input type="text" className="form-control" placeholder="Find a Breed" />
+                <input name="searchPuppy" type="text" className="form-control" placeholder="Find a Breed" onChange={this.props.handleChange}/>
                 </div>
                 <button type="submit" className="btn btn-white btn-raised btn-fab btn-fab-mini" ><i className="material-icons">search</i></button>
               </form>
@@ -69,18 +71,25 @@ class AllPuppies extends Component {
   )
 }}
 
-const mapState = (state) => {
-  // console.log('Mapping state', state)
+const mapState = (state, ownProps) => {
   return {
-      products: state.product
+      products: state.product,
+      searchedBreed: state.breed.selectedBreed
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
   return {
+    // handleChange(e){
+    //   //console.log('I reached here', e.target.value)
+    //   dispatch(setBreed(e.target.value))
+    // },
     handleSubmit(e) {
-      console.log(e)
-      //dispatch(fetchPuppy(ownProps.match.params.id))
+      e.preventDefault()
+      let searchInput = e.target.searchPuppy.value
+      console.log('i was clicked!', searchInput)
+      dispatch(fetchBreed(searchInput, ownProps.history))
+      //history.push('/products/breed'+ searchInput)
     }
   }
 }
