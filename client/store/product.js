@@ -34,7 +34,7 @@ export const fetchProducts = () => {
 export default function (state = defaultProducts, action) {
   switch (action.type) {
     case GET_PRODUCTS:
-      console.log('GET_PRODUCTS', action.product)
+      console.log('GET_PRODUCTS', action.products)
       return action.products
     default:
       return state

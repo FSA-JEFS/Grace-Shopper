@@ -1,14 +1,17 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React,  { Component } from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux';
-//import PuppyList from './PuppyList'
+import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { fetchBreed } from '../store'
 
-class AllPuppies extends Component {
+class ProductByBreed extends Component {
 
-  // component to list all products
-  render() {
-    const products = this.props.products
+  componentDidMount() {
+    this.props.getProducts();
+  }
+
+  render(){
+    const products = this.props.breed
 
   return (
     <div className="blog-posts">
@@ -16,7 +19,7 @@ class AllPuppies extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 col-md-offset-2 text-center">
-              <h2 className="title">Find your new best friend</h2>
+              <h2 className="title">{this.props.breedName} Puppies</h2>
             </div>
           </div>
         </div>
@@ -25,28 +28,16 @@ class AllPuppies extends Component {
         <div className="container">
 
           <div className="section">
-            <div>
-              <div>
-                <h4>Currently Available</h4>
-              </div>
-              <form className="navbar-form navbar-right" role="search" onSubmit={() => this.props.handleSubmit}>
-                <div className="form-group form-white">
-                <input type="text" className="form-control" placeholder="Find a Breed" />
-                </div>
-                <button type="submit" className="btn btn-white btn-raised btn-fab btn-fab-mini" ><i className="material-icons">search</i></button>
-              </form>
-            </div>
+
             <div className="row">
               {
-                products.map(puppy => {
+                products && products.map(puppy => {
                   return (<div className="col-md-4" key={puppy.id}>
 
                     <div>
                       <div className="card card-raised card-background" style={{ backgroundImage: `url(${puppy.photos[0]})` }}>
                         <div className="card-content">
-                          <Link to={"/products/breed/"+ puppy.breed}>
-                          <h6 className="category text-info">{puppy.breed}</h6></Link>
-
+                          <h6 className="category text-info">{puppy.breed}</h6>
                           <h3 className="card-title">{puppy.name}</h3>
 
                           <p className="card-description">
@@ -66,23 +57,23 @@ class AllPuppies extends Component {
         </div>
       </div>
     </div>
-  )
-}}
+  )}
+}
 
-const mapState = (state) => {
+const mapState = (state, ownProps) => {
   // console.log('Mapping state', state)
   return {
-      products: state.product
+      breed: state.breed,
+      breedName: ownProps.match.params.breed
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    handleSubmit(e) {
-      console.log(e)
-      //dispatch(fetchPuppy(ownProps.match.params.id))
+    getProducts() {
+      dispatch(fetchBreed(ownProps.match.params.breed))
     }
   }
 }
 
-export default connect(mapState, mapDispatch)(AllPuppies)
+export default connect(mapState, mapDispatchToProps)(ProductByBreed)
