@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {getCart, addToCart, deleteFromCart} from '../store'
+import {getCart, addToCart, removeFromCart, deleteFromCart} from '../store'
 
 const ShoppingCart = (props) => {
   const products = props.products
@@ -62,7 +62,7 @@ const ShoppingCart = (props) => {
 		                                        <small>&euro;</small>xxx
 		                                    </td>
 		                                    <td className="td-actions">
-		                                        <button type="button" rel="tooltip" data-placement="left" title="Remove item" className="btn btn-simple" onClick={() => props.handlDelete(index)}>
+		                                        <button type="button" rel="tooltip" data-placement="left" title="Remove item" className="btn btn-simple" onClick={() => props.handleDelete(element)}>
 		                                            <i className="material-icons">close</i>
 		                                        </button>
 		                                    </td>
@@ -113,6 +113,10 @@ const mapDispatch = (dispatch) => {
 		dispatch(addToCart(product))
 	},
 	handleMinus(product){
+		console.log("*****", product)
+		dispatch(removeFromCart(product))
+	},
+	handleDelete(product){
 		console.log("*****", product)
 		dispatch(deleteFromCart(product))
 	}

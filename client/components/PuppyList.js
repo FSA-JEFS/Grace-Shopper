@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux';
+import { fetchBreed, setBreed } from '../store'
+//import PuppyList from './PuppyList'
 
-
-export default (props) => {
-  const products = props.products
-
+class AllPuppies extends Component {
   // component to list all products
+
+  render() {
+    const products = this.props.products
+    console.log(products.length)
 
   return (
     <div className="blog-posts">
@@ -13,7 +18,7 @@ export default (props) => {
         <div className="container">
           <div className="row">
             <div className="col-md-8 col-md-offset-2 text-center">
-              <h2 className="title">A Place for Entrepreneurs to Share and Discover New Stories</h2>
+              <h2 className="title">Find your new best friend</h2>
             </div>
           </div>
         </div>
@@ -22,41 +27,25 @@ export default (props) => {
         <div className="container">
 
           <div className="section">
-            <div className="row">
-              <div className="col-md-6 col-md-offset-3 text-center">
-                <ul className="nav nav-pills nav-pills-primary">
-                  <li className="active"><a href="#pill1" data-toggle="tab">All</a></li>
-                  <li><a href="#pill2" data-toggle="tab">World</a></li>
-                  <li><a href="#pill3" data-toggle="tab">Arts</a></li>
-                  <li><a href="#pill4" data-toggle="tab">Tech</a></li>
-                  <li><a href="#pill5" data-toggle="tab">Business</a></li>
-                </ul>
-                <div className="tab-content tab-space">
-                  <div className="tab-pane active" id="pill1">
-
+            <div className="nav nav-bar">
+              <div>
+                <h2 className="navbar-header" style = {{ textAlign: 'center' }}>Currently Available</h2>
+                <form className="navbar-form navbar-right" role="search" onSubmit={this.props.handleSubmit}>
+                  <div className="form-group form-white">
+                  <input name="searchPuppy" type="text" className="form-control" placeholder="Find a Breed" />
                   </div>
-                  <div className="tab-pane" id="pill2">
-
-                  </div>
-                  <div className="tab-pane" id="pill3">
-
-                  </div>
-                  <div className="tab-pane" id="pill4">
-
-                  </div>
-                </div>
-
+                  <button type="submit" className="btn btn-white btn-raised btn-fab btn-fab-mini" ><i className="material-icons">search</i></button>
+                </form>
               </div>
             </div>
             <div className="row">
-              {
-                products.map(puppy => {
+              { products.map(puppy => {
                   return (<div className="col-md-4" key={puppy.id}>
-
                     <div>
                       <div className="card card-raised card-background" style={{ backgroundImage: `url(${puppy.photos[0]})` }}>
                         <div className="card-content">
-                          <h6 className="category text-info">{puppy.breed}</h6>
+                          <Link to={"/products/breed/"+ puppy.breed}>
+                          <h6 className="category text-info">{puppy.breed}</h6></Link>
 
                           <h3 className="card-title">{puppy.name}</h3>
 
@@ -78,4 +67,22 @@ export default (props) => {
       </div>
     </div>
   )
+}}
+
+const mapState = (state, ownProps) => {
+  return {
+      products: state.product,
+  }
 }
+
+const mapDispatch = (dispatch, ownProps) => {
+  return {
+    handleSubmit(e) {
+      e.preventDefault()
+      let searchInput = e.target.searchPuppy.value
+      dispatch(fetchBreed(searchInput, ownProps.history))
+    }
+  }
+}
+
+export default connect(mapState, mapDispatch)(AllPuppies)

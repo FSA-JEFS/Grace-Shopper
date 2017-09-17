@@ -63,9 +63,9 @@ router.delete('/:id', isSelfOrAdmin, (req, res, next) => {
     .catch(next)
 })
 
-//  edit user 
+//  edit user
 // TODO: what if user wants to edit own info but we have block from making himself an admin.
-router.put('/:id', isAdmin, (req, res, next) => {
+router.put('/:id', isSelfOrAdmin, (req, res, next) => {
   User.findById(req.params.id)
     .then(user => {
       if (!user) return res.sendStatus(404);

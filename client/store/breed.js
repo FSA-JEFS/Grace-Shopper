@@ -4,7 +4,8 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
-const GET_PRODUCTS = 'GET_PRODUCTS'
+
+const GET_BREED = 'GET_BREED'
 
 /**
  * INITIAL STATE
@@ -14,16 +15,21 @@ const defaultProducts = []
 /**
  * ACTION CREATORS
  */
-const getProducts = products => ({ type: GET_PRODUCTS, products })
+const getBreed = breed => ({ type: GET_BREED, breed})
 
 /**
  * THUNK CREATORS
  */
-export const fetchProducts = () => {
+export const fetchBreed = (breed, history) => {
+
   return dispatch =>
-    axios.get('/api/products')
+    axios.get('/api/products/breed/' + breed )
       .then(res => {
-        dispatch(getProducts(res.data || defaultProducts))
+        dispatch(getBreed(res.data || defaultProducts))
+        if (history){
+          history.push('/products/breed/'+ breed)
+        }
+        //history.push('/error')
       })
       .catch(err => console.log(err))
 }
@@ -33,9 +39,8 @@ export const fetchProducts = () => {
  */
 export default function (state = defaultProducts, action) {
   switch (action.type) {
-    case GET_PRODUCTS:
-      console.log('GET_PRODUCTS', action.product)
-      return action.products
+    case GET_BREED:
+    return action.breed
     default:
       return state
   }
