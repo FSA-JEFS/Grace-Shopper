@@ -48,7 +48,7 @@ const makeRow = (user, adminDelUsers, adminPromoteUser) =>
                     data-original-title=""
                     title=""
                   >
-                    <i className="material-icons">key</i>
+                    <i className="material-icons">refresh</i>
                   </button>
                   <button
                     type="button"

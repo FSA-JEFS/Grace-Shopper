@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {adminGetUsers, adminDelUsers, adminPromoteUser} from '../../store'
+import {adminGetInfo, adminPromoteUser, adminGetProducts, adminAddProduct, adminEditProduct, adminSetOrderStatus} from '../../store'
 import User from './User'
 import Product from './Product'
 import Order from './Order'
@@ -13,12 +13,11 @@ class AdminPage extends React.Component {
 		this.props.getAdminInfo()
 	}
 	render(){
-		const {users, adminDelUsers, adminPromoteUser} = this.props
-
+		const {users, products, orders, adminDelUsers, adminPromoteUser, adminAddProduct, adminEditProduct, adminSetOrderStatus} = this.props
 		return (
 			<div className='signup-page'>
 				<div className="page-header header-filter header-small" style={{backgroundImage: "url('../resources/assets/img/bg7.jpg')", backgroundSize: "cover", backgroundPosition: "top center"}}>
-					<div className="container">
+					<div className="container" style={{paddingTop: '7vh'}}>
 						<div className="row">
 							<div className="col-md-8 col-md-offset-2">
 								<div className="brand">
@@ -27,7 +26,7 @@ class AdminPage extends React.Component {
 							</div>
 						</div>
 					</div>
-					<div className="container">
+					<div className="container" style={{paddingTop: '7vh'}}>
 						<div className="row">
 							<div className="col-md-12">
 
@@ -63,8 +62,8 @@ class AdminPage extends React.Component {
 									<div className="card-content">
 										<div className="tab-content text-center">
 											<User tabid="users" users={users} adminDelUsers={adminDelUsers} adminPromoteUser={adminPromoteUser}/>
-											<Order tabid="orders"/>
-											<Product tabid="products"/>
+											<Order tabid="orders" orders={orders} adminSetOrderStatus={adminSetOrderStatus} />
+											<Product tabid="products" products={products} adminAddProduct={adminAddProduct} adminEditProduct={adminEditProduct}/>
 										</div>
 									</div>
 								</div>
@@ -81,21 +80,32 @@ class AdminPage extends React.Component {
 
 const mapPropToState = (state) => {
   return {
-	users: state.adminInfo.users
+	users: state.adminInfo.users,
+	products: state.adminInfo.products,
+	orders: state.adminInfo.orders,
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
 		getAdminInfo() {
-			dispatch(adminGetUsers())
+			dispatch(adminGetInfo())
 		},
 		adminDelUsers(id) {
 			dispatch(adminDelUsers(id))
 		},
 		adminPromoteUser(id) {
-			console.log('promote', id)
 			dispatch(adminPromoteUser(id))
+		},
+		adminAddProduct(body){
+			dispatch(adminAddProduct(body))
+		},
+		adminEditProduct(body){
+			dispatch(adminEditProduct(body))
+		},
+		adminSetOrderStatus(id, value){
+			// console.log('adminSetOrderStatus', id, value)
+			dispatch(adminSetOrderStatus(id, value))
 		}
 	}
 }
