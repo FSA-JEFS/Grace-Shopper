@@ -4,6 +4,7 @@ import history from '../history'
 /**
  * ACTION TYPES
  */
+
 const GET_BREED = 'GET_BREED'
 
 /**
@@ -19,12 +20,16 @@ const getBreed = breed => ({ type: GET_BREED, breed})
 /**
  * THUNK CREATORS
  */
-export const fetchBreed = (breed) => {
-  console.log('I reached here')
+export const fetchBreed = (breed, history) => {
+
   return dispatch =>
-    axios.get('/api/products/breed/' +breed )
+    axios.get('/api/products/breed/' + breed )
       .then(res => {
         dispatch(getBreed(res.data || defaultProducts))
+        if (history){
+          history.push('/products/breed/'+ breed)
+        }
+        //history.push('/error')
       })
       .catch(err => console.log(err))
 }
@@ -35,7 +40,7 @@ export const fetchBreed = (breed) => {
 export default function (state = defaultProducts, action) {
   switch (action.type) {
     case GET_BREED:
-      return action.breed
+    return action.breed
     default:
       return state
   }

@@ -2,13 +2,15 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
+import { fetchBreed, setBreed } from '../store'
 //import PuppyList from './PuppyList'
 
 class AllPuppies extends Component {
-
   // component to list all products
+
   render() {
     const products = this.props.products
+    console.log(products.length)
 
   return (
     <div className="blog-posts">
@@ -25,22 +27,20 @@ class AllPuppies extends Component {
         <div className="container">
 
           <div className="section">
-            <div>
+            <div className="nav nav-bar">
               <div>
-                <h4>Currently Available</h4>
+                <h2 className="navbar-header" style = {{ textAlign: 'center' }}>Currently Available</h2>
+                <form className="navbar-form navbar-right" role="search" onSubmit={this.props.handleSubmit}>
+                  <div className="form-group form-white">
+                  <input name="searchPuppy" type="text" className="form-control" placeholder="Find a Breed" />
+                  </div>
+                  <button type="submit" className="btn btn-white btn-raised btn-fab btn-fab-mini" ><i className="material-icons">search</i></button>
+                </form>
               </div>
-              <form className="navbar-form navbar-right" role="search" onSubmit={() => this.props.handleSubmit}>
-                <div className="form-group form-white">
-                <input type="text" className="form-control" placeholder="Find a Breed" />
-                </div>
-                <button type="submit" className="btn btn-white btn-raised btn-fab btn-fab-mini" ><i className="material-icons">search</i></button>
-              </form>
             </div>
             <div className="row">
-              {
-                products.map(puppy => {
+              { products.map(puppy => {
                   return (<div className="col-md-4" key={puppy.id}>
-
                     <div>
                       <div className="card card-raised card-background" style={{ backgroundImage: `url(${puppy.photos[0]})` }}>
                         <div className="card-content">
@@ -69,18 +69,18 @@ class AllPuppies extends Component {
   )
 }}
 
-const mapState = (state) => {
-  // console.log('Mapping state', state)
+const mapState = (state, ownProps) => {
   return {
-      products: state.product
+      products: state.product,
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
   return {
     handleSubmit(e) {
-      console.log(e)
-      //dispatch(fetchPuppy(ownProps.match.params.id))
+      e.preventDefault()
+      let searchInput = e.target.searchPuppy.value
+      dispatch(fetchBreed(searchInput, ownProps.history))
     }
   }
 }
