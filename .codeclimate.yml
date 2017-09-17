@@ -1,0 +1,4 @@
+## https://docs.codeclimate.com/v1.0/docs/configuring-your-analysis
+exclude_paths:
+- "public"
+- "node_modules"
