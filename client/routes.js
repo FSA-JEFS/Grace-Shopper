@@ -43,10 +43,10 @@ class Routes extends Component {
               <Scroll exact path='/products/:id' component={SinglePuppy} />
               <Scroll exact path='/products/breed/:breed' component={ProductByBreed} />
               <Scroll exact path='/myaccount' component={UserPage} />
+
               <Scroll exact path='/orders' component={MyOrders} />
               <Scroll exact path='/cart' component={ShoppingCart} />
               <Scroll exact path='/checkout' component={CheckoutPage} />
-              <Scroll component={Login} />
             </Switch>
           </Main>
           <BlackSimpleFooter />

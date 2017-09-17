@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
 import UserPageDetails from './UserPage-Details'
+import UserPageEdits from './UserPage-Edits'
 import { } from '../store'
 
 class UserPage extends Component {
 
-  componentDidMount(){
-    console.log('$$$$$$$', this.props.user)
-  }
-
   render(){
-    const {user} = this.props
-    console.log(user.tags)
+    const {user, isLoggedIn} = this.props
+    console.log('loggedin', isLoggedIn)
 
   return (
     <div className='signup-page'>
@@ -38,43 +34,36 @@ class UserPage extends Component {
 							<div className="collapse navbar-collapse" id="example-navbar-primary">
 								<ul className="nav navbar-nav navbar-right">
 									<li className="active">
-                  <a href="#pablo">
-											<i className="material-icons">account_circle</i>
-		                                    Profile
-		                                </a>
-		                            </li>
-		                            <li>
-                                <a href="#pablo">
-											<i className="material-icons">explore</i>
-											Orders
-		                                </a>
-
-		                            </li>
-		                            <li>
-		                                <a href="#pablo">
-											<i className="material-icons">settings</i>
-											Settings
-		                                </a>
-		                            </li>
+                    <Link to="/myaccount">
+                        <i className="material-icons">account_circle</i> Profile
+                    </Link>
+		              </li>
+		              <li>
+                    <a href="#pablo">
+                      <i className="material-icons">explore</i>Orders
+                    </a>
+		              </li>
+		              <li>
+		              <Link to="/myaccount/edit" >
+										<i className="material-icons">settings</i>Settings
+                    </Link>
+                  </li>
 								</ul>
 						</div>
 					</nav>
 
-                {/* <div className="col-md-12">
-                  <div className="table-responsive">
-                    <div className="tim-typo">
-                      <h3 className="tim-note"> {user.name}
-                      </h3>
-                      <br />
-                      <h4 className="tim-typo">Details</h4>
-                        <small>{user.email}</small>
-                      <br />
-                      <br />
-                      <h4 className="tim-typo">My Preferences</h4>
-                        <ul>{user.tags && user.tags.map( tag => <li>{tag}</li>)}</ul>
-                    </div>
-		            </div> */}
-                <UserPageDetails user={user} />
+                {isLoggedIn ?
+                  <div>
+                    {/* <Switch>
+                      <Route path="/myaccount" render={() => <UserPageDetails user={user} />} />
+                      <Route path="/myaccount/edit" render={() => <UserPageEdits user={user} />} />
+                    </Switch> */}
+                    <UserPageDetails user={user} />
+                    <UserPageEdits user={user} />
+                  </div>
+                  :
+                  <h4>Please sign up or login to see your account</h4>
+                }
               </div>
             </div>
           </div>
@@ -86,23 +75,13 @@ class UserPage extends Component {
 
 const mapStatetoProps = (state) => {
   return {
-    cart: state.cart,
-	  user: state.user,
+    user: state.user,
+    isLoggedIn: !!state.user.id
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    handlDelete(index){
-      //dispatch(deleteFromCart(index))
-    },
-    handlePlus(product){
-      dispatch(addToCart(product))
-    },
-    handleMinus(product){
-      console.log("*****", product)
-      dispatch(deleteFromCart(product))
-    }
   }
 }
 
