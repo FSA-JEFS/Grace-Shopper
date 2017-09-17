@@ -39,7 +39,7 @@ class SinglePuppy extends Component {
 
         return (
           <div className="product-page">
-          <div className="page-header header-filter" style={{backgroundImage: "url('../resources/assets/img/bg6.jpg')"}}>
+          <div className="page-header header-filter" style={{backgroundImage: "url('../resources/assets/img/andrew-branch-178414.jpg')"}}>
               {/* <div className="container">
                   <div className="row title-row">
                       <div className="col-md-4 col-md-offset-8">
