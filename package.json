@@ -17,7 +17,8 @@
     "test-codeship": "NODE_ENV='production' DATABASE_URL='postgres://localhost:5436/test' mocha ./**/*.spec.js --compilers js:babel-register",
     "test-travis": "NODE_ENV='production' DATABASE_URL='postgres://localhost:5432/test' mocha ./**/*.spec.js --compilers js:babel-register",
     "seed": "node server/db/seed",
-    "seed-travis-codeship": "DATABASE_URL='postgres://localhost:5432/test' node server/db/seed"
+    "seed-codeship": "DATABASE_URL='postgres://localhost:5436/test' node server/db/seed",
+    "seed-travis": "DATABASE_URL='postgres://localhost:5432/test' node server/db/seed"
   },
   "author": "",
   "license": "ISC",
