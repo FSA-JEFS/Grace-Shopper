@@ -38,7 +38,7 @@ const Navbar = props =>
             ? props.user.isAdmin ? 
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                    <i className="material-icons">view_carousel</i> My Account
+                    <i className="material-icons">view_carousel</i> Accounts
                     <b className="caret" />
                   </a>
                   <ul className="dropdown-menu dropdown-with-icons">
@@ -47,10 +47,15 @@ const Navbar = props =>
                         <i className="material-icons">account_balance</i> Admin Panel
                       </Link>
                     </li>
+                    <li>
+                      <Link to="/myaccount">
+                        <i className="material-icons">account_circle</i> My Account
+                      </Link>
+                    </li>
                   </ul>
                 </li>
               : <li>
-                  <Link to="/me"> {/* TODO: DIRECT TO ACCOUNT PAGE */}
+                  <Link to="/myaccount">
                     <i className="material-icons">view_carousel</i> My Account
                   </Link>
                 </li>

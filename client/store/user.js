@@ -34,7 +34,7 @@ export const auth = (email, password, method) =>
       .then(res => {
         dispatch(getUser(res.data))
         console.log('about to push', history)
-        res.data.isAdmin ? history.push('/admin') : history.push('/')
+        res.data.isAdmin ? history.push('/admin') : history.push('/products')
       })
       .catch(error =>
         dispatch(getUser({error})))

@@ -33,10 +33,10 @@ export default class extends React.Component {
                   TODO: Make this pretty when we have new Order model {JSON.stringify(order.items)}
                 </div>
                 <div className="col-sm-3">
-                    <div className="title">
+                    {/*<div className="title">
                         <h3>Change Status:</h3>
-                    </div>
-                    <select className="selectpicker" data-style="btn btn-primary btn-round" title="Change Order Status" data-size="7" onChange={e=> props.adminSetOrderStatus(order.id, e.target.value)}>
+                    </div>*/}
+                    <select className="selectpicker" data-style="btn btn-primary btn-round" title="Change Status" data-size="7" onChange={e=> props.adminSetOrderStatus(order.id, e.target.value)}>
                       <option disabled selected>No Change</option>
                       <option value="CREATED">CREATED</option>
                       <option value="PROCESSING">PROCESSING</option>
