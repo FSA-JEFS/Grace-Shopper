@@ -48,7 +48,7 @@ let review1Promise = Review.create({
   reviewText: reviewText
 });
 
-xdescribe("review model", () => {
+describe("review model", () => {
   beforeEach(() => {
     return db
       .sync({ force: true })
@@ -57,7 +57,7 @@ xdescribe("review model", () => {
       })
       .then(result => {
         [user1, product1, product2] = result;
-        console.log(">>>>>", user1)
+        // console.log(">>>>>", user1)
         review1 = review1Promise;
       });
   });

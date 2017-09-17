@@ -50,7 +50,7 @@ const PROCESSING = "PROCESSING";
 const CANCELLED = "CANCELLED";
 const COMPLETED = "COMPLETED";
 
-xdescribe("order model", () => {
+describe("order model", () => {
   beforeEach(() => {
     return db
       .sync({
