@@ -13,23 +13,21 @@ class CreateReview extends Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  componentDidMount() {
-    console.log('in componentDidMount', this.props)
-    this.props.fetchPuppy();
-  }
-
   handleChange(e) {
-    this.setState({[e.target.name]: e.target.value})
+    console.log(this.state)
+    this.setState({reviewText: e.target.value})
   }
 
   handleSubmit(){
     //console.log(this.state, this.props.user.id)
-    // axios.put(`api/users/${this.props.user.id}`, this.state)
-    // .then(console.log)
+    axios.post(`/api/products/${this.props.match.params.productId}/reviews`, this.state)
+    this.props.history.push('/myaccount/orders')
+
 
   }
   render() {
-    const user = this.props.user
+    //const user = this.props.user
+    console.log(this.props.match.params.productId)
 
   return (
     <div className="col-md-12">
@@ -40,12 +38,12 @@ class CreateReview extends Component {
           <br />
            <div className="media-body">
 		        <div className="form-group">
-              <textarea className="form-control" name="tags" onChange={this.handleChange} placeholder="Leave a review" rows="6"></textarea>
+              <textarea className="form-control" name="review" onChange={this.handleChange} placeholder="Leave a review" rows="6"></textarea>
 
 		        </div>
           </div>
           <div className="media-footer">
-            <span onClick={this.handleSubmit} className="btn btn-primary btn-wd pull-right">Edit</span>
+            <span onClick={this.handleSubmit} className="btn btn-primary btn-wd pull-right">Submit Review</span>
             </div>
           </div>
       </div>
@@ -53,24 +51,25 @@ class CreateReview extends Component {
   )}
 }
 
-const mapState = (state, ownProps) => {
-  // console.log('Mapping state', state)
-  console.log('in mapState', ownProps)
-  return {
-    selectedProduct: state.selectedProduct,
-  }
-}
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    fetchPuppy() {
-      console.log('puppyID', ownProps)
-        dispatch(fetchPuppy(ownProps.match.params.id))
-    },
-    handleClick(selectedProduct) {
-        //dispatch(addToCart(selectedProduct))
-    }
-  }
-}
+export default CreateReview
+// const mapState = (state, ownProps) => {
+//   // console.log('Mapping state', state)
+//   console.log('in mapState', ownProps)
+//   return {
+//     selectedProduct: state.selectedProduct,
+//   }
+// }
 
-export default connect(mapState, mapDispatchToProps)(CreateReview)
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//   return {
+//     fetchPuppy() {
+//       dispatch(fetchPuppy(ownProps.match.params.productId))
+//     },
+//     handleClick(selectedProduct) {
+//         //dispatch(addToCart(selectedProduct))
+//     }
+//   }
+// }
+
+// export default connect(mapState, mapDispatchToProps)(CreateReview)

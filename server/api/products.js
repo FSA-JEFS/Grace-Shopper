@@ -114,10 +114,12 @@ router.put("/:id", isAdmin, (req, res, next) => {
 
 //post a review to a product
 router.post("/:id/reviews", isLoggedIn, (req, res, next) => {
+  console.log('found the API')
   return Product.findById(req.params.id).then(product => {
     if (!product) {
       res.sendStatus(404);
     } else {
+      console.log('creating the review')
       let review = req.body;
       review.userId = req.user.id;
       review.productId = req.params.id;

@@ -59,7 +59,7 @@ class UserPage extends Component {
                       <Route exact path="/myaccount" render={() => <UserPageDetails user={user} />} />
                       <Route exact path="/myaccount/orders" render={() => <MyOrders user={user} />} />
                       <Route path="/myaccount/edit" render={() => <UserPageEdits user={user} />} />
-                      <Route path="/myaccount/CreateReview/:productId" render={() => <CreateReview />} />
+                      <Route path="/myaccount/CreateReview/:productId" component={CreateReview} />
                     </Switch>
                   </div>
                   :
