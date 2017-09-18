@@ -8,14 +8,30 @@ const Order = db.define("order", {
     allowNull: false
   },
   items: {
+    // structure: {product: {Product}, quantity: X, price: X}
     type: Sequelize.ARRAY(Sequelize.JSON),
     allowNull: false
   },
   subTotal: {
-    type: Sequelize.INTEGER,
-    validate: {
-      min: 0
-    }
+      type: Sequelize.VIRTUAL,
+      get: function() {
+          return this.items.map(item => item.quantity * item.price).reduce((a,b) => a + b, 0)
+      }
+  },
+  recipientName: {
+    type: Sequelize.STRING
+  },
+  confirmationEmail: {
+    type: Sequelize.STRING
+  },
+  recipientAddress: {
+    type: Sequelize.STRING
+  },
+  recipientPhone: {
+    type: Sequelize.STRING,
+  },
+  specialInstructions: {
+    type: Sequelize.STRING
   }
 });
 

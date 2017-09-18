@@ -144,11 +144,11 @@ const reviews = [
 ]
 
 const orders = [
-  {status: "CREATED", items: [], subTotal: 100},
-  {status: "PROCESSING", items: [], subTotal: 200},
-  {status: "CREATED", items: [], subTotal: 300},
-  {status: "CANCELLED", items: [], subTotal: 400},
-  {status: "COMPLETED", items: [], subTotal: 500}
+  {status: "CREATED", items: []},
+  {status: "PROCESSING", items: []},
+  {status: "CREATED", items: []},
+  {status: "CANCELLED", items: []},
+  {status: "COMPLETED", items: []}
 ]
 
 function seed() {
@@ -174,7 +174,7 @@ function seed() {
     // create orders
     for (var i = 0; i < orders.length; i++){
       orders[i].userId = createdUsers[i].id
-      orders[i].items = [{productId: createdProducts[i].id, quantity: i + 1}]
+      orders[i].items = [{product: createdProducts[i], price: createdProducts[i].price, quantity: i + 1}]
     }
     return Promise.all(orders.map(order => Order.create(order)))
   })

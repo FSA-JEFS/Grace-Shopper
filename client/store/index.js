@@ -16,6 +16,7 @@ const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window
 
 export default store
 export * from './user'
+export * from './order'
 export * from './product'
 export * from './adminInfo'
 export * from './selectedProduct'

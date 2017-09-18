@@ -77,7 +77,13 @@ const ShoppingCart = (props) => {
 		                                    <td className="td-price">
 		                                        <small>$</small>{props.cart.map(el => el.product.price * el.quantity).reduce((a,b) => a + b, 0)}
 		                                    </td>
-		                                    <td colSpan="1" className="text-right"> <button type="button" className="btn btn-info btn-round">Complete Purchase <i className="material-icons">keyboard_arrow_right</i></button></td>
+		                                    <td colSpan="1" className="text-right"> 
+												<Link to='/checkout'>
+													<button type="button" className="btn btn-info btn-round">
+														Complete Purchase <i className="material-icons">keyboard_arrow_right</i>
+													</button>
+												</Link>
+											</td>
 
 		                                </tr>
 		                            </tbody>
