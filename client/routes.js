@@ -17,7 +17,6 @@ import Scroll         from './components/Scroll'
 import Admin         from './components/Admin'
 import ThankYou         from './components/ThankYou'
 
-
 /**
  * COMPONENT
  */
@@ -43,11 +42,11 @@ class Routes extends Component {
               <Scroll exact path='/products' component={PuppyList} />
               <Scroll exact path='/products/:id' component={SinglePuppy} />
               <Scroll exact path='/products/breed/:breed' component={ProductByBreed} />
-              <Scroll exact path='/myaccount' component={UserPage} />
+              <Scroll path='/myaccount' component={UserPage} />
               <Scroll exact path='/cart' component={ShoppingCart} />
               <Scroll exact path='/checkout' component={CheckoutPage} />
               <Scroll exact path='/thankyou' component={ThankYou} />
-              <Scroll component={Login} />
+              {/* <Scroll component={Login} /> */}
             </Switch>
           </Main>
           <BlackSimpleFooter />
