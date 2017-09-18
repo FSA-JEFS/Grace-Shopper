@@ -19,3 +19,5 @@ export * from './product'
 export * from './adminInfo'
 export * from './selectedProduct'
 export * from './cart'
+export * from './order'
+

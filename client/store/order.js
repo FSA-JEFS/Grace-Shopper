@@ -22,9 +22,9 @@ const getUserOrders = orders => ({ type: GET_USER_ORDERS, orders })
  */
 export const fetchOrders = (userId) => {
   return dispatch =>
-    axios.get('/api/users/' + userId + '/orders')
+    axios.get('/api/users/orders')
       .then(res => {
-        dispatch(getOrders(res.data || defaultOrders))
+        dispatch(getUserOrders(res.data || defaultOrders))
       })
       .catch(err => console.log(err))
 }
@@ -35,6 +35,7 @@ export const fetchOrders = (userId) => {
 export default function (state = defaultOrders, action) {
   switch (action.type) {
     case GET_USER_ORDERS:
+      console.log("GET_USER_ORDERS", action.orders)
       return action.orders
     default:
       return state
