@@ -20,7 +20,7 @@ function promisedAuthRequest(loginDetails) {
   });
 }
 
-describe("Products routes", () => {
+xdescribe("Products routes", () => {
   let cody;
   beforeEach(() => {
     return db.sync({ force: true });

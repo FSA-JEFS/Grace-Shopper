@@ -11,9 +11,9 @@ const Order = db.model("order");
 let user1, product1, product2, order1;
 
 let user1Promise = User.create({
-  name: "Cody the Dog",
-  email: "cody@puppybook.com",
-  password: "bones",
+  name: "Cody2 the Dog",
+  email: "cody2@puppybook.com",
+  password: "bones2",
   tags: ["hasOwnedDog", "City Apartment"],
   isAdmin: true,
   googleId: null
@@ -56,17 +56,6 @@ describe("order model", () => {
       .sync({
         force: true
       })
-    //     .then(() => {
-    //       return Promise.all([ user1Promise, product1Promise, product2Promise ]);
-    //     })
-    //     .then(result => {
-    //       [ user1, product1, product2 ] = result;
-    //       return Order.create({
-    //         status: CREATED,
-    //         items: [{ productId: product1.id, quantity: 1 }],
-    //         subTotal: 500
-    //       });
-    //     });
   });
 
   describe("attributes definition", function () {
@@ -76,16 +65,16 @@ describe("order model", () => {
           return Order.create({
             status: CREATED,
             items: [{
-              productId: product1.id,
-              quantity: 1
-            }],
-            subTotal: 500
+              productId: product1,
+              quantity: 2,
+              price: 100
+            }]
           })
         })
         .then(function (order) {
           expect(order.status).to.equal(CREATED);
           expect(order.items).to.have.length(1);
-          expect(order.subTotal).to.equal(500);
+          expect(order.subTotal).to.equal(200);
         });
     });
   });
@@ -99,8 +88,8 @@ describe("order model", () => {
      */
     it("belongs to a user, who is stored as the order's `user`", function () {
       var creatingUser = User.create({
-        name: "Cody the Dog",
-        email: "cody@puppybook.com",
+        name: "Cody3 the Dog",
+        email: "cody3@puppybook.com",
         password: "bones",
         tags: ["hasOwnedDog", "City Apartment"],
         isAdmin: true,
@@ -112,11 +101,11 @@ describe("order model", () => {
           return Order.create({
             status: CREATED,
             items: [{
-              productId: product1.dataValues.id,
-              quantity: 1
-            }],
-            subTotal: 500
-          });
+              productId: product1,
+              quantity: 2,
+              price: 100
+            }]
+          })
         })
 
       return Promise.all([creatingUser, creatingOrder])

@@ -138,17 +138,17 @@ const puppies = [
 const reviews = [
   {reviewText: "Human-centered design thinker-maker-doer parallax driven parallax 360 campaign food-truck piverate pitch deck paradigm. Parallax integrate convergence thinker-maker-doer 360 campaign pitch deck co-working paradigm cortado. Entrepreneur sticky note SpaceTeam user story workflow integrate thinker-maker-doer Steve Jobs innovate. Thinker-maker-doer affordances unicorn actionable insight food-truck quantitative vs. qualitative big data waterfall is so 2000 and late responsive paradigm 360 campaign. Disrupt long shadow thought leader actionable insight iterate venture capital actionable insight viral big data personas."},
   {reviewText: "Personas unicorn unicorn minimum viable product responsive bootstrapping actionable insight minimum viable product engaging. Physical computing minimum viable product long shadow pair programming affordances convergence iterate earned media. Latte pivot personas driven engaging paradigm moleskine agile 360 campaign quantitative vs. qualitative intuitive disrupt. Convergence paradigm 360 campaign parallax pivot earned media entrepreneur integrate moleskine."},
-  {reviewText: "Latte iterate pair programming user centered design minimum viable product paradigm workflow bootstrapping intuitive viral human-centered design. Workflow waterfall is so 2000 and late human-centered design thinker-maker-doer viral user story responsive. Physical computing unicorn venture capital hacker physical computing 360 campaign moleskine personas hacker human-centered design entrepreneur 360 campaign intuitive. Earned media disrupt fund ship it pivot unicorn innovate pivot integrate workflow innovate. Pitch deck engaging user centered design driven earned media co-working ideate piverate."},  
+  {reviewText: "Latte iterate pair programming user centered design minimum viable product paradigm workflow bootstrapping intuitive viral human-centered design. Workflow waterfall is so 2000 and late human-centered design thinker-maker-doer viral user story responsive. Physical computing unicorn venture capital hacker physical computing 360 campaign moleskine personas hacker human-centered design entrepreneur 360 campaign intuitive. Earned media disrupt fund ship it pivot unicorn innovate pivot integrate workflow innovate. Pitch deck engaging user centered design driven earned media co-working ideate piverate."},
   {reviewText: "Intuitive big data intuitive responsive experiential pair programming earned media parallax SpaceTeam disrupt. Venture capital co-working physical computing experiential innovate personas convergence moleskine pivot ideate entrepreneur quantitative vs. qualitative. Bootstrapping prototype agile food-truck quantitative vs. qualitative workflow responsive ship it. Paradigm entrepreneur convergence engaging co-working food-truck cortado workflow. Ideate paradigm Steve Jobs human-centered design SpaceTeam fund SpaceTeam integrate cortado grok bootstrapping waterfall is so 2000 and late venture capital."},
   {reviewText: "Fund venture capital waterfall is so 2000 and late innovate experiential hacker actionable insight innovate driven. Actionable insight pivot driven venture capital human-centered design user story convergence workflow actionable insight. Workflow fund affordances 360 campaign co-working actionable insight long shadow latte Steve Jobs venture capital. User centered design ship it entrepreneur viral engaging human-centered design prototype physical computing agile intuitive parallax."}
 ]
 
 const orders = [
-  {status: "CREATED", items: [], subTotal: 100},
-  {status: "PROCESSING", items: [], subTotal: 200},
-  {status: "CREATED", items: [], subTotal: 300},
-  {status: "CANCELLED", items: [], subTotal: 400},
-  {status: "COMPLETED", items: [], subTotal: 500}
+  {status: "CREATED", items: []},
+  {status: "PROCESSING", items: []},
+  {status: "CREATED", items: []},
+  {status: "CANCELLED", items: []},
+  {status: "COMPLETED", items: []}
 ]
 
 function seed() {
@@ -174,7 +174,8 @@ function seed() {
     // create orders
     for (var i = 0; i < orders.length; i++){
       orders[i].userId = createdUsers[i].id
-      orders[i].items = [{product: createdProducts[i], quantity: i + 1}]
+      orders[i].items = [{product: createdProducts[i], price: createdProducts[i].price, quantity: i + 1}]
+
     }
     return Promise.all(orders.map(order => Order.create(order)))
   })
