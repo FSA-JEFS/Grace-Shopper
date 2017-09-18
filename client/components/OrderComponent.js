@@ -47,7 +47,7 @@ const OrderComponent = (props) => {
                           {item.quantity}
                         </td>
                         <td className="td-number">
-                          <small>&euro;</small>xxx
+                        <Link to={"/myaccount/CreateReview/" + item.product.id}>Leave a review</Link>
 		                                    </td>
                         <td className="td-actions">
                           <button type="button" rel="tooltip" data-placement="left" title="Remove item" className="btn btn-simple" onClick={() => props.handlDelete(index)}>
