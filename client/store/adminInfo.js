@@ -37,7 +37,10 @@ const adminEditProductAC = product => ({ type: ADMIN_EDIT_PRODUCT, product })
 export const adminSetOrderStatus = (id, value) => dispatch => 
   axios
     .put('/api/orders/' + id, {status: value})
-    .then(res => dispatch(adminSetOrderStatusAC(res.data)))
+    .then(res => {
+      console.log("######", res)
+      return dispatch(adminSetOrderStatusAC(res.data))
+    })
     .catch(err => console.log(err))
 
 export const adminGetInfo = () => dispatch =>

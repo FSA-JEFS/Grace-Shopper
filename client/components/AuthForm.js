@@ -123,7 +123,7 @@ const mapDispatch = (dispatch) => {
       const email = evt.target.email.value
       const password = evt.target.password.value
       const firstName = evt.target.firstName && evt.target.firstName.value
-      dispatch(auth(email, password, formName, firstName))
+      dispatch(auth(firstName, email, password, formName))
     }
   }
 }
