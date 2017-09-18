@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom'
 import {makeNewOrder, clearCart} from '../store'
 
 const CheckoutPage = (props) => {
-    console.log(">>>>>", props)
     const {handleSubmit} = props
     const cart = props.cart.product
 
