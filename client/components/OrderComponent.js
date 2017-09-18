@@ -6,6 +6,7 @@ import { getCart, addToCart, deleteFromCart } from '../store'
 
 const OrderComponent = (props) => {
   const order = props.order
+  console.log('order', props.order)
 
   return (
     <div className="container">

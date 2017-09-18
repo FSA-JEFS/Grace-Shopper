@@ -28,7 +28,7 @@ export const fetchOrders = (userId) => {
         dispatch(getUserOrders(res.data || defaultOrders))
       })
       .catch(err => console.log(err))
-    }
+  }
 }
 
 /**

@@ -18,12 +18,21 @@ class MyOrders extends Component {
   }
 
   componentDidMount() {
-    console.log('***** componount will mount', this.state.user)
-    if (this.state.user.id){
-      console.log(this.state.user)
-      this.fetchData(this.state.user.id)
+    console.log('***** componount did mount', this.props.user)
+    if (this.props.user.id){
+      console.log(this.props.user)
+      this.fetchData(this.props.user.id)
     }
   }
+
+  // componentWillReceiveProps(newProps) {
+  //   console.log('***** componentWillRecieveProps', this.state.user)
+  //   if (newProps.user.id) {
+  //     console.log(newProps.user)
+  //     this.fetchData(newProps.user.id)
+  //   }
+  // }
+
 
   render() {
     return (
