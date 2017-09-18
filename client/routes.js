@@ -14,10 +14,8 @@ import ShoppingCart   from './components/ShoppingCart'
 import CheckoutPage   from './components/CheckoutPage'
 import UserPage       from './Components/UserPage'
 import Scroll         from './components/Scroll'
-import MyOrders         from './components/MyOrders'
 import Admin         from './components/Admin'
 import ThankYou         from './components/ThankYou'
-import Admin          from './components/Admin'
 
 /**
  * COMPONENT
