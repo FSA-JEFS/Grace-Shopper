@@ -37,7 +37,7 @@ const AuthForm = (props) => {
 							<div className="header header-primary text-center" style={{display: "block"}}>
 								<h4 className="card-title">{displayName}</h4>
 								<div className="social-line">
-									<a href="#pablo" className="btn btn-just-icon btn-simple">
+									<a href="auth/facebook" className="btn btn-just-icon btn-simple">
 										<i className="fa fa-facebook-square"></i>
 									</a>
 									<a href="/auth/twitter" className="btn btn-just-icon btn-simple">
