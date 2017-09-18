@@ -11,7 +11,7 @@ const {
 module.exports = router
 
 router.get('/', isAdmin, (req, res, next) => {
-  User.findAll({
+  return User.findAll({
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
@@ -23,7 +23,7 @@ router.get('/', isAdmin, (req, res, next) => {
 
 // get a user by id
 router.get('/:id', isSelfOrAdmin, (req, res, next) => {
-  User.findById(req.params.id)
+  return User.findById(req.params.id)
     .then(user => user ? res.json(user) : res.sendStatus(404))
     .catch(next)
 })
@@ -31,7 +31,7 @@ router.get('/:id', isSelfOrAdmin, (req, res, next) => {
 // get orders by user
 router.get('/:id/orders', isSelfOrAdmin, (req, res, next) => {
   const userId = req.params.id;
-  Order.findAll({ where: { userId } })
+  return Order.findAll({ where: { userId } })
     .then(orders => res.json(orders))
     .catch(next);
 })
@@ -39,7 +39,7 @@ router.get('/:id/orders', isSelfOrAdmin, (req, res, next) => {
 // GET for a single order for a single user
 router.get('/:id/orders/:orderid', isSelfOrAdmin, (req, res, next) => {
   // const userId = req.params.id;
-  Order.findById(orderid)
+  return Order.findById(orderid)
     .then(orders => res.json(orders))
     .catch(next);
 })
@@ -47,7 +47,7 @@ router.get('/:id/orders/:orderid', isSelfOrAdmin, (req, res, next) => {
 
 // create user; unprotected
 router.post('/', (req, res, next) => {
-  User.create(req.body)
+  return User.create(req.body)
     .then(user => res.json(user))
     .catch(next)
 })
@@ -66,7 +66,7 @@ router.delete('/:id', isSelfOrAdmin, (req, res, next) => {
 //  edit user
 // TODO: what if user wants to edit own info but we have block from making himself an admin.
 router.put('/:id', isSelfOrAdmin, (req, res, next) => {
-  User.findById(req.params.id)
+  return User.findById(req.params.id)
     .then(user => {
       if (!user) return res.sendStatus(404);
       else {
@@ -84,9 +84,8 @@ router.post('/:id/orders', isSelfOrAdmin, (req, res, next) => {
   // no need to find user
   // create order
   let neworder = req.body
-  console.log('neworder', neworder)
   neworder['userId'] = req.params.id
-  Order.create(neworder)
+  return Order.create(neworder)
     .then(order => res.json(order))
     .catch(next)
 })
@@ -96,7 +95,7 @@ router.post('/:id/orders', isSelfOrAdmin, (req, res, next) => {
 
 // PUT to change status of orders
 router.put('/:id/orders/:orderid', isSelfOrAdmin, (req, res, next) => {
-  Order.findById(req.params.orderid)
+  return Order.findById(req.params.orderid)
     .then(order => {
       if (!order) return res.sendStatus(404);
       else {
@@ -111,7 +110,7 @@ router.put('/:id/orders/:orderid', isSelfOrAdmin, (req, res, next) => {
 
 //get reviews by user
 router.get('/:id/reviews', isSelfOrAdmin, (req, res, next) => {
-  Review.findAll({ where: { id: req.params.id } })
+  return Review.findAll({ where: { id: req.params.id } })
     .then(reviews => res.json(reviews))
     .catch(next);
 })

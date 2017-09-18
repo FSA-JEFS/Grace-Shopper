@@ -10,7 +10,7 @@ let user1, product1, product2, review1;
 
 let user1Promise = User.create({
   name: "Cody the Dog",
-  email: "cody2@puppybook.com",
+  email: "cody27@puppybook.com",
   password: "bones",
   tags: ["hasOwnedDog", "City Apartment"],
   isAdmin: true,

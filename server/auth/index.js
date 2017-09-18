@@ -4,7 +4,7 @@ module.exports = router
 
 router.post('/login', (req, res, next) => {
   // User.findOne({where: {email: req.body.email}}, {attributes: ['id', 'email', 'name', 'isAdmin', 'tags']})
-  User.findOne({where: {email: req.body.email}})
+  return User.findOne({where: {email: req.body.email}})
     .then(user => {
       if (!user) {
         res.status(401).send('User not found')
@@ -18,10 +18,8 @@ router.post('/login', (req, res, next) => {
 })
 
 router.post('/signup', (req, res, next) => {
-  User.create(req.body)
-    .then(user => {
-      req.login(user, err => err ? next(err) : res.json(user))
-    })
+  return User.create(req.body)
+    .then(user => req.login(user, err => err ? next(err) : res.json(user)))
     .catch(err => {
       if (err.name === 'SequelizeUniqueConstraintError')
         res.status(401).send('User already exists')
