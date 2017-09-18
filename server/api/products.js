@@ -6,12 +6,15 @@ module.exports = router;
 
 // Get ALL the puppies
 router.get("/", (req, res, next) => {
-  Product.findAll().then(product => res.json(product)).catch(next);
+  return Product.findAll().then(product => {
+    res.json(product)
+    return null
+  }).catch(next);
 });
 
 //get reviews of a product
 router.get("/products/:id/reviews", (req, res, next) => {
-  Review.findAll({
+  return Review.findAll({
     where: {
       productId: req.params.id
     }
@@ -22,7 +25,7 @@ router.get("/products/:id/reviews", (req, res, next) => {
 
 // Get puppies by breeder
 router.get("/breeder/:breeder", (req, res, next) => {
-  Product.findAll({
+  return Product.findAll({
     where: {
       breeder: req.params.breeder
     }
@@ -33,7 +36,7 @@ router.get("/breeder/:breeder", (req, res, next) => {
 
 // Get puppies by breed
 router.get("/breed/:breed", (req, res, next) => {
-  Product.findAll({
+  return Product.findAll({
     where: {
       breed: req.params.breed
     }
@@ -44,7 +47,7 @@ router.get("/breed/:breed", (req, res, next) => {
 
 // Get puppies by price
 router.get("/price/:price", (req, res, next) => {
-  Product.findAll({
+  return Product.findAll({
     where: {
       price: {
         $lt: req.params.price
@@ -57,7 +60,7 @@ router.get("/price/:price", (req, res, next) => {
 
 // Get puppies by tags
 router.get("/tag/:tag", (req, res, next) => {
-  Product.findAll({
+  return Product.findAll({
     where: {
       tags: {
         $contains: [req.params.tag]
@@ -70,7 +73,6 @@ router.get("/tag/:tag", (req, res, next) => {
 
 //Create a new product
 router.post("/add-product", isAdmin, (req, res, next) => {
-  console.log('req.body', req.body)
   return Product.create(req.body)
     .then(product => res.status(201).send(product))
     .catch(next);
@@ -78,7 +80,7 @@ router.post("/add-product", isAdmin, (req, res, next) => {
 
 // Get one puppy, with reviews
 router.get("/:id", (req, res, next) => {
-  Product.findById(req.params.id, {
+  return Product.findById(req.params.id, {
     include: [{ model: Review, as: "review" }]
   })
     .then(product => res.json(product))
@@ -121,7 +123,7 @@ router.post("/:id/reviews", isLoggedIn, (req, res, next) => {
       let review = req.body;
       review.userId = req.user.id;
       review.productId = req.params.id;
-      Review.create(review).then(createdReview => res.json(createdReview));
+      return Review.create(review).then(createdReview => res.json(createdReview));
     }
   });
 });
@@ -133,7 +135,7 @@ router.put("/:id/reviews", isSelfOrAdmin, (req, res, next) => {
       res.sendStatus(404);
     } else {
       let review = req.body;
-      Review.update(review).then(updatedReview => res.json(updatedReview));
+      return Review.update(review).then(updatedReview => res.json(updatedReview));
     }
   });
 });
@@ -146,7 +148,7 @@ router.delete(
       if (!product) {
         res.sendStatus(404);
       } else {
-        product.destroy().then(() => res.sendStatus(204));
+        return product.destroy().then(() => res.sendStatus(204));
       }
     });
   }

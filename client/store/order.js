@@ -22,25 +22,19 @@ const createNewOrder = order => ({ type: CREATE_NEW_ORDER, order })
 /**
  * THUNK CREATORS
  */
-export const fetchOrders = (userId) => {
-  return dispatch => {
-    console.log('about to fetch for id', userId)
-    axios.get('/api/users/' + userId + '/orders')
+export let fetchOrders = userId => dispatch =>
+  axios.get('/api/users/' + userId + '/orders')
       .then(res => {
         dispatch(getUserOrders(res.data || defaultOrders))
       })
       .catch(err => console.log(err))
-  }
-}
-export const makeNewOrder = (userId, order) => {
-  // console.log(order)
-  return dispatch =>
+
+export const makeNewOrder = (userId, order) => dispatch =>
     axios.post('/api/users/' + userId + '/orders', order)
       .then(res => {
         dispatch(createNewOrder(res.data))
       })
       .catch(err => console.log(err))
-}
 
 /**
  * REDUCER

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { fetchOrders } from '../store'
+import { fetchOrders } from '../store/order'
 import OrderComponent from './OrderComponent'
 
 /**

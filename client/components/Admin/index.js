@@ -104,8 +104,8 @@ const mapDispatch = (dispatch) => {
 			dispatch(adminEditProduct(body))
 		},
 		adminSetOrderStatus(id, value){
-			// console.log('adminSetOrderStatus', id, value)
 			dispatch(adminSetOrderStatus(id, value))
+			// console.log('adminSetOrderStatus', id, value)
 		}
 	}
 }
