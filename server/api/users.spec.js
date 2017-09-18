@@ -220,7 +220,6 @@ xdescribe("User routes", () => {
             })
             .then(() => User.findById(cody.id))
             .then(user => {
-              // console.log("!!!!!", user)
               expect(user.dataValues.name).to.equal("Loki");
               expect(user.dataValues.email).to.equal(cody.email);
             })

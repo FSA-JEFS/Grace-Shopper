@@ -18,7 +18,6 @@ const Order = db.define("order", {
         if (this.items && this.items.length)
           return this.items.map(item => item.quantity * item.price).reduce((a,b) => a + b, 0)
         else {
-          console.log('this.items', this.items)
           return 0
         }
       }

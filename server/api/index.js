@@ -20,7 +20,6 @@ router.get('/orders/:id', isAdmin, (req, res, next) => {
 //PUT /orders/:id only allows you to set order status :)
 router.put('/orders/:id', isAdmin, (req, res, next) => {
   const newStatus = req.body.status
-  // console.log('newStatus', newStatus, 'req.params.id', req.params.id)
   // can do some validation checks here
   return Order.update({status: newStatus}, {where: {id: req.params.id}, returning: true})
   .then(result => result[1][0] ? res.json(result[1][0]) : res.sendStatus(404))

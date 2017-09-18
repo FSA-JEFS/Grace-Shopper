@@ -57,7 +57,6 @@ describe("review model", () => {
       })
       .then(result => {
         [user1, product1, product2] = result;
-        // console.log(">>>>>", user1)
         review1 = review1Promise;
       });
   });

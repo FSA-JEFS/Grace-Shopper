@@ -193,7 +193,6 @@ xdescribe("Products routes", () => {
           .post("/api/products")
           .send(gaspode)
           .then(res => {
-            console.log('***', res)
             return Products.findOne({ where: { name: gaspode.name } });
           })
           .then(product =>

@@ -100,7 +100,6 @@ router.delete("/:id", isAdmin, (req, res, next) => {
 
 // edit puppy details
 router.put("/:id", isAdmin, (req, res, next) => {
-  // console.log('---req.body', req.body)
   return Product.update(req.body, {
     where: {
       id: req.params.id
@@ -108,7 +107,6 @@ router.put("/:id", isAdmin, (req, res, next) => {
     returning: true
   })
     .then(result => {
-      // console.log('***req.body', result)
       result[1][0] ? res.json(result[1][0]) : res.sendStatus(404);
     })
     .catch(next);
@@ -116,12 +114,10 @@ router.put("/:id", isAdmin, (req, res, next) => {
 
 //post a review to a product
 router.post("/:id/reviews", isLoggedIn, (req, res, next) => {
-  console.log('found the API')
   return Product.findById(req.params.id).then(product => {
     if (!product) {
       res.sendStatus(404);
     } else {
-      console.log('creating the review')
       let review = req.body;
       review.userId = req.user.id;
       review.productId = req.params.id;

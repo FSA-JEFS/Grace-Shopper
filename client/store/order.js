@@ -27,20 +27,19 @@ export let fetchOrders = userId => dispatch =>
       .then(res => {
         dispatch(getUserOrders(res.data || defaultOrders))
       })
-      .catch(err => console.log(err))
+      .catch(err => console.err(err))
 
 export const makeNewOrder = (userId, order) => dispatch =>
     axios.post('/api/users/' + userId + '/orders', order)
       .then(res => {
         dispatch(createNewOrder(res.data))
-        console.log(order)
         return axios.post('/api/email/sendCheckoutMail', {
           order,
           subtotal: order.items.reduce((acc, i) => i.quantity * i.price + acc, 0),
           to: order.confirmationEmail
         })
       })
-      .catch(err => console.log(err))
+      .catch(err => console.err(err))
 
 /**
  * REDUCER
@@ -52,7 +51,6 @@ export default function (state = defaultOrders, action) {
       newState.push(action.order)
       return newState
     case GET_USER_ORDERS:
-      console.log("GET_USER_ORDERS", action.orders)
       return action.orders
     default:
       return state

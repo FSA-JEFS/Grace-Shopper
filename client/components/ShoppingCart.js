@@ -103,10 +103,6 @@ const mapPropToCart = (state) => {
   return {
 	cart: state.cart,
 
-    // clickHandler: (word) => {
-    //   console.log(word)
-    //   addToCart(word)
-    // }
   }
 }
 
@@ -119,11 +115,9 @@ const mapDispatch = (dispatch) => {
 		dispatch(addToCart(product))
 	},
 	handleMinus(product){
-		console.log("*****", product)
 		dispatch(removeFromCart(product))
 	},
 	handleDelete(product){
-		console.log("*****", product)
 		dispatch(deleteFromCart(product))
 	}
   }

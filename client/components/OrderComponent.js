@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 const OrderComponent = (props) => {
   const order = props.order
-  console.log('order', props.order)
 
   return (
     //<h1>We rendered!</h1>

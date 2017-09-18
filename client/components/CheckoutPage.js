@@ -103,8 +103,6 @@ const CheckoutPage = (props) => {
                     })),
                     recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions
                 }
-                console.log('userid', userid)
-                console.log('order', order)
                 dispatch(makeNewOrder(userid, order))
                 // after its successfully completed we should do something
                 // clear the cart and send to thank you page
