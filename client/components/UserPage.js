@@ -39,9 +39,9 @@ class UserPage extends Component {
                     </Link>
 		              </li>
 		              <li>
-                    <a href="#pablo">
+                    <Link to="/myaccount/orders">
                       <i className="material-icons">explore</i>Orders
-                    </a>
+                    </Link>
 		              </li>
 		              <li>
 		              <Link to="/myaccount/edit" >
@@ -54,13 +54,11 @@ class UserPage extends Component {
 
                 {isLoggedIn ?
                   <div>
-                    {/* <Switch>
-                      <Route path="/myaccount" render={() => <UserPageDetails user={user} />} />
+                    <Switch>
+                      <Route exact path="/myaccount" render={() => <UserPageDetails user={user} />} />
+                      <Route exact path="/myaccount/orders" render={() => <MyOrders user={user} />} />
                       <Route path="/myaccount/edit" render={() => <UserPageEdits user={user} />} />
-                    </Switch> */}
-                    <UserPageDetails user={user} />
-                    <MyOrders user={user} />
-                    <UserPageEdits user={user} />
+                    </Switch>
                   </div>
                   :
                   <h4>Please sign up or login to see your account</h4>
