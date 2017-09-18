@@ -2,15 +2,21 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
-import { fetchBreed, setBreed } from '../store'
 //import PuppyList from './PuppyList'
 
 class AllPuppies extends Component {
   // component to list all products
 
-  render() {
-    const products = this.props.products
 
+  state = {searchBreed: null}
+
+  handleSearch(e){
+    this.setState({searchBreed: e.target.value})
+  }
+
+  render() {
+    let products = this.props.products
+    if (this.state.searchBreed) products = products.filter(product => Object.values(product).join('').toLowerCase().includes(this.state.searchBreed) )
   return (
     <div className="blog-posts">
       <div className="page-header header-filter header-small" style={{ backgroundImage: `url("../resources/assets/img/jeremy-wong-342291.jpg")` }}>
@@ -29,9 +35,9 @@ class AllPuppies extends Component {
             <div className="nav nav-bar">
               <div>
                 <h2 className="navbar-header" style = {{ textAlign: 'center' }}>Currently Available</h2>
-                <form className="navbar-form navbar-right" role="search" onSubmit={this.props.handleSubmit}>
+                <form className="navbar-form navbar-right" role="search" onSubmit={e => e.preventDefault()}>
                   <div className="form-group form-white">
-                  <input name="searchPuppy" type="text" className="form-control" placeholder="Find a Breed" />
+                  <input name="searchPuppy" type="text" className="form-control" placeholder="Find your Pup" onChange={this.handleSearch.bind(this)}/>
                   </div>
                   <button type="submit" className="btn btn-white btn-raised btn-fab btn-fab-mini" ><i className="material-icons">search</i></button>
                 </form>
@@ -70,18 +76,8 @@ class AllPuppies extends Component {
 
 const mapState = (state, ownProps) => {
   return {
-      products: state.product,
+      products: state.product
   }
 }
 
-const mapDispatch = (dispatch, ownProps) => {
-  return {
-    handleSubmit(e) {
-      e.preventDefault()
-      let searchInput = e.target.searchPuppy.value
-      dispatch(fetchBreed(searchInput, ownProps.history))
-    }
-  }
-}
-
-export default connect(mapState, mapDispatch)(AllPuppies)
+export default connect(mapState)(AllPuppies)
