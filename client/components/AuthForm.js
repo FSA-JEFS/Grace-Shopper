@@ -72,12 +72,6 @@ const AuthForm = (props) => {
 									<input type="password" placeholder="Password..." name="password" className="form-control" />
 								</div>
 
-								<div className="checkbox">
-									<label>
-										<input type="checkbox" name="optionsCheckboxes" checked="true"/>
-										Subscribe to newsletter
-									</label>
-								</div>
 							</div>
 							<div className="footer text-center" style={{display: "block"}}>
 								<button type="submit">Get Started</button>

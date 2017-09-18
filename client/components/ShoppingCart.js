@@ -35,7 +35,9 @@ const ShoppingCart = (props) => {
 		                                    <td>
 		                                        <div className="img-container">
 								  					<Link to={`/products/${element.product.id}`}>
-		                                            	<img src={element.product.photos[0]} alt="..." />
+													  {
+														  element.product.photos ? <img src={element.product.photos[0]} alt="..." /> : <div></div>
+													  }
 													</Link>
 		                                        </div>
 		                                    </td>
