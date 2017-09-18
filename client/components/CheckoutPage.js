@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {createNewOrder} from '../store'
+import {makeNewOrder, clearCart} from '../store'
 
 const CheckoutPage = (props) => {
     console.log(">>>>>", props)
@@ -42,62 +42,35 @@ const CheckoutPage = (props) => {
                             </div>
 
                             ))}
-                            
-                            {/* <div className="info info-horizontal">
-                                <div className="icon icon-primary">
-                                    <i className="material-icons">phone</i>
-                                </div>
-                                <div className="description">
-                                    <h4 className="info-title">Give us a ring</h4>
-                                    <p> Michael Jordan<br />
-                                        +40 762 321 762<br />
-                                        Mon - Fri, 8:00-22:00
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div className="info info-horizontal">
-                                <div className="icon icon-primary">
-                                    <i className="material-icons">business_center</i>
-                                </div>
-                                <div className="description">
-                                    <h4 className="info-title">Legal Information</h4>
-                                    <p> Creative Tim Ltd.<br />
-                                        VAT &middot; EN2341241<br />
-                                        IBAN &middot; EN8732ENGB2300099123<br />
-                                        Bank &middot; Great Britain Bank
-                                    </p>
-                                </div>
-                            </div> */}
 
                         </div>
 
                         <div className="col-md-6 col-md-offset-2">
                             <p className="description">Enter your details below! We'll deliver your puppies right away.<br />
                             </p>
-                            <form onSubmit={handleSubmit} role="form" id="contact-form" method="post">
+                            <form onSubmit={e => handleSubmit(e, props.user.id, props.cart)} role="form" id="contact-form" method="post">
                                 <div className="form-group label-floating">
-                                    <label className="control-label">Your name</label>
-                                    <input type="text" name="name" className="form-control" />
+                                    <label className="control-label">Recipient Name</label>
+                                    <input type="text" name="recipientName" className="form-control" />
                                 </div>
                                 
                                 <div className="form-group label-floating">
-                                    <label className="control-label">Email address</label>
-                                    <input type="email" name="email" className="form-control"/>
+                                    <label className="control-label">Confirmation Email</label>
+                                    <input type="email" name="confirmationEmail" className="form-control"/>
                                 </div>
                                 <br />
                                 <div className="form-group label-floating">
-                                    <label className="control-label">Shipping Address</label>
-                                    <input type="text" name="address" className="form-control"/>
+                                    <label className="control-label">Recipient Address</label>
+                                    <input type="text" name="recipientAddress" className="form-control"/>
                                 </div>
                                 <div className="form-group label-floating">
-                                    <label className="control-label">Phone</label>
-                                    <input type="text" name="phone" className="form-control"/>
+                                    <label className="control-label">Recipient Phone</label>
+                                    <input type="text" name="recipientPhone" className="form-control"/>
                                 </div>
                                 <br />
                                 <div className="form-group label-floating">
                                     <label className="control-label">Special Instructions</label>
-                                    <textarea name="message" className="form-control" id="message" rows="3"></textarea>
+                                    <textarea name="specialInstructions" className="form-control" id="message" rows="3"></textarea>
                                 </div>
                                 <br />
                                 <div className="submit text-center">
@@ -116,16 +89,27 @@ const CheckoutPage = (props) => {
 
     const mapDispatch = (dispatch) => {
         return {
-            handleSubmit (evt) {
+            handleSubmit (evt, userid, cart) {
                 evt.preventDefault()
                 // submit cart data into the user's orders
+                let {recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions} = evt.target;
+                [recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions] = [recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions].map(x => x.value)
                 // create an obj 
                 let order = {
                     status: 'CREATED', 
-                    items: [].push(props.cart.map((element, index) => {element.product.name})), 
-                    subTotal: props.cart.map((element, index) => {element.product.price * element.quantity}) 
+                    items: cart.map((element, index) => ({
+                        product: element.product, 
+                        quantity: element.quantity, 
+                        price: element.product.price
+                    })),
+                    recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions
                 }
-                dispatch(makeNewOrder(order))
+                console.log('userid', userid)
+                console.log('order', order)
+                dispatch(makeNewOrder(userid, order))
+                // after its successfully completed we should do something
+                // clear the cart and send to thank you page
+                dispatch(clearCart())
             }
         }
     }
@@ -133,11 +117,7 @@ const CheckoutPage = (props) => {
     const mapPropToCart = (state) => {
       return {
         cart: state.cart,
-    
-        // clickHandler: (word) => {
-        //   console.log(word)
-        //   addToCart(word)
-        // }
+        user: state.user
       }
     }
     

@@ -84,6 +84,7 @@ router.post('/:id/orders', isSelfOrAdmin, (req, res, next) => {
   // no need to find user
   // create order
   let neworder = req.body
+  console.log('neworder', neworder)
   neworder['userId'] = req.params.id
   Order.create(neworder)
     .then(order => res.json(order))

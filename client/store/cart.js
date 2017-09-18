@@ -5,6 +5,7 @@ import history from '../history'
  * ACTION TYPES
  */
 const GET_CART = 'GET_CART'
+const CLEAR_CART = 'CLEAR_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
 
@@ -31,6 +32,7 @@ else {
 export const getCart = () => ({ type: GET_CART })
 export const addToCart = product => ({type: ADD_TO_CART, product})
 export const deleteFromCart = product => ({type: DELETE_FROM_CART, product})
+export const clearCart = () =>  ({ type: CLEAR_CART })
 
 /**
  * REDUCER
@@ -38,7 +40,10 @@ export const deleteFromCart = product => ({type: DELETE_FROM_CART, product})
 export default function (state = currentCart, action) {
   let products, searchid;
   switch (action.type) {
-
+    case CLEAR_CART:
+      console.log('****THANK YOU PAGE! :) 😃 *** ')
+      history.push('/thankyou')
+      return []
     case GET_CART:
       return state;
 
