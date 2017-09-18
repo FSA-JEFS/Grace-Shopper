@@ -14,52 +14,32 @@ const ShoppingCart = (props) => {
           <div className="row">
             <div className="col-md-12">
 
-              <div className="card card-signup">
-                <div className="col-md-12">
-                  <div className="table-responsive">
-                    <table className="table table-shopping">
-                      <thead>
-                        <tr>
-                          <th className="text-center"></th>
-                          <th >Product</th>
-                          <th className="th-description">Breed</th>
-                          <th className="text-right">Price</th>
-                          <th className="text-right">Qty</th>
-                          <th className="text-right">Amount</th>
-                          <th></th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {props.cart.length && props.cart.map((element, index) => (
-                          <tr key={element.id}>
-                            <td>
-                              <div className="img-container">
-                                <Link to={`/products/${element.product.id}`}>
-                                  <img src={element.product.photos[0]} alt="..." />
-                                </Link>
-                              </div>
-                            </td>
-                            <td className="td-name">
-                              <Link to={`/products/${element.product.id}`}>
-                                {element.product.name}
-                              </Link>
-                              <br /><small>from {element.product.breeder}</small>
-                            </td>
-                            <td>
-                              {element.product.breed}
-                            </td>
-                            <td className="td-number">
-                              <small>&euro;</small>{element.product.price}
-                            </td>
-                            <td className="td-number">
-                              {element.quantity}
-                              <div className="btn-group">
-                                <button className="btn btn-round btn-info btn-xs" onClick={() => props.handleMinus(element)}> <i className="material-icons">remove</i> </button>
-                                <button className="btn btn-round btn-info btn-xs" onClick={() => props.handlePlus(element)}> <i className="material-icons">add</i> </button>
-                              </div>
-                            </td>
-                            <td className="td-number">
-                              <small>&euro;</small>xxx
+					  <div className="card card-signup">
+            				<div className="col-md-12">
+		                        <div className="table-responsive">
+		                        <table className="table table-shopping">
+		                            <thead>
+		                                <tr>
+		                                    <th className="text-center"></th>
+		                                    <th >Product</th>
+		                                    <th className="th-description">Breed</th>
+		                                    <th className="text-right">Price</th>
+		                                    <th className="text-right">Qty</th>
+		                                    <th className="text-right">Amount</th>
+		                                    <th></th>
+		                                </tr>
+		                            </thead>
+		                            <tbody>
+                                  {props.cart.length && props.cart.map((element, index) => (
+		                                <tr key={element.id}>
+		                                    <td>
+		                                        <div className="img-container">
+								  					<Link to={`/products/${element.product.id}`}>
+													  {
+														  element.product.photos ? <img src={element.product.photos[0]} alt="..." /> : <div></div>
+													  }
+													</Link>
+		                                        </div>
 		                                    </td>
                             <td className="td-actions">
                               <button type="button" rel="tooltip" data-placement="left" title="Remove item" className="btn btn-simple" onClick={() => props.handleDelete(element)}>

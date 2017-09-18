@@ -3,8 +3,6 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import UserPageDetails from './UserPage-Details'
 import UserPageEdits from './UserPage-Edits'
-import MyOrders from './MyOrders'
-import { } from '../store'
 
 class UserPage extends Component {
 

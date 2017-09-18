@@ -39,3 +39,5 @@ router.get('/me', (req, res) => {
 })
 
 router.use('/google', require('./google'))
+router.use('/twitter', require('./twitter'))
+router.use('/facebook', require('./facebook'))
