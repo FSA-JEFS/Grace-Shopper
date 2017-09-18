@@ -33,6 +33,12 @@ export const makeNewOrder = (userId, order) => dispatch =>
     axios.post('/api/users/' + userId + '/orders', order)
       .then(res => {
         dispatch(createNewOrder(res.data))
+        console.log(order)
+        return axios.post('/api/email/sendCheckoutMail', {
+          order,
+          subtotal: order.items.reduce((acc, i) => i.quantity * i.price + acc, 0),
+          to: order.confirmationEmail
+        })
       })
       .catch(err => console.log(err))
 
