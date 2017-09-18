@@ -5,6 +5,7 @@ const { isAdmin } = require("./gatekeepers");
 module.exports = router
 
 router.use('/users', require('./users'))
+router.use('/email', require('./email'))
 router.use('/products', require('./products'))
 
 router.get('/orders', isAdmin, (req, res, next) => {
