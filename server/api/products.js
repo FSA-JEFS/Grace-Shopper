@@ -20,15 +20,6 @@ router.get("/products/:id/reviews", (req, res, next) => {
     .catch(next);
 });
 
-// Get one puppy, with reviews
-router.get("/:id", (req, res, next) => {
-  Product.findById(req.params.id, {
-    include: [{ model: Review, as: "review" }]
-  })
-    .then(product => res.json(product))
-    .catch(next);
-});
-
 // Get puppies by breeder
 router.get("/breeder/:breeder", (req, res, next) => {
   Product.findAll({
@@ -79,8 +70,18 @@ router.get("/tag/:tag", (req, res, next) => {
 
 //Create a new product
 router.post("/add-product", isAdmin, (req, res, next) => {
+  console.log('req.body', req.body)
   return Product.create(req.body)
     .then(product => res.status(201).send(product))
+    .catch(next);
+});
+
+// Get one puppy, with reviews
+router.get("/:id", (req, res, next) => {
+  Product.findById(req.params.id, {
+    include: [{ model: Review, as: "review" }]
+  })
+    .then(product => res.json(product))
     .catch(next);
 });
 
@@ -97,6 +98,7 @@ router.delete("/:id", isAdmin, (req, res, next) => {
 
 // edit puppy details
 router.put("/:id", isAdmin, (req, res, next) => {
+  // console.log('---req.body', req.body)
   return Product.update(req.body, {
     where: {
       id: req.params.id
@@ -104,6 +106,7 @@ router.put("/:id", isAdmin, (req, res, next) => {
     returning: true
   })
     .then(result => {
+      // console.log('***req.body', result)
       result[1][0] ? res.json(result[1][0]) : res.sendStatus(404);
     })
     .catch(next);

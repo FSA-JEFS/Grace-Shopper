@@ -6,6 +6,7 @@ import history from '../history'
  */
 const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const DELETE_FROM_CART = 'DELETE_FROM_CART'
 
 /**
@@ -30,6 +31,7 @@ else {
  */
 export const getCart = () => ({ type: GET_CART })
 export const addToCart = product => ({type: ADD_TO_CART, product})
+export const removeFromCart = product => ({type: REMOVE_FROM_CART, product})
 export const deleteFromCart = product => ({type: DELETE_FROM_CART, product})
 
 /**
@@ -62,7 +64,7 @@ export default function (state = currentCart, action) {
     history.push('/cart')
     return products
 
-    case DELETE_FROM_CART:
+    case REMOVE_FROM_CART:
     // search state to find if id is already there
     searchid = state.findIndex(el => el.id === action.product.id)
     if (searchid > -1) {
@@ -74,6 +76,17 @@ export default function (state = currentCart, action) {
       localStorage.setItem('cart', JSON.stringify(products))
       history.push('/cart')
       return products
+
+    case DELETE_FROM_CART:
+      searchid = state.findIndex(el => el.id === action.product.id)
+      if (searchid > -1) {
+        products = state;
+        products.splice(searchid, 1)
+      }
+      localStorage.setItem('cart', JSON.stringify(products))
+      history.push('/cart')
+      return products
+
     default:
       return state
   }

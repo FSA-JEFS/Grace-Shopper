@@ -2,14 +2,14 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {getCart, addToCart, deleteFromCart} from '../store'
+import {getCart, addToCart, removeFromCart, deleteFromCart} from '../store'
 
 const ShoppingCart = (props) => {
   const products = props.products
 
   return (
     <div className='signup-page'>
-      <div className="page-header header-filter" style={{backgroundImage: "url('../resources/assets/img/bg7.jpg')", backgroundSize: "cover", backgroundPosition: "top center"}}>
+      <div className="page-header header-filter" style={{backgroundImage: "url('http://teddybearpuppydogs.com/wp-content/uploads/2015/08/cute-teddy-bear-puppies.jpg')", backgroundSize: "cover", backgroundPosition: "top center"}}>
     	  <div className="container">
 			    <div className="row">
     			  <div className="col-md-12">
@@ -62,7 +62,7 @@ const ShoppingCart = (props) => {
 		                                        <small>&euro;</small>xxx
 		                                    </td>
 		                                    <td className="td-actions">
-		                                        <button type="button" rel="tooltip" data-placement="left" title="Remove item" className="btn btn-simple" onClick={() => props.handlDelete(index)}>
+		                                        <button type="button" rel="tooltip" data-placement="left" title="Remove item" className="btn btn-simple" onClick={() => props.handleDelete(element)}>
 		                                            <i className="material-icons">close</i>
 		                                        </button>
 		                                    </td>
@@ -113,6 +113,10 @@ const mapDispatch = (dispatch) => {
 		dispatch(addToCart(product))
 	},
 	handleMinus(product){
+		console.log("*****", product)
+		dispatch(removeFromCart(product))
+	},
+	handleDelete(product){
 		console.log("*****", product)
 		dispatch(deleteFromCart(product))
 	}

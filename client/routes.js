@@ -7,14 +7,15 @@ import history        from './history'
 import { me }         from './store'
 import { Main, Login, Signup, Navbar, BlackSimpleFooter } from './components'
 import UserHome       from './components/UserHome'
-import AllProducts      from './components/AllProducts'
+import PuppyList      from './components/PuppyList'
 import SinglePuppy  from './components/SinglePuppy'
+import ProductByBreed from './components/ProductByBreed'
 import ShoppingCart   from './components/ShoppingCart'
 import CheckoutPage   from './components/CheckoutPage'
 import UserPage       from './Components/UserPage'
 import Scroll         from './components/Scroll'
-import MyOrders         from './components/MyOrders'
-import Admin         from './components/Admin'
+// import MyOrders         from './components/MyOrders'
+import Admin          from './components/Admin'
 
 /**
  * COMPONENT
@@ -38,13 +39,14 @@ class Routes extends Component {
               <Scroll exact path='/admin' component={Admin} />
               <Scroll exact path='/login' component={Login} />
               <Scroll exact path='/signup' component={Signup} />
-              <Scroll exact path='/products' component={AllProducts} />
+              <Scroll exact path='/products' component={PuppyList} />
               <Scroll exact path='/products/:id' component={SinglePuppy} />
+              <Scroll exact path='/products/breed/:breed' component={ProductByBreed} />
               <Scroll exact path='/myaccount' component={UserPage} />
-              <Scroll exact path='/orders' component={MyOrders} />
+
+              {/*<Scroll exact path='/orders' component={MyOrders} />*/}
               <Scroll exact path='/cart' component={ShoppingCart} />
               <Scroll exact path='/checkout' component={CheckoutPage} />
-              <Scroll component={Login} />
             </Switch>
           </Main>
           <BlackSimpleFooter />

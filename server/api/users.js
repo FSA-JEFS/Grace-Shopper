@@ -15,7 +15,7 @@ router.get('/', isAdmin, (req, res, next) => {
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
-    attributes: ['id', 'email', 'isAdmin', 'tags']
+    attributes: ['id', 'email', 'isAdmin', 'tags', 'name']
   })
     .then(users => res.json(users))
     .catch(next)
@@ -63,9 +63,9 @@ router.delete('/:id', isSelfOrAdmin, (req, res, next) => {
     .catch(next)
 })
 
-//  edit user 
+//  edit user
 // TODO: what if user wants to edit own info but we have block from making himself an admin.
-router.put('/:id', isAdmin, (req, res, next) => {
+router.put('/:id', isSelfOrAdmin, (req, res, next) => {
   User.findById(req.params.id)
     .then(user => {
       if (!user) return res.sendStatus(404);
