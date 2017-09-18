@@ -29,6 +29,9 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  twitterId: {
+    type: Sequelize.STRING
   }
 })
 

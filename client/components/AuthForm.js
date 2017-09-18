@@ -40,7 +40,7 @@ const AuthForm = (props) => {
 									<a href="#pablo" className="btn btn-just-icon btn-simple">
 										<i className="fa fa-facebook-square"></i>
 									</a>
-									<a href="#pablo" className="btn btn-just-icon btn-simple">
+									<a href="/auth/twitter" className="btn btn-just-icon btn-simple">
 										<i className="fa fa-twitter"></i>
 									</a>
 									<a href="/auth/google" className="btn btn-just-icon btn-simple">
@@ -74,7 +74,7 @@ const AuthForm = (props) => {
 
 								<div className="checkbox">
 									<label>
-										<input type="checkbox" name="optionsCheckboxes" checked/>
+										<input type="checkbox" name="optionsCheckboxes" checked="true"/>
 										Subscribe to newsletter
 									</label>
 								</div>
