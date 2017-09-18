@@ -1,14 +1,15 @@
 import React from 'react'
-import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
+// import PropTypes from 'prop-types'
+// import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { getCart, addToCart, deleteFromCart } from '../store'
+// import { getCart, addToCart, deleteFromCart } from '../store'
 
 const OrderComponent = (props) => {
   const order = props.order
   console.log('order', props.order)
 
   return (
+    //<h1>We rendered!</h1>
     <div className="container">
       <div className="row">
         <div className="col-md-12">
@@ -28,7 +29,7 @@ const OrderComponent = (props) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {props.order.length && props.order.items.map((item, index) => (
+                    {props.order.items && props.order.items.map((item, index) => (
                       <tr key={item.id}>
                         <td className="td-name">
                           <Link to={`/products/${item.product.id}`}>
@@ -75,3 +76,5 @@ const OrderComponent = (props) => {
     </div>
   )
 }
+
+export default OrderComponent

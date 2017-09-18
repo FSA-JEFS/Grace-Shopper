@@ -8,20 +8,21 @@ import OrderComponent from './OrderComponent'
  */
 
 class MyOrders extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      orders: this.props.orders,
-      user: this.props.user
-    }
-    this.fetchData = this.props.fetchData.bind(this)
-  }
+  // constructor(props) {
+  //   super(props)
+    // this.state = {
+    //   orders: this.props.orders,
+    //   user: this.props.user
+    // }
+    //this.fetchData = this.props.fetchData.bind(this)
+  // }
 
   componentDidMount() {
+    const user = this.props.user
     console.log('***** componount did mount', this.props.user)
-    if (this.props.user.id){
-      console.log(this.props.user)
-      this.fetchData(this.props.user.id)
+    if (user.id){
+      console.log('&&&&& running in component did mount', user)
+      this.props.fetchData(user.id)
     }
   }
 
@@ -35,23 +36,23 @@ class MyOrders extends Component {
 
 
   render() {
+
+
     return (
-    <div className='signup-page'>
-      <div className="page-header header-filter" style={{ backgroundImage: "url('../resources/assets/img/bg7.jpg')", backgroundSize: "cover", backgroundPosition: "top center" }}>
-        {this.state.orders.map((order) => {
+    <div>
+        {this.props.orders && this.props.orders.map((order) => {
           return <OrderComponent order={order} key={order.id} />
         })}
-      </div>
     </div>
-  )
+    )
   }
 }
 
 const mapState = (state) => {
   console.log('Mapping state', state)
   return {
-    orders: state.order,
-    user: state.user
+    orders: state.order
+    //user: state.user
   }
 }
 
