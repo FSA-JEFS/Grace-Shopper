@@ -8,14 +8,6 @@ import OrderComponent from './OrderComponent'
  */
 
 class MyOrders extends Component {
-  // constructor(props) {
-  //   super(props)
-    // this.state = {
-    //   orders: this.props.orders,
-    //   user: this.props.user
-    // }
-    //this.fetchData = this.props.fetchData.bind(this)
-  // }
 
   componentDidMount() {
     const user = this.props.user
@@ -26,20 +18,13 @@ class MyOrders extends Component {
     }
   }
 
-  // componentWillReceiveProps(newProps) {
-  //   console.log('***** componentWillRecieveProps', this.state.user)
-  //   if (newProps.user.id) {
-  //     console.log(newProps.user)
-  //     this.fetchData(newProps.user.id)
-  //   }
-  // }
-
-
   render() {
 
 
     return (
     <div>
+      <h3 className="tim-note"> My Order History
+          </h3>
         {this.props.orders && this.props.orders.map((order) => {
           return <OrderComponent order={order} key={order.id} />
         })}
