@@ -9,7 +9,7 @@ const ShoppingCart = (props) => {
 
   return (
     <div className='signup-page'>
-      <div className="page-header header-filter" style={{backgroundImage: "url('../resources/assets/img/bg7.jpg')", backgroundSize: "cover", backgroundPosition: "top center"}}>
+      <div className="page-header header-filter" style={{backgroundImage: "url('http://teddybearpuppydogs.com/wp-content/uploads/2015/08/cute-teddy-bear-puppies.jpg')", backgroundSize: "cover", backgroundPosition: "top center"}}>
     	  <div className="container">
 			    <div className="row">
     			  <div className="col-md-12">

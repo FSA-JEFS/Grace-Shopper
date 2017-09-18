@@ -9,7 +9,6 @@ class UserPage extends Component {
 
   render(){
     const {user, isLoggedIn} = this.props
-    console.log('loggedin', isLoggedIn)
 
   return (
     <div className='signup-page'>

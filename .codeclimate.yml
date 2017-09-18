@@ -1,0 +1,18 @@
+## https://docs.codeclimate.com/v1.0/docs/configuring-your-analysis
+## JavaScript: true
+engines:
+  eslint:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - javascript:
+ratings:
+  paths:
+  - client/**
+  - server/**
+
+exclude_paths:
+- "public"
+- "node_modules"

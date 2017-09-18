@@ -14,7 +14,7 @@ class AllPuppies extends Component {
 
   return (
     <div className="blog-posts">
-      <div className="page-header header-filter header-small" style={{ backgroundImage: `url("../resources/assets/img/examples/blog8.jpg")` }}>
+      <div className="page-header header-filter header-small" style={{ backgroundImage: `url("../resources/assets/img/jeremy-wong-342291.jpg")` }}>
         <div className="container">
           <div className="row">
             <div className="col-md-8 col-md-offset-2 text-center">

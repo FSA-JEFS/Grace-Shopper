@@ -14,7 +14,7 @@ import ShoppingCart   from './components/ShoppingCart'
 import CheckoutPage   from './components/CheckoutPage'
 import UserPage       from './Components/UserPage'
 import Scroll         from './components/Scroll'
-import MyOrders         from './components/MyOrders'
+// import MyOrders         from './components/MyOrders'
 import Admin          from './components/Admin'
 
 /**
@@ -44,7 +44,7 @@ class Routes extends Component {
               <Scroll exact path='/products/breed/:breed' component={ProductByBreed} />
               <Scroll exact path='/myaccount' component={UserPage} />
 
-              <Scroll exact path='/orders' component={MyOrders} />
+              {/*<Scroll exact path='/orders' component={MyOrders} />*/}
               <Scroll exact path='/cart' component={ShoppingCart} />
               <Scroll exact path='/checkout' component={CheckoutPage} />
             </Switch>

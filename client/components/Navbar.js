@@ -35,19 +35,30 @@ const Navbar = props =>
                 </Link>
               </li>}
           {props.isLoggedIn
-            ? <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-                  <i className="material-icons">view_carousel</i> My Account
-                  <b className="caret" />
-                </a>
-                <ul className="dropdown-menu dropdown-with-icons">
-                  <li>
-                    <a href="examples/about-us.html">
-                      <i className="material-icons">account_balance</i> About Us
-                    </a>
-                  </li>
-                </ul>
-              </li>
+            ? props.user.isAdmin ? 
+                <li className="dropdown">
+                  <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+                    <i className="material-icons">view_carousel</i> Accounts
+                    <b className="caret" />
+                  </a>
+                  <ul className="dropdown-menu dropdown-with-icons">
+                    <li>
+                      <Link to="/admin">
+                        <i className="material-icons">account_balance</i> Admin Panel
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/myaccount">
+                        <i className="material-icons">account_circle</i> My Account
+                      </Link>
+                    </li>
+                  </ul>
+                </li>
+              : <li>
+                  <Link to="/myaccount">
+                    <i className="material-icons">view_carousel</i> My Account
+                  </Link>
+                </li>
             : <li>
                 <Link to="/signup">
                   <i className="material-icons">assignment</i> Sign Up
@@ -59,55 +70,6 @@ const Navbar = props =>
             <Link to="/products">
               <i className="material-icons">apps</i> All Puppies
             </Link>
-          </li>
-
-          <li className="dropdown">
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-              <i className="material-icons">view_day</i> Sections
-              <b className="caret" />
-            </a>
-            <ul className="dropdown-menu dropdown-with-icons">
-              <li>
-                <a href="sections.html#headers">
-                  <i className="material-icons">dns</i> Headers
-                </a>
-              </li>
-              <li>
-                <a href="sections.html#features">
-                  <i className="material-icons">build</i> Features
-                </a>
-              </li>
-              <li>
-                <a href="sections.html#blogs">
-                  <i className="material-icons">list</i> Blogs
-                </a>
-              </li>
-              <li>
-                <a href="sections.html#teams">
-                  <i className="material-icons">people</i> Teams
-                </a>
-              </li>
-              <li>
-                <a href="sections.html#projects">
-                  <i className="material-icons">assignment</i> Projects
-                </a>
-              </li>
-              <li>
-                <a href="sections.html#pricing">
-                  <i className="material-icons">monetization_on</i> Pricing
-                </a>
-              </li>
-              <li>
-                <a href="sections.html#testimonials">
-                  <i className="material-icons">chat</i> Testimonials
-                </a>
-              </li>
-              <li>
-                <a href="sections.html#contactus">
-                  <i className="material-icons">call</i> Contacts
-                </a>
-              </li>
-            </ul>
           </li>
 
           <Link to={'/cart'}>
@@ -132,7 +94,8 @@ const Navbar = props =>
 const mapState = state => {
   return {
     isLoggedIn: !!state.user.id,
-    cart: state.cart
+    cart: state.cart,
+    user: state.user
   };
 };
 

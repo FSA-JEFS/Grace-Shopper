@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import {getCart, addToCart, deleteFromCart} from '../store'
 
 const CheckoutPage = (props) => {
-    console.log(">>>>>", props)
+    // console.log(">>>>>", props)
     const cart = props.cart.product
 
     return (

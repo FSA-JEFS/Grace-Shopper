@@ -17,7 +17,7 @@ export default (props) => {
         <br />
         <br />
         <h4 className="tim-typo">My Preferences</h4>
-          <ul>{props.user.tags && props.user.tags.map( tag => <li>{tag}</li>)}</ul>
+          <ul>{props.user.tags && props.user.tags.map( tag => <li key={tag}>{tag}</li>)}</ul>
       </div>
     </div>
   </div>
