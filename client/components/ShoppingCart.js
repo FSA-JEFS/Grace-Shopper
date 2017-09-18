@@ -1,12 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getCart, addToCart, removeFromCart, deleteFromCart } from '../store'
 
 const ShoppingCart = (props) => {
-  const products = props.products
-
   return (
     <div className='signup-page'>
       <div className="page-header header-filter" style={{ backgroundImage: "url('http://teddybearpuppydogs.com/wp-content/uploads/2015/08/cute-teddy-bear-puppies.jpg')", backgroundSize: "cover", backgroundPosition: "top center" }}>
@@ -87,9 +84,6 @@ const mapPropToCart = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handlDelete(index) {
-      //dispatch(deleteFromCart(index))
-    },
     handlePlus(product) {
       dispatch(addToCart(product))
     },
