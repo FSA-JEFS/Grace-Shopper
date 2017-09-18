@@ -21,12 +21,14 @@ const getUserOrders = orders => ({ type: GET_USER_ORDERS, orders })
  * THUNK CREATORS
  */
 export const fetchOrders = (userId) => {
-  return dispatch =>
-    axios.get('/api/users/orders')
+  return dispatch => {
+    console.log('about to fetch for id', userId)
+    axios.get('/api/users/' + userId + '/orders')
       .then(res => {
         dispatch(getUserOrders(res.data || defaultOrders))
       })
       .catch(err => console.log(err))
+    }
 }
 
 /**

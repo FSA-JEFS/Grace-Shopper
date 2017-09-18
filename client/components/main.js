@@ -47,7 +47,6 @@ const mapDispatch = (dispatch) => {
     },
     fetchData() {
       dispatch(fetchProducts())
-      dispatch(fetchOrders())
     }
   }
 }

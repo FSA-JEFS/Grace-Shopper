@@ -14,7 +14,7 @@ import ShoppingCart   from './components/ShoppingCart'
 import CheckoutPage   from './components/CheckoutPage'
 import UserPage       from './Components/UserPage'
 import Scroll         from './components/Scroll'
-// import MyOrders         from './components/MyOrders'
+import MyOrders         from './components/MyOrders'
 import Admin          from './components/Admin'
 
 /**
@@ -26,7 +26,7 @@ class Routes extends Component {
   }
 
   render() {
-    const { isLoggedIn } = this.props
+    //const { isLoggedIn, user } = this.props
 
     return (
       <Router history={history}>
@@ -43,8 +43,7 @@ class Routes extends Component {
               <Scroll exact path='/products/:id' component={SinglePuppy} />
               <Scroll exact path='/products/breed/:breed' component={ProductByBreed} />
               <Scroll exact path='/myaccount' component={UserPage} />
-
-              {/*<Scroll exact path='/orders' component={MyOrders} />*/}
+              <Scroll exact path="/orders" component={MyOrders} />
               <Scroll exact path='/cart' component={ShoppingCart} />
               <Scroll exact path='/checkout' component={CheckoutPage} />
             </Switch>
@@ -63,7 +62,7 @@ const mapState = (state) => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.user.id,
   }
 }
 
