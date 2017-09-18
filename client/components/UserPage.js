@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import UserPageDetails from './UserPage-Details'
 import UserPageEdits from './UserPage-Edits'
 import MyOrders from './MyOrders'
+import CreateReview from './CreateReview'
 import { } from '../store'
 
 class UserPage extends Component {
@@ -58,6 +59,7 @@ class UserPage extends Component {
                       <Route exact path="/myaccount" render={() => <UserPageDetails user={user} />} />
                       <Route exact path="/myaccount/orders" render={() => <MyOrders user={user} />} />
                       <Route path="/myaccount/edit" render={() => <UserPageEdits user={user} />} />
+                      <Route path="/myaccount/CreateReview/:productId" render={() => <CreateReview />} />
                     </Switch>
                   </div>
                   :
