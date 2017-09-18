@@ -129,6 +129,7 @@ export default class extends React.Component {
                                     data-style="btn btn-primary btn-round"
                                     title="Change Status"
                                     data-size="7"
+                                    style={{display: 'block'}}
                                     defaultValue="unch"
                                     onChange={e =>
                                       props.adminSetOrderStatus(order.id, e.target.value)}
