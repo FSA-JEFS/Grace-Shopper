@@ -10,7 +10,6 @@ class AllPuppies extends Component {
 
   render() {
     const products = this.props.products
-    console.log(products.length)
 
   return (
     <div className="blog-posts">

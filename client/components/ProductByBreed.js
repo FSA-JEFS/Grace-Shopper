@@ -64,7 +64,6 @@ class ProductByBreed extends Component {
 }
 
 const mapState = (state, ownProps) => {
-  // console.log('Mapping state', state)
   return {
       breed: state.breed,
       breedName: ownProps.match.params.breed

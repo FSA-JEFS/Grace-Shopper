@@ -12,11 +12,7 @@ class MyOrders extends Component {
 
   componentDidMount() {
     const user = this.props.user
-    console.log('***** componount did mount', this.props.user)
-    if (user.id){
-      console.log('&&&&& running in component did mount', user)
-      this.props.fetchData(user.id)
-    }
+    if (user.id) this.props.fetchData(user.id)
   }
 
   render() {
@@ -33,7 +29,6 @@ class MyOrders extends Component {
 }
 
 const mapState = (state) => {
-  console.log('Mapping state', state)
   return {
     orders: state.order
     //user: state.user
@@ -41,10 +36,8 @@ const mapState = (state) => {
 }
 
 const mapDispatch = (dispatch, ownProps) => {
-  // console.log('Mapping state', state)
   return {
     fetchData: (userId) => {
-      console.log('about to dispatch fetch for', userId)
       dispatch(fetchOrders(userId))
     }
   }

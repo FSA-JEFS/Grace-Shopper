@@ -163,7 +163,6 @@ class SinglePuppy extends Component {
  */
 
 const mapState = (state) => {
-    // console.log('Mapping state', state)
     return {
         selectedProduct: state.selectedProduct,
         cart: state.cart

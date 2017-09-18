@@ -105,7 +105,6 @@ const mapDispatch = (dispatch) => {
 		},
 		adminSetOrderStatus(id, value){
 			dispatch(adminSetOrderStatus(id, value))
-			// console.log('adminSetOrderStatus', id, value)
 		}
 	}
 }
