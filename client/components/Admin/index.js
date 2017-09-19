@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {adminGetInfo, adminPromoteUser, adminGetProducts, adminAddProduct, adminEditProduct, adminSetOrderStatus} from '../../store'
+import {adminGetInfo, adminPromoteUser, adminGetProducts, adminAddProduct, adminEditProduct, adminSetOrderStatus, adminDelUsers} from '../../store'
 import User from './User'
 import Product from './Product'
 import Order from './Order'
@@ -105,7 +105,6 @@ const mapDispatch = (dispatch) => {
 		},
 		adminSetOrderStatus(id, value){
 			dispatch(adminSetOrderStatus(id, value))
-			// console.log('adminSetOrderStatus', id, value)
 		}
 	}
 }

@@ -14,20 +14,16 @@ class CreateReview extends Component {
   }
 
   handleChange(e) {
-    console.log(this.state)
     this.setState({reviewText: e.target.value})
   }
 
   handleSubmit(){
-    //console.log(this.state, this.props.user.id)
     axios.post(`/api/products/${this.props.match.params.productId}/reviews`, this.state)
     this.props.history.push('/myaccount/orders')
 
 
   }
   render() {
-    //const user = this.props.user
-    console.log(this.props.match.params.productId)
 
   return (
     <div className="col-md-12">
@@ -53,23 +49,3 @@ class CreateReview extends Component {
 
 
 export default CreateReview
-// const mapState = (state, ownProps) => {
-//   // console.log('Mapping state', state)
-//   console.log('in mapState', ownProps)
-//   return {
-//     selectedProduct: state.selectedProduct,
-//   }
-// }
-
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//   return {
-//     fetchPuppy() {
-//       dispatch(fetchPuppy(ownProps.match.params.productId))
-//     },
-//     handleClick(selectedProduct) {
-//         //dispatch(addToCart(selectedProduct))
-//     }
-//   }
-// }
-
-// export default connect(mapState, mapDispatchToProps)(CreateReview)

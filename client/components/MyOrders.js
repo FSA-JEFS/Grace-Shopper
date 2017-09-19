@@ -15,7 +15,6 @@ class MyOrders extends Component {
     if (user.id){
       this.props.fetchData(user.id)
     }
-    console.log(this.props.orders)
   }
 
   render() {
@@ -149,18 +148,14 @@ class MyOrders extends Component {
   }
 
 const mapState = (state) => {
-  console.log('Mapping state', state)
   return {
     orders: state.order
-    //user: state.user
   }
 }
 
 const mapDispatch = (dispatch, ownProps) => {
-  // console.log('Mapping state', state)
   return {
     fetchData: (userId) => {
-      console.log('about to dispatch fetch for', userId)
       dispatch(fetchOrders(userId))
     }
   }

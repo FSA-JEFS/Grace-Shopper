@@ -31,19 +31,11 @@ router.post("/sendCheckoutMail", isLoggedIn, function(req, res) {
   const html = generateHTML('checkout', req.body)
   mailOptions.html = html
   mailOptions.text = htmlToText.fromString(html)
-  // var mailOptions = {
-  //   to: req.body.to,
-  //   from: req.body.from,
-  //   subject: req.body.subject,
-  //   text: req.body.text
-  // };
-  // console.log(mailOptions);
   smtpTransport.sendMail(mailOptions, function(error, response) {
     if (error) {
-      console.log('nodemailer error', error);
+      console.err('nodemailer error', error);
       res.sendStatus(500)
     } else {
-      // console.log("Message sent: " + response.message);
       res.json(response)
     }
   });

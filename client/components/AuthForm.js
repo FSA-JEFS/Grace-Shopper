@@ -3,26 +3,6 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
 
-/**
- * COMPONENT
- */
-// <div>
-//   <form onSubmit={handleSubmit} name={name}>
-//     <div>
-//       <label htmlFor='email'><small>Email</small></label>
-//       <input name='email' type='text' />
-//     </div>
-//     <div>
-//       <label htmlFor='password'><small>Password</small></label>
-//       <input name='password' type='password' />
-//     </div>
-//     <div>
-//       <button type='submit'>{displayName}</button>
-//     </div>
-//     {error && error.response && <div> {error.response.data} </div>}
-//   </form>
-//   <a href='/auth/google'>{displayName} with Google</a>
-// </div>
 const AuthForm = (props) => {
   const {name, displayName, handleSubmit, error} = props
 
@@ -37,10 +17,10 @@ const AuthForm = (props) => {
 							<div className="header header-primary text-center" style={{display: "block"}}>
 								<h4 className="card-title">{displayName}</h4>
 								<div className="social-line">
-									<a href="#pablo" className="btn btn-just-icon btn-simple">
+									<a href="auth/facebook" className="btn btn-just-icon btn-simple">
 										<i className="fa fa-facebook-square"></i>
 									</a>
-									<a href="#pablo" className="btn btn-just-icon btn-simple">
+									<a href="/auth/twitter" className="btn btn-just-icon btn-simple">
 										<i className="fa fa-twitter"></i>
 									</a>
 									<a href="/auth/google" className="btn btn-just-icon btn-simple">
@@ -72,12 +52,6 @@ const AuthForm = (props) => {
 									<input type="password" placeholder="Password..." name="password" className="form-control" />
 								</div>
 
-								<div className="checkbox">
-									<label>
-										<input type="checkbox" name="optionsCheckboxes" checked/>
-										Subscribe to newsletter
-									</label>
-								</div>
 							</div>
 							<div className="footer text-center" style={{display: "block"}}>
 								<button type="submit">Get Started</button>
@@ -123,7 +97,7 @@ const mapDispatch = (dispatch) => {
       const email = evt.target.email.value
       const password = evt.target.password.value
       const firstName = evt.target.firstName && evt.target.firstName.value
-      dispatch(auth(email, password, formName, firstName))
+      dispatch(auth(firstName, email, password, formName))
     }
   }
 }
