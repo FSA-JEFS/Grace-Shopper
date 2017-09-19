@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React,  { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -96,35 +96,35 @@ class SinglePuppy extends Component {
                                           <h4 className="panel-title">
                                           Description
                                           <i className="material-icons">keyboard_arrow_down</i>
-                            </h4>
-                          </a>
-                        </div>
-                        <div id="collapseOne" className="panel-collapse collapse in">
-                          <div className="panel-body">
-                            <p>{product.description}</p>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="panel panel-border panel-default">
-                        <div className="panel-heading" role="tab" id="headingOne">
-                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-controls="collapseOne">
-                            <h4 className="panel-title">
-                              Designer Information
-                                          <i className="material-icons">keyboard_arrow_down</i>
-                            </h4>
-                          </a>
-                        </div>
-                        <div id="collapseTwo" className="panel-collapse collapse">
-                          <div className="panel-body">
-                            An infusion of West Coast cool and New York attitude, Rebecca Minkoff is synonymous with It girl style. Minkoff burst on the fashion scene with her best-selling 'Morning After Bag' and later expanded her offering with the Rebecca Minkoff Collection - a range of luxe city staples with a "downtown romantic" theme.
+                                          </h4>
+                                      </a>
                                   </div>
-                        </div>
-                      </div>
-                      <div className="panel panel-border panel-default">
-                        <div className="panel-heading" role="tab" id="headingOne">
-                          <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseOne">
-                            <h4 className="panel-title">
-                              Details and Care
+                                  <div id="collapseOne" className="panel-collapse collapse in">
+                                  <div className="panel-body">
+                                      <p>{product.description}</p>
+                                  </div>
+                                  </div>
+                              </div>
+                              <div className="panel panel-border panel-default">
+                                  <div className="panel-heading" role="tab" id="headingOne">
+                                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-controls="collapseOne">
+                                          <h4 className="panel-title">
+                                          Designer Information
+                                          <i className="material-icons">keyboard_arrow_down</i>
+                                          </h4>
+                                      </a>
+                                  </div>
+                                  <div id="collapseTwo" className="panel-collapse collapse">
+                                  <div className="panel-body">
+                                      An infusion of West Coast cool and New York attitude, Rebecca Minkoff is synonymous with It girl style. Minkoff burst on the fashion scene with her best-selling 'Morning After Bag' and later expanded her offering with the Rebecca Minkoff Collection - a range of luxe city staples with a "downtown romantic" theme.
+                                  </div>
+                                  </div>
+                              </div>
+                              <div className="panel panel-border panel-default">
+                                  <div className="panel-heading" role="tab" id="headingOne">
+                                      <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseOne">
+                                          <h4 className="panel-title">
+                                          Details and Care
                                           <i className="material-icons">keyboard_arrow_down</i>
                                           </h4>
                                       </a>
@@ -148,16 +148,13 @@ class SinglePuppy extends Component {
                                   <button className="btn btn-rose btn-round" onClick={() => this.props.handleClick(this.props.selectedProduct)}>Add to Cart &nbsp;<i className="material-icons" >shopping_cart</i></button>
                               </div>
                           </div>
-                        </div>
                       </div>
                   </div>
               </div>
-            </div>
           </div>
-        </div>
-      </div>
-    )
-  }
+          </div>
+        )
+    }
 }
 
 
@@ -167,23 +164,23 @@ class SinglePuppy extends Component {
 
 const mapState = (state) => {
     return {
-      selectedProduct: state.selectedProduct,
-      cart: state.cart
+        selectedProduct: state.selectedProduct,
+        cart: state.cart
     }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    fetchPuppy() {
-      dispatch(fetchPuppy(ownProps.match.params.id))
-    },
-    handleClick(selectedProduct) {
-      dispatch(addToCart(selectedProduct))
-    },
-    getCart() {
-      dispatch(getCart())
+    return {
+        fetchPuppy() {
+            dispatch(fetchPuppy(ownProps.match.params.id))
+        },
+        handleClick(selectedProduct) {
+            dispatch(addToCart(selectedProduct))
+        },
+        getCart() {
+            dispatch(getCart())
+        }
     }
-  }
 }
 
 export default connect(mapState, mapDispatchToProps)(SinglePuppy)
