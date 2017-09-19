@@ -3,8 +3,8 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import UserPageDetails from './UserPage-Details'
 import UserPageEdits from './UserPage-Edits'
-import CreateReview from './CreateReview'
-import MyOrders from './MyOrders'
+import UserPageOrders from './UserPage-Orders'
+import CreateReview from '../CreateReview'
 
 const UserPage = (props) => {
   const { user, isLoggedIn } = props
@@ -54,7 +54,7 @@ const UserPage = (props) => {
                   <div>
                     <Switch>
                       <Route exact path="/myaccount" render={() => <UserPageDetails user={user} />} />
-                      <Route exact path="/myaccount/orders" render={() => <MyOrders user={user} />} />
+                      <Route exact path="/myaccount/orders" render={() => <UserPageOrders user={user} />} />
                       <Route path="/myaccount/edit" render={() => <UserPageEdits user={user} />} />
                       <Route path="/myaccount/CreateReview/:productId" component={CreateReview} />
                     </Switch>
