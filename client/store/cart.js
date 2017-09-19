@@ -45,6 +45,7 @@ export default function (state = currentCart, action) {
     case CLEAR_CART:
       console.log('****THANK YOU PAGE! :) 😃 *** ')
       history.push('/thankyou')
+      localStorage.setItem('cart', [])
       return []
     case GET_CART:
       return state;
