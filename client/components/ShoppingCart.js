@@ -25,19 +25,22 @@ const ShoppingCart = (props) => {
                               <th className="text-right">Amount</th>
                               <th></th>
 		                        </tr>
-		                            </thead>
-		                            <tbody>
-                                  {props.cart.length && props.cart.map((element, index) => (
-		                                <tr key={element.id}>
-		                                    <td>
-		                                        <div className="img-container">
-			                          <Link to={`/products/${element.product.id}`}>
-													  {
-														  element.product.photos ? <img src={element.product.photos[0]} alt="..." /> : <div></div>
-													  }
-													</Link>
-		                                        </div>
-		                                    </td>
+                          </thead>
+                          <tbody>
+                            {props.cart.length && props.cart.map((element, index) => (
+                              <tr key={element.id}>
+                                <td>
+                                  <div className="img-container">
+                                    <Link to={`/products/${element.product.id}`}>
+                                      {
+                                        element.product.photos ? 
+                                          <img src={element.product.photos[0]} alt="..." /> 
+                                          : 
+                                          <div></div>
+                                      }
+                                    </Link>
+                                  </div>
+                              </td>
                             <td className="td-actions">
                               <button type="button" rel="tooltip" data-placement="left" title="Remove item" className="btn btn-simple" onClick={() => props.handleDelete(element)}>
                                 <i className="material-icons">close</i>
@@ -48,9 +51,7 @@ const ShoppingCart = (props) => {
                         <tr>
                           <td colSpan="2">
                           </td>
-                          <td className="td-total">
-                            Total
-		                                    </td>
+                          <td className="td-total"> Total </td>
                           <td className="td-price">
                             <small>$</small>{props.cart.map(el => el.product.price * el.quantity).reduce((a, b) => a + b, 0)}
                           </td>

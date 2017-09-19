@@ -33,10 +33,6 @@ export const auth = (name, email, password, method) =>
     axios.post(`/auth/${method}`, { name, email, password })
       .then(res => {
         dispatch(getUser(res.data))
-<<<<<<< HEAD
-        // console.log('about to push', history)
-=======
->>>>>>> master
         res.data.isAdmin ? history.push('/admin') : history.push('/products')
       })
       .catch(error =>
