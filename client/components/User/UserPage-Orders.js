@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { fetchOrders } from '../store/order'
-import CreateReview from './CreateReview'
+import { fetchOrders } from '../../store/order'
+import CreateReview from '../CreateReview'
 
 /**
  * CONTAINER for OrderList, passes all of the current user's orders to it
