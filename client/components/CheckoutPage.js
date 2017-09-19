@@ -76,7 +76,7 @@ const CheckoutPage = (props) => {
 
                 <Checkout
                   name={'Confirm purchase'}
-                  description={"Change someone's life!"}
+                  description={"This is only a test page, enter 4242 4242 4242 4242 for credit card"}
                   amount={props.cart.map(el => el.product.price * el.quantity).reduce((a,b) => a+b, 0)}
                   successPayment={successPayment}
                 />
