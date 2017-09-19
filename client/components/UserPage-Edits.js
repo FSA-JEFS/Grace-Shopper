@@ -30,6 +30,7 @@ class UserPageEdits extends Component {
   render() {
     const user = this.props.user
 
+
   return (
     <div className="col-md-12">
       <div className="table-responsive">
@@ -45,14 +46,14 @@ class UserPageEdits extends Component {
             </div>
             <div className="form-group">
               <h4>Email</h4>
-              <input type="text" placeholder={user.email} name="email" onChange={this.handleChange}className="form-control" />
+              <input type="text" placeholder={user.email} name="email" onChange={this.handleChange} className="form-control" />
             </div>
 
             <br />
             <h4 className="tim-typo">My Preferences</h4>
            <div className="media-body">
 		        <div className="form-group">
-              <textarea className="form-control" name="tags" onChange={this.handleChangeTags} placeholder={user.tags.map(tag => tag + " ")}rows="6"></textarea>
+              <textarea className="form-control" name="tags" onChange={this.handleChangeTags} rows="6"></textarea>
 
 		        </div>
           </div>
@@ -67,3 +68,6 @@ class UserPageEdits extends Component {
 }
 
 export default UserPageEdits
+
+// removed this from line 58:
+// placeholder={user.tags.length && user.tags.map(tag => tag + " ")} 

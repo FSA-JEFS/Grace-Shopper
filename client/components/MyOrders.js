@@ -12,7 +12,13 @@ class MyOrders extends Component {
 
   componentDidMount() {
     const user = this.props.user
+<<<<<<< HEAD
+    if (user.id){
+      this.props.fetchData(user.id)
+    }
+=======
     if (user.id) this.props.fetchData(user.id)
+>>>>>>> master
   }
 
   render() {
@@ -31,7 +37,6 @@ class MyOrders extends Component {
 const mapState = (state) => {
   return {
     orders: state.order
-    //user: state.user
   }
 }
 

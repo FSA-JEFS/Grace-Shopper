@@ -28,11 +28,15 @@ export const me = () =>
         dispatch(getUser(res.data || defaultUser)))
       .catch(err => console.err(err))
 
-export const auth = (email, password, method) =>
+export const auth = (name, email, password, method) =>
   dispatch =>
-    axios.post(`/auth/${method}`, { email, password })
+    axios.post(`/auth/${method}`, { name, email, password })
       .then(res => {
         dispatch(getUser(res.data))
+<<<<<<< HEAD
+        // console.log('about to push', history)
+=======
+>>>>>>> master
         res.data.isAdmin ? history.push('/admin') : history.push('/products')
       })
       .catch(error =>
