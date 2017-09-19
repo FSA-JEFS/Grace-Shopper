@@ -23,7 +23,6 @@ class UserPageEdits extends Component {
     this.setState({tags: tagsArr})
   }
   handleSubmit(){
-    console.log(this.state, this.props.user.id)
     axios.put(`api/users/${this.props.user.id}`, this.state)
     .then(console.log)
 

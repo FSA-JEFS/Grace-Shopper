@@ -37,11 +37,16 @@ const adminEditProductAC = product => ({ type: ADMIN_EDIT_PRODUCT, product })
 export const adminSetOrderStatus = (id, value) => dispatch => 
   axios
     .put('/api/orders/' + id, {status: value})
+<<<<<<< HEAD
     .then(res => {
       console.log("######", res)
       return dispatch(adminSetOrderStatusAC(res.data))
     })
     .catch(err => console.log(err))
+=======
+    .then(res => dispatch(adminSetOrderStatusAC(res.data)))
+    .catch(err => console.err(err))
+>>>>>>> master
 
 export const adminGetInfo = () => dispatch =>
   Promise.all([
@@ -54,25 +59,25 @@ export const adminGetInfo = () => dispatch =>
       dispatch(adminGetProductsAC(res2.data || []))
       dispatch(adminGetOrdersAC(res3.data || []))
     })
-    .catch(err => console.log(err));
+    .catch(err => console.err(err));
 
 export const adminDelUsers = id => dispatch =>
   axios
     .delete("/api/users/" + id)
     .then(res => dispatch(adminDelUsersAC(id)))
-    .catch(err => console.log(err));
+    .catch(err => console.err(err));
 
 export const adminPromoteUser = id => dispatch =>
   axios
     .put("/api/users/" + id, { isAdmin: true })
     .then(res => dispatch(adminPromoteUserAC(id)))
-    .catch(err => console.log(err));
+    .catch(err => console.err(err));
 
 export const adminAddProduct = product => dispatch => {
   return axios
     .post("/api/products/add-product/", product)
     .then(res => dispatch(adminAddProductAC(product)))
-    .catch(err => console.log(err))
+    .catch(err => console.err(err))
 }
 
 export const adminEditProduct = product => dispatch => {
@@ -90,7 +95,7 @@ export const adminEditProduct = product => dispatch => {
   return axios
     .put("/api/products/" + product.id, cleanProduct)
     .then(res => dispatch(adminEditProductAC(product)))
-    .catch(err => console.log(err))
+    .catch(err => console.err(err))
 }
 
 // TODO: trigger password reset for a user (that is, the next time they successfully log in with their old password, they are prompted for a new one), so that I can be proactive in getting users to change their passwords after a period of time

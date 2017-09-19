@@ -10,17 +10,12 @@ export function getPuppy (puppy) {
 }
 
 // Thunk Creator
-export function fetchPuppy (puppyId) {
-
-    return function thunk (dispatch) {
-        return axios.get('/api/products/' + puppyId)
-            .then(res => res.data)
-            .then(puppy => {
-                dispatch(getPuppy(puppy));
-            })
-    }
-
-}
+export const fetchPuppy = puppyId => dispatch => 
+    axios.get('/api/products/' + puppyId)
+        .then(res => res.data)
+        .then(puppy => {
+            dispatch(getPuppy(puppy));
+        })
 
 // Reducer
 export default function reducer (state = {}, action) {

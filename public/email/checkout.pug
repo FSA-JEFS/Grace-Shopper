@@ -1,0 +1,31 @@
+extends email-layout
+
+block content
+  h2 Thank you for your order!
+  p We are currently processing your order of:
+  ul
+    each item in order.items
+      li
+        b #{item.product.name} 
+        span (#{item.product.breed}) from 
+        b #{item.product.breeder} 
+        span x #{item.quantity} at $#{item.price}
+  b For a total of: $ #{subtotal}
+  br
+  hr
+  br
+  p
+    b Recipient Information:
+  p Name: #{order.recipientName}
+  p Address: #{order.recipientAddress}
+  p Phone: #{order.recipientPhone}
+  br
+  hr
+  br
+  if !!order.specialInstructions
+    p
+      b Special Instructions
+    p #{order.specialInstructions}
+  br
+  p Thanks again! 🐶
+

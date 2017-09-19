@@ -12,26 +12,26 @@ const ShoppingCart = (props) => {
             <div className="col-md-12">
 
 					  <div className="card card-signup">
-            				<div className="col-md-12">
-		                        <div className="table-responsive">
-		                        <table className="table table-shopping">
-		                            <thead>
-		                                <tr>
-		                                    <th className="text-center"></th>
-		                                    <th >Product</th>
-		                                    <th className="th-description">Breed</th>
-		                                    <th className="text-right">Price</th>
-		                                    <th className="text-right">Qty</th>
-		                                    <th className="text-right">Amount</th>
-		                                    <th></th>
-		                                </tr>
+              <div className="col-md-12">
+                <div className="table-responsive">
+                    <table className="table table-shopping">
+                        <thead>
+                            <tr>
+                              <th className="text-center"></th>
+                              <th >Product</th>
+                              <th className="th-description">Breed</th>
+                              <th className="text-right">Price</th>
+                              <th className="text-right">Qty</th>
+                              <th className="text-right">Amount</th>
+                              <th></th>
+		                        </tr>
 		                            </thead>
 		                            <tbody>
                                   {props.cart.length && props.cart.map((element, index) => (
 		                                <tr key={element.id}>
 		                                    <td>
 		                                        <div className="img-container">
-								  					<Link to={`/products/${element.product.id}`}>
+			                          <Link to={`/products/${element.product.id}`}>
 													  {
 														  element.product.photos ? <img src={element.product.photos[0]} alt="..." /> : <div></div>
 													  }
@@ -61,7 +61,6 @@ const ShoppingCart = (props) => {
                               </button>
                             </Link>
                           </td>
-
                         </tr>
                       </tbody>
                     </table>

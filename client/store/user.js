@@ -26,14 +26,17 @@ export const me = () =>
     axios.get('/auth/me')
       .then(res =>
         dispatch(getUser(res.data || defaultUser)))
-      .catch(err => console.log(err))
+      .catch(err => console.err(err))
 
 export const auth = (name, email, password, method) =>
   dispatch =>
     axios.post(`/auth/${method}`, { name, email, password })
       .then(res => {
         dispatch(getUser(res.data))
+<<<<<<< HEAD
         // console.log('about to push', history)
+=======
+>>>>>>> master
         res.data.isAdmin ? history.push('/admin') : history.push('/products')
       })
       .catch(error =>
@@ -46,7 +49,7 @@ export const logout = () =>
         dispatch(removeUser())
         history.push('/login')
       })
-      .catch(err => console.log(err))
+      .catch(err => console.err(err))
 
 /**
  * REDUCER
