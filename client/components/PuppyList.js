@@ -16,7 +16,7 @@ class AllPuppies extends Component {
 
   render() {
     let products = this.props.products
-    if (this.state.searchBreed) products = products.filter(product => Object.values(product).join('').toLowerCase().includes(this.state.searchBreed) )
+    if (this.state.searchBreed) products = products.filter(product => Object.values(product).join('').toLowerCase().includes(this.state.searchBreed.toLowerCase()) )
   return (
     <div className="blog-posts">
       <div className="page-header header-filter header-small" style={{ backgroundImage: `url("../resources/assets/img/jeremy-wong-342291.jpg")` }}>

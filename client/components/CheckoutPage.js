@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { makeNewOrder, clearCart } from '../store'
+import Checkout from './Checkout';
 
 const CheckoutPage = (props) => {
-  const { handleSubmit } = props
+  const { handleSubmit, successPayment } = props
   const cart = props.cart.product
 
   // just shove the cart into orders
@@ -69,9 +70,16 @@ const CheckoutPage = (props) => {
                   <textarea name="specialInstructions" className="form-control" id="message" rows="3"></textarea>
                 </div>
                 <br />
-                <div className="submit text-center">
+                {/*<div className="submit text-center">
                   <input type="submit" className="btn btn-primary btn-raised btn-round" value="Submit" />
-                </div>
+                </div>*/}
+
+                <Checkout
+                  name={'The Road to learn React'}
+                  description={'Only the Book'}
+                  amount={props.cart.map(el => el.product.price * el.quantity).reduce((a,b) => a+b, 0)}
+                  successPayment={successPayment}
+                />
               </form>
             </div>
 
@@ -100,9 +108,11 @@ const mapDispatch = (dispatch) => {
                 recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions
             }
             dispatch(makeNewOrder(userid, order))
-            // after its successfully completed we should do something
-            // clear the cart and send to thank you page
-            dispatch(clearCart())
+            // we used to clear cart here but now going to only do it at the stripe success callback
+        },
+        successPayment() {
+          alert('Payment Successful');
+          dispatch(clearCart())
         }
     }
 }
@@ -112,10 +122,6 @@ const mapPropToCart = (state) => {
     cart: state.cart,
     user: state.user
   }
-  dispatch(makeNewOrder(userid, order))
-  // after its successfully completed we should do something
-  // clear the cart and send to thank you page
-  dispatch(clearCart())
 }
 
 export default connect(mapPropToCart, mapDispatch)(CheckoutPage)
