@@ -12,11 +12,10 @@ class MyOrders extends Component {
 
   componentDidMount() {
     const user = this.props.user
-    console.log('***** componount did mount', this.props.user)
     if (user.id){
-      console.log('&&&&& running in component did mount', user)
       this.props.fetchData(user.id)
     }
+    console.log(this.props.orders)
   }
 
   render() {
@@ -25,12 +24,67 @@ class MyOrders extends Component {
       <div>
         <h3 className="tim-note"> My Order History
             </h3>
+            {this.props.orders &&
+              this.props.orders.map((order, i) =>
+                <div className="panel panel-default" key={i}>
+                  <div
+                    className="panel-heading text-left"
+                    role="tab"
+                    id={"heading" + i}
+                  >
+                    <a
+                      className="collapsed"
+                      role="button"
+                      data-toggle="collapse"
+                      data-parent="#accordion"
+                      href={"#collapse" + i}
+                      aria-expanded="false"
+                      aria-controls={"collapse" + i}
+                    >
+                      <h4 className="panel-title">
+                        Order: {order.id} || Status: {order.status} || Subtotal:{" "}
+                        {order.subTotal}
+                        <i className="material-icons">keyboard_arrow_down</i>
+                      </h4>
+                    </a>
+                  </div>
+                  <div
+                    id={"collapse" + i}
+                    className="panel-collapse collapse"
+                    role="tabpanel"
+                    aria-labelledby={"heading" + i}
+                    aria-expanded="false"
+                    style={{ height: "0px" }}
+                  >
+                    <div className="panel-body">
+                      <div className="col-md-12">
+                        <div className="table-responsive">
+                          <table className="table table-shopping">
+                            <thead>
+                              <tr>
+                                <th className="text-center" />
+                                <th>Product</th>
+                                <th className="th-description">Breed</th>
+                                <th className="text-right">Price</th>
+                                <th className="text-right">Qty</th>
+                                <th className="text-right">Amount</th>
+                              </tr>
+                            </thead>
+                            <tbody>
           {this.props.orders && this.props.orders.map((order) => {
             return <OrderComponent order={order} key={order.id} />
           })}
-    </div >
+          </tbody>
+          </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   )}
-}
+  </div>
+    )}
+  }
 
 const mapState = (state) => {
   console.log('Mapping state', state)
