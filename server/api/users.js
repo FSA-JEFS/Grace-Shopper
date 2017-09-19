@@ -15,7 +15,7 @@ router.get('/', isAdmin, (req, res, next) => {
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
     // send everything to anyone who asks!
-    attributes: ['id', 'email', 'isAdmin', 'tags', 'name']
+    attributes: ['id', 'isAdmin', 'tags', 'name']
   })
     .then(users => res.json(users))
     .catch(next)
@@ -24,7 +24,12 @@ router.get('/', isAdmin, (req, res, next) => {
 // get a user by id
 router.get('/:id', isSelfOrAdmin, (req, res, next) => {
   return User.findById(req.params.id)
-    .then(user => user ? res.json(user) : res.sendStatus(404))
+    .then(user => user ? res.json({
+      id: user.id,
+      isAdmin: user.isAdmin,
+      name: user.name,
+      tags: user.tags
+    }) : res.sendStatus(404))
     .catch(next)
 })
 
