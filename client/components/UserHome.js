@@ -19,7 +19,7 @@ const UserHome = (props) => {
                   <div className="row">
               <div className="col-md-6">
                 <h1 className="title">Find your new best friend.</h1>
-                          <h4>Every landing page needs a small description after the big bold title, that's why we added this text here. Add here all the information that can make you or your product create the first impression.</h4>
+                          <h4>Purchasing a dog is difficult. We've made it easy. Our team is here to help you make an informed decision before purchasing your pet so you know exactly what to expect before obtaining your new best friend.</h4>
                           <br />
                           <Link to="/products"><div className="btn btn-primary btn-raised btn-lg">See Our Puppies</div></Link>
                           <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" className="btn btn-danger btn-raised btn-lg">

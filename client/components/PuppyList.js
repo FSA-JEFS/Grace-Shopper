@@ -55,7 +55,7 @@ class AllPuppies extends Component {
                           <h3 className="card-title">{puppy.name}</h3>
 
                           <p className="card-description">
-                            {puppy.description}
+                            {puppy.description.length < 100 ? puppy.description : puppy.description.slice(0,140) + '...'}
                           </p>
                           <Link className="btn btn-danger btn-round" to={"/products/" + puppy.id}>
                             <i className="material-icons">format_align_left</i> Cuddle with meee ❤
