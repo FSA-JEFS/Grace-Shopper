@@ -49,7 +49,7 @@ const ShoppingCart = (props) => {
 		                                        {element.product.breed}
 		                                    </td>
 		                                    <td className="td-number">
-		                                        <small>&euro;</small>{element.product.price}
+		                                        <small>&#36;</small>{element.product.price}
 		                                    </td>
 		                                    <td className="td-number">
 		                                        {element.quantity}
@@ -59,7 +59,7 @@ const ShoppingCart = (props) => {
 		                                        </div>
 		                                    </td>
 		                                    <td className="td-number">
-		                                        <small>&euro;</small>xxx
+		                                        <small>&#36;</small>{element.product.price * element.quantity}
 		                                    </td>
 		                                    <td className="td-actions">
 		                                        <button type="button" rel="tooltip" data-placement="left" title="Remove item" className="btn btn-simple" onClick={() => props.handleDelete(element)}>
