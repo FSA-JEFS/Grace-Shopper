@@ -109,7 +109,7 @@ class SinglePuppy extends Component {
                                   <div className="panel-heading" role="tab" id="headingOne">
                                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-controls="collapseOne">
                                           <h4 className="panel-title">
-                                          Designer Information
+                                          Breeder Information
                                           <i className="material-icons">keyboard_arrow_down</i>
                                           </h4>
                                       </a>
@@ -124,7 +124,7 @@ class SinglePuppy extends Component {
                                   <div className="panel-heading" role="tab" id="headingOne">
                                       <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-controls="collapseOne">
                                           <h4 className="panel-title">
-                                          Details and Care
+                                          Reviews
                                           <i className="material-icons">keyboard_arrow_down</i>
                                           </h4>
                                       </a>
