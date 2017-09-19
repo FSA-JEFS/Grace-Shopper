@@ -73,7 +73,7 @@ export default class extends React.Component {
                             <thead>
                               <tr>
                                 <th className="text-center" />
-                                <th>Product</th>
+                                <th className="text-center" >Product</th>
                                 <th className="th-description">Breed</th>
                                 <th className="text-right">Price</th>
                                 <th className="text-right">Qty</th>
