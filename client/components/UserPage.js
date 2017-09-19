@@ -3,9 +3,11 @@ import { Route, Switch, Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import UserPageDetails from './UserPage-Details'
 import UserPageEdits from './UserPage-Edits'
+import CreateReview from './CreateReview'
+import MyOrders from './MyOrders'
 
 const UserPage = (props) => {
-  const { user, isLoggedIn } = this.props
+  const { user, isLoggedIn } = props
 
   return (
     <div className='signup-page'>
