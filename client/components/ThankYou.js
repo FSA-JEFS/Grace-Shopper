@@ -10,7 +10,8 @@ export default () => {
     			  <div className="col-md-12">
 
 					  <div className="card card-signup">
-              THANK YOU!!! 🚀 🐶 🐕 🌭
+              THANK YOU!!! 🚀 🐶 🐕 🌭 <br />
+              We would have sent an email confirmation but this site is not live yet.
             </div>
           </div>
         </div>

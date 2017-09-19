@@ -6,7 +6,7 @@ const STRIPE_PUBLISHABLE = process.env.NODE_ENV === 'production'
   ? 'pk_test_EgaeqwoPyOeB26JZ6FF6obdv'
   : 'pk_test_EgaeqwoPyOeB26JZ6FF6obdv';
 const PAYMENT_SERVER_URL = process.env.NODE_ENV === 'production'
-  ? 'http://myapidomain.com'
+  ? '/api/stripe'
   : '/api/stripe';
 
 const CURRENCY = 'USD';
