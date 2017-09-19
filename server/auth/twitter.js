@@ -43,6 +43,6 @@ passport.use(strategy)
 router.get('/', passport.authenticate('twitter', {scope: 'email'}))
 
 router.get('/callback', passport.authenticate('twitter', {
-  successRedirect: '/home',
+  successRedirect: '/',
   failureRedirect: '/login'
 }))

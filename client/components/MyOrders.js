@@ -12,9 +12,7 @@ class MyOrders extends Component {
 
   componentDidMount() {
     const user = this.props.user
-    if (user.id){
-      this.props.fetchData(user.id)
-    }
+    if (user.id) this.props.fetchData(user.id)
   }
 
   render() {
