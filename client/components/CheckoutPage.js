@@ -82,44 +82,29 @@ const CheckoutPage = (props) => {
   )
 }
 
-    const mapDispatch = (dispatch) => {
-        return {
-            handleSubmit (evt, userid, cart) {
-                evt.preventDefault()
-                // submit cart data into the user's orders
-                let {recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions} = evt.target;
-                [recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions] = [recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions].map(x => x.value)
-                // create an obj 
-                let order = {
-                    status: 'CREATED', 
-                    items: cart.map((element, index) => ({
-                        product: element.product, 
-                        quantity: element.quantity, 
-                        price: element.product.price
-                    })),
-                    recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions
-                }
-                dispatch(makeNewOrder(userid, order))
-                // after its successfully completed we should do something
-                // clear the cart and send to thank you page
-                dispatch(clearCart())
+const mapDispatch = (dispatch) => {
+    return {
+        handleSubmit (evt, userid, cart) {
+            evt.preventDefault()
+            // submit cart data into the user's orders
+            let {recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions} = evt.target;
+            [recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions] = [recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions].map(x => x.value)
+            // create an obj 
+            let order = {
+                status: 'CREATED', 
+                items: cart.map((element, index) => ({
+                    product: element.product, 
+                    quantity: element.quantity, 
+                    price: element.product.price
+                })),
+                recipientName, confirmationEmail, recipientAddress, recipientPhone, specialInstructions
             }
+            dispatch(makeNewOrder(userid, order))
+            // after its successfully completed we should do something
+            // clear the cart and send to thank you page
+            dispatch(clearCart())
         }
     }
-    
-    const mapPropToCart = (state) => {
-      return {
-        cart: state.cart,
-        user: state.user
-      }
-      console.log('userid', userid)
-      console.log('order', order)
-      dispatch(makeNewOrder(userid, order))
-      // after its successfully completed we should do something
-      // clear the cart and send to thank you page
-      dispatch(clearCart())
-    }
-  }
 }
 
 const mapPropToCart = (state) => {
@@ -127,6 +112,10 @@ const mapPropToCart = (state) => {
     cart: state.cart,
     user: state.user
   }
+  dispatch(makeNewOrder(userid, order))
+  // after its successfully completed we should do something
+  // clear the cart and send to thank you page
+  dispatch(clearCart())
 }
 
 export default connect(mapPropToCart, mapDispatch)(CheckoutPage)

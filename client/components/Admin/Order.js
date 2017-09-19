@@ -126,7 +126,7 @@ export default class extends React.Component {
                                 <td colSpan="2" className="text-right">
                                   <select
                                     className="selectpicker"
-                                    data-style="btn btn-primary btn-round"
+                                    // data-style="btn btn-primary btn-round"
                                     title="Change Status"
                                     data-size="7"
                                     style={{display: 'block'}}
