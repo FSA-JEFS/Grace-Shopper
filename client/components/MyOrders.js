@@ -42,7 +42,7 @@ class MyOrders extends Component {
                       aria-controls={"collapse" + i}
                     >
                       <h4 className="panel-title">
-                        Order: {order.id} || Status: {order.status} || Subtotal:{" "}
+                        Order: {order.items.map(item => item.product.name +', the ' + item.product.breed)} || Status: {order.status} || Subtotal:{" "}
                         {order.subTotal}
                         <i className="material-icons">keyboard_arrow_down</i>
                       </h4>
@@ -62,7 +62,7 @@ class MyOrders extends Component {
                           <table className="table table-shopping">
                             <thead>
                               <tr>
-                                <th className="text-center" />
+                                {/* <th className="text-center" /> */}
                                 <th>Product</th>
                                 <th className="th-description">Breed</th>
                                 <th className="text-right">Price</th>
@@ -71,16 +71,16 @@ class MyOrders extends Component {
                               </tr>
                             </thead>
                             <tbody>
-          {this.props.orders && this.props.orders.map((order) => {
-            return <OrderComponent order={order} key={order.id} />
-          })}
-          </tbody>
-          </table>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+                              {this.props.orders && this.props.orders.map((order) => {
+                                return <OrderComponent order={order} key={order.id} />
+                              })}
+                            </tbody>
+                          </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
   )}
   </div>
     )}

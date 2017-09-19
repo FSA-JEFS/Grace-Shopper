@@ -129,13 +129,6 @@ const OrderComponent = (props) => {
                                     .reduce((a, b) => a + b, 0)}
                                 </td>
                               </tr>
-                            {/* </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div> */}
               )}
               </div>
 
