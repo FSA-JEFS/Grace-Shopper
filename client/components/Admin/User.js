@@ -15,7 +15,7 @@ export default props => {
       </ul>
       <div className="col-md-10 col-md-offset-1">
         <div className="table-responsive">
-          <table className="table">
+          <table className="table"> hi
             <thead>
               <tr>
                 <th className="text-center">#</th>
