@@ -62,42 +62,41 @@ const UserHome = props => {
                   <div className="card card-profile card-plain">
                     <div className="col-md-5">
                       <div className="card-image">
-                        <a href="#pablo">
+                        <a href="https://www.linkedin.com/in/janninechan/">
                           <img
                             className="img"
-                            src="../resources/assets/img/faces/card-profile1-square.jpg"
+                            src="../resources/jannine.jpg"
                           />
                         </a>
                       </div>
                     </div>
                     <div className="col-md-7">
                       <div className="card-content">
-                        <h4 className="card-title">Alec Thompson</h4>
-                        <h6 className="category text-muted">Founder</h6>
+                        <h4 className="card-title">Jannine Chan</h4>
+                        <h6 className="category text-muted">Fullstack Software Engineer</h6>
 
                         <p className="card-description">
-                          Don't be scared of the truth because we need to
-                          restart the human foundation in truth...
-                        </p>
+                        I want a position that's challenging and combines my varied experiences, analytical skills, and desire to build amazing user experiences as a full stack developer. I am eager to learn and always exploring other new technologies and libraries. </p>
 
                         <div className="footer">
-                          <a
-                            href="#pablo"
-                            className="btn btn-just-icon btn-simple btn-twitter"
+                        <a
+                          href="https://www.linkedin.com/in/janninechan/"
+                          className="btn btn-just-icon btn-simple btn-linkedin"
                           >
-                            <i className="fa fa-twitter" />
-                          </a>
+                          <i className="fa fa-linkedin" />
+                        </a>
+
+                        <a
+                        href="https://www.instagram.com/butter_where/"
+                        className="btn btn-just-icon btn-simple btn-instagram"
+                      >
+                        <i className="fa fa-instagram" />
+                      </a>
                           <a
-                            href="#pablo"
-                            className="btn btn-just-icon btn-simple btn-facebook"
-                          >
-                            <i className="fa fa-facebook-square" />
-                          </a>
-                          <a
-                            href="#pablo"
+                            href="https://github.com/jn9cn"
                             className="btn btn-just-icon btn-simple btn-google"
                           >
-                            <i className="fa fa-google" />
+                            <i className="fa fa-github" />
                           </a>
                         </div>
                       </div>
@@ -109,98 +108,44 @@ const UserHome = props => {
                   <div className="card card-profile card-plain">
                     <div className="col-md-5">
                       <div className="card-image">
-                        <a href="#pablo">
+                        <a href="https://www.linkedin.com/in/eseite/">
                           <img
                             className="img"
-                            src="../resources/assets/img/faces/card-profile6-square.jpg"
+                            src="../resources/elisabeth.jpg"
                           />
                         </a>
                       </div>
                     </div>
                     <div className="col-md-7">
                       <div className="card-content">
-                        <h4 className="card-title">Kendall Andrew</h4>
+                        <h4 className="card-title">Elisabeth Seite</h4>
                         <h6 className="category text-muted">
-                          Graphic Designer
+                          FullStack Software Engineer
                         </h6>
 
                         <p className="card-description">
-                          Don't be scared of the truth because we need to
-                          restart the human foundation in truth...
+                        I am a world traveler who want to use my abilities to blend logic, problem solving and creativity, and pushed the limit of what's possible. I look forward to discovering new challenges and technologies through fun projects.
                         </p>
 
                         <div className="footer">
                           <a
-                            href="#pablo"
+                            href="https://www.linkedin.com/in/eseite/"
                             className="btn btn-just-icon btn-simple btn-linkedin"
                           >
                             <i className="fa fa-linkedin" />
                           </a>
                           <a
-                            href="#pablo"
-                            className="btn btn-just-icon btn-simple btn-facebook"
-                          >
-                            <i className="fa fa-facebook-square" />
-                          </a>
-                          <a
-                            href="#pablo"
-                            className="btn btn-just-icon btn-simple btn-dribbble"
-                          >
-                            <i className="fa fa-dribbble" />
-                          </a>
-                          <a
-                            href="#pablo"
+                            href="https://github.com/eseite47"
                             className="btn btn-just-icon btn-simple btn-google"
                           >
-                            <i className="fa fa-google" />
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="col-md-6">
-                  <div className="card card-profile card-plain">
-                    <div className="col-md-5">
-                      <div className="card-image">
-                        <a href="#pablo">
-                          <img
-                            className="img"
-                            src="../resources/assets/img/faces/card-profile4-square.jpg"
-                          />
-                        </a>
-                      </div>
-                    </div>
-                    <div className="col-md-7">
-                      <div className="card-content">
-                        <h4 className="card-title">Gina Andrew</h4>
-                        <h6 className="category text-muted">Web Designer</h6>
-
-                        <p className="card-description">
-                          I love you like Kanye loves Kanye. Don't be scared of
-                          the truth.
-                        </p>
-
-                        <div className="footer">
-                          <a
-                            href="#pablo"
-                            className="btn btn-just-icon btn-simple btn-youtube"
-                          >
-                            <i className="fa fa-youtube-play" />
+                            <i className="fa fa-github" />
                           </a>
                           <a
-                            href="#pablo"
+                            href="https://twitter.com/eseite47"
                             className="btn btn-just-icon btn-simple btn-twitter"
                           >
                             <i className="fa fa-twitter" />
                           </a>
-                          <a
-                            href="#pablo"
-                            className="btn btn-just-icon btn-simple btn-instagram"
-                          >
-                            <i className="fa fa-instagram" />
-                          </a>
                         </div>
                       </div>
                     </div>
@@ -211,43 +156,81 @@ const UserHome = props => {
                   <div className="card card-profile card-plain">
                     <div className="col-md-5">
                       <div className="card-image">
-                        <a href="#pablo">
+                        <a href="https://www.linkedin.com/in/forrest-wolf/">
                           <img
                             className="img"
-                            src="../resources/assets/img/faces/card-profile2-square.jpg"
+                            src="../resources/forrest.jpg"
                           />
                         </a>
                       </div>
                     </div>
                     <div className="col-md-7">
                       <div className="card-content">
-                        <h4 className="card-title">George West</h4>
-                        <h6 className="category text-muted">Backend Hacker</h6>
+                        <h4 className="card-title">Forrest Wolf</h4>
+                        <h6 className="category text-muted">FullStack Software Engineer</h6>
 
                         <p className="card-description">
-                          I love you like Kanye loves Kanye. Don't be scared of
-                          the truth because we need to restart the human
-                          foundation.
+                         Description coming soon!
+                        </p>
+
+                        <div className="footer">
+                        <a
+                        href="https://www.linkedin.com/in/forrest-wolf/"
+                        className="btn btn-just-icon btn-simple btn-linkedin"
+                      >
+                        <i className="fa fa-linkedin" />
+                      </a>
+                      <a
+                        href="https://github.com/ForrestWeiswolf"
+                        className="btn btn-just-icon btn-simple btn-google"
+                      >
+                        <i className="fa fa-github" />
+                      </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="col-md-6">
+                  <div className="card card-profile card-plain">
+                    <div className="col-md-5">
+                      <div className="card-image">
+                        <a href="https://www.linkedin.com/in/shawnswyxwang/">
+                          <img
+                            className="img"
+                            src="../resources/shawn.jpg"
+                          />
+                        </a>
+                      </div>
+                    </div>
+                    <div className="col-md-7">
+                      <div className="card-content">
+                        <h4 className="card-title">Shawn Wang</h4>
+                        <h6 className="category text-muted">FullStack Software Engineer</h6>
+
+                        <p className="card-description">
+                        I'm a pseudo poetic semi athletic diaphoretic peripatetic sharing the things I find very aesthetic. follow me @swyx
                         </p>
 
                         <div className="footer">
                           <a
-                            href="#pablo"
+                            href="https://www.linkedin.com/in/shawnswyxwang/"
                             className="btn btn-just-icon btn-simple btn-linkedin"
                           >
                             <i className="fa fa-linkedin" />
                           </a>
                           <a
-                            href="#pablo"
-                            className="btn btn-just-icon btn-simple btn-facebook"
-                          >
-                            <i className="fa fa-facebook-square" />
-                          </a>
+                          href="https://twitter.com/swyx"
+                          className="btn btn-just-icon btn-simple btn-twitter"
+                        >
+                          <i className="fa fa-twitter" />
+                        </a>
                           <a
-                            href="#pablo"
+                            href="https://github.com/sw-yx"
                             className="btn btn-just-icon btn-simple btn-google"
                           >
-                            <i className="fa fa-google" />
+                            <i className="fa fa-github" />
                           </a>
                         </div>
                       </div>
