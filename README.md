@@ -8,4 +8,3 @@ Hello world!
 this is deployed at <https://puppybasket.herokuapp.com/>
 
 <img src="https://media.giphy.com/media/xUOwGik5wcih8SfOta/giphy.gif">
-<img src="https://media.giphy.com/media/xThta3p6BCXAsfMhSU/giphy.gif" width="800">
