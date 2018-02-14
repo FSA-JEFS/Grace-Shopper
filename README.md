@@ -6,3 +6,5 @@
 Hello world!
 
 this is deployed at <https://puppybasket.herokuapp.com/>
+
+<img src="https://media.giphy.com/media/xUOwGik5wcih8SfOta/giphy.gif">
