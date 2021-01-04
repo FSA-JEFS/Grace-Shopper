@@ -23,7 +23,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.15.3",
+    "axios": "^0.21.1",
     "body-parser": "^1.16.1",
     "chai-as-promised": "^7.1.1",
     "connect-session-sequelize": "^4.1.0",
